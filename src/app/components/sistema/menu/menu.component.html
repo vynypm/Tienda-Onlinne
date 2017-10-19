@@ -1,0 +1,53 @@
+<app-navbar-sistema></app-navbar-sistema>
+<br><br><br><br>
+<div class="container">
+  <h1 style="color: #161a51; text-align: center">
+    Pantalla Menu
+  </h1>
+
+  <div class="row">
+
+      <!--<div class="col-sm-3" *ngFor="let item of listaProductos">
+        <div class="card card-with-border card-centred-text black-grey">
+          <div class="card-content text-white">
+            <h3 class="card-title">{{item.categoria}}</h3>
+          </div>
+          <img id="card_img" src="{{item.imagen}}" alt=""/>
+          <div class="card-content text-white">
+            <h4 class="card-title">{{item.nombre}}</h4>
+            <h6 class="card-description">Precio: {{item.precio}}</h6>
+            <p>{{item.descripcion}}</p>
+          </div>
+        </div>
+      </div>
+
+  </div>-->
+    <div class="col-sm-3 col-md-3" *ngFor="let item of listaProductos; let i=index">
+      <div class="card hovercard">
+        <img src="{{item.imagen}}" alt=""/>
+        <div class="avatar">
+          <img src="{{item.imagen}}" alt="" />
+        </div>
+        <div class="info">
+          <div class="title">
+            {{item.nombre}}
+          </div>
+          <h3>{{item.categoria}}</h3>
+          <div class="desc">Precio: {{item.precio}}</div>
+          <div class="desc">{{item.descripcion}}</div>
+        </div>
+        <div class="bottom">
+          <button [routerLink]="['/registro', item.id ]"class="btn btn-info">Editar</button>
+          <button (click)="eliminar(item.id, i) "type="button" class="btn btn-outline-danger">Eliminar</button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+</div>

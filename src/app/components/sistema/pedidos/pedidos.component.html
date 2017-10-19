@@ -1,0 +1,41 @@
+<app-navbar-sistema></app-navbar-sistema>
+<br><br><br><br>
+
+
+<div class="container">
+  <h1 style="color: #161a51; text-align: center">Pedidos Registrados</h1>
+  <hr>
+
+
+
+  <div class="card text-center " *ngFor=" let pedido  of pedidos; let i = index" >
+    <div class="card-header text-left">
+      <p></p>
+    </div>
+    <div class="card-block">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="card-img-top text-center"  [src]="pedido.imagen" width="150" height="150" alt="Card image cap" >
+        </div>
+        <div class="col-md-4">
+
+          <p class="card-text text-left">Cliente: {{pedido.cliente}}  </p>
+          <p class="card-text text-left">Producto: {{pedido.nombre_producto}}</p>
+          <p class="card-text text-left">Cantidad: {{pedido.cantidad}}</p>
+          <p class="card-text text-left">Precio Unitario: {{pedido.precio_individual}}</p>
+          <p class="card-text text-left">Precio Total: {{pedido.precio_total}}</p>
+          <p class="card-text text-left">Estado: {{pedido.estado}}</p>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

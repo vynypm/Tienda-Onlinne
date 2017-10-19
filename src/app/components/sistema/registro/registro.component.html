@@ -1,0 +1,87 @@
+<app-navbar-sistema></app-navbar-sistema>
+<br><br><br><br>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col">
+      <h1 style="color: #161a51; text-align: center">Registro de Productos</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="guardar()" #forma="ngForm">
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Nombre:</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="text"
+                   name="nombre"
+                   placeholder="Producto"
+                   [(ngModel)]="producto.nombre">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Imagen:</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="text"
+                   name="imagen"
+                   placeholder="Url imagen"
+                   [(ngModel)]="producto.imagen">
+          </div>
+        </div>
+        <!--<div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Categoria:</label>
+          </div>
+          <div class="col">
+            <select class="form-control"
+                    name="owner"
+                    [(ngModel)]="producto.owner" >
+              <option *ngFor="let item of listaCategorias" [value]="item.id">{{item.nombre_categoria}}</option>
+            </select>
+          </div>
+        </div>-->
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Precio:</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number"
+                   step="0.01"
+                   name="precio"
+                   placeholder="$ 00,00"
+                   [(ngModel)]="producto.precio">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Descripcion:</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="text"
+                   name="descripcion"
+                   placeholder="descripcion"
+                   [(ngModel)]="producto.descripcion">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col">
+            <button type="submit" class="btn btn-info">
+              Guardar
+            </button>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-info " [routerLink]="['/productos']">
+              Menu
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
