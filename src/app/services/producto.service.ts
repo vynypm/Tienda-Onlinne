@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 export class ProductoService {
 
   productosSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/productos';
-  categoriaSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/categorias';
+  categoriaSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/Categorias';
   pedidosSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/pedidos';
 
   constructor(private _http: Http) { }

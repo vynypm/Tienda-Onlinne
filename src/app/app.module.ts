@@ -51,6 +51,7 @@ import {MessagesModule} from 'primeng/primeng';
     InfoPedidosComponent,
     AdministracionComponent,
 
+
   ],
   imports: [
     BrowserModule,

@@ -12,13 +12,24 @@
       <form (ngSubmit)="guardar()" #forma="ngForm">
         <div class="form-group row">
           <div class="col">
-            <label class="col-2 col-form-label">Nombre:</label>
+            <label class="col-2 col-form-label">Marca:</label>
           </div>
           <div class="col">
             <input class="form-control" type="text"
                    name="nombre"
                    placeholder="Producto"
-                   [(ngModel)]="producto.nombre">
+                   [(ngModel)]="producto.marca">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-2 col-form-label">Modelo:</label>
+          </div>
+          <div class="col">
+            <input class="form-control" type="text"
+                   name="nombre"
+                   placeholder="Producto"
+                   [(ngModel)]="producto.modelo">
           </div>
         </div>
         <div class="form-group row">
@@ -32,18 +43,18 @@
                    [(ngModel)]="producto.imagen">
           </div>
         </div>
-        <!--<div class="form-group row">
+        <div class="form-group row">
           <div class="col">
             <label class="col-2 col-form-label">Categoria:</label>
           </div>
           <div class="col">
             <select class="form-control"
                     name="owner"
-                    [(ngModel)]="producto.owner" >
-              <option *ngFor="let item of listaCategorias" [value]="item.id">{{item.nombre_categoria}}</option>
+                    [(ngModel)]="producto.categoria" >
+              <option *ngFor="let item of listaCategorias" [value]="item.id">{{item.nombre}}</option>
             </select>
           </div>
-        </div>-->
+        </div>
         <div class="form-group row">
           <div class="col">
             <label class="col-2 col-form-label">Precio:</label>

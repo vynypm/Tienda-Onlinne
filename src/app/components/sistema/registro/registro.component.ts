@@ -14,12 +14,12 @@ export class RegistroComponent implements OnInit {
   id: string;
   listaCategorias: any [] = [];
   producto: Producto = {
-    categoria: "",
-    nombre: "",
+    marca: "",
+    modelo: "",
     precio: 0,
     descripcion: "",
     imagen: "",
-    owner: 0,
+    categoria: "",
   }
 
   constructor(private _usuarioServices: UsuarioService, private _productoServices: ProductoService,
