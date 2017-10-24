@@ -5,6 +5,7 @@ import {Producto} from '../../../interfaces/registro.interface';
 import {ProductoService} from '../../../services/producto.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UsuarioService} from '../../../services/usuario.service';
+import { MarcaService } from '../../../services/marca.service';
 
 @Component({
   selector: 'app-registro',
@@ -13,6 +14,8 @@ import {UsuarioService} from '../../../services/usuario.service';
 export class RegistroComponent implements OnInit {
   id: string;
   listaCategorias: any [] = [];
+  listaMarcas: any [] = [];
+
   producto: Producto = {
     marca: "",
     modelo: "",
@@ -24,7 +27,8 @@ export class RegistroComponent implements OnInit {
 
   constructor(private _usuarioServices: UsuarioService, private _productoServices: ProductoService,
               private _router: Router,
-              private _activatedRoute: ActivatedRoute) {
+              private _activatedRoute: ActivatedRoute,
+              private _marcaService: MarcaService) {
     console.log("registro controlador");
       this._productoServices.consultarCategoria()
         .subscribe(
@@ -53,6 +57,14 @@ export class RegistroComponent implements OnInit {
               }
             );
           }
+        }
+      );
+
+    this._marcaService.consultarMarcas()
+      .subscribe(
+        resultado => {
+          this.listaMarcas = resultado;
+          //console.log(this.listaMarcas);
         }
       );
   }

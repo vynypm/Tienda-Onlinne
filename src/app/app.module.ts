@@ -25,11 +25,15 @@ import {ProductoService} from './services/producto.service';
 
 //servicios
 import { UsuarioService } from './services/usuario.service';
+import { MarcaService } from './services/marca.service';
+import { CategoriaService } from './services/categoria.service';
 
 import { UsuarioFooterService } from './services/usuario.footer.service';
 import { AdministracionComponent } from './components/sistema/administracion/administracion.component';
 
 import {MessagesModule} from 'primeng/primeng';
+import { MarcaComponent } from './components/sistema/marca/marca.component';
+import { CategoriaComponent } from './components/sistema/categoria/categoria.component';
 
 
 @NgModule({
@@ -50,6 +54,8 @@ import {MessagesModule} from 'primeng/primeng';
     PedidosComponent,
     InfoPedidosComponent,
     AdministracionComponent,
+    MarcaComponent,
+    CategoriaComponent,
 
 
   ],
@@ -62,8 +68,9 @@ import {MessagesModule} from 'primeng/primeng';
   providers: [
     ProductoService,
     UsuarioService,
-    UsuarioFooterService
-
+    UsuarioFooterService,
+    MarcaService,
+    CategoriaService
   ],
   bootstrap: [AppComponent]
 })

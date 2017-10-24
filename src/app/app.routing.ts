@@ -12,6 +12,8 @@ import { PedidosComponent } from './components/sistema/pedidos/pedidos.component
 import { RegistroComponent } from './components/sistema/registro/registro.component';
 import { UsuariosComponent } from './components/sistema/usuarios/usuarios.component';
 import { AdministracionComponent } from './components/sistema/administracion/administracion.component';
+import { MarcaComponent } from './components/sistema/marca/marca.component';
+import { CategoriaComponent } from './components/sistema/categoria/categoria.component';
 
 const appRoutes: Routes = [
   //{ path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -24,6 +26,8 @@ const appRoutes: Routes = [
   { path: 'registro/:id', component: RegistroComponent },
   { path: 'usuario/:id', component: UsuariosComponent },
   {path: 'usuarios' , component: AdministracionComponent},
+  {path: 'marca/:id' , component: MarcaComponent},
+  {path: 'categoria/:id' , component: CategoriaComponent},
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'presentacion' }

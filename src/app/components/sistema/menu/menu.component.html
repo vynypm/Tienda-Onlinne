@@ -4,7 +4,39 @@
   <h1 style="color: #161a51; text-align: center">
     Pantalla Menu
   </h1>
+  <div class="text-right">
+    <button [routerLink]="['/registro', 'nuevo']"
+            type="button" class="btn btn-warning">Nuevo Producto</button>
+  </div>
 
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Imagen</th>
+      <th>Marcar</th>
+      <th>Modelo</th>
+      <th>Precio</th>
+      <th>Administrar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of listaProductos; let i=index">
+      <th>{{i+1}}</th>
+      <td><img class="table-img" [src]="item.image"></td>
+      <td>{{item.marca}}</td>
+      <td>{{item.modelo}}</td>
+      <td>{{item.precio | currency}}</td>
+
+      <td>
+        <button [routerLink]="['/registro',item.id]"
+                type="button" class="btn btn-info">Editar</button>
+        <button (click)="eliminar(item.id, i)"
+                type="button" class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
   <div class="row">
 
       <!--<div class="col-sm-3" *ngFor="let item of listaProductos">
@@ -22,7 +54,7 @@
       </div>
 
   </div>-->
-    <div class="col-sm-3 col-md-3" *ngFor="let item of listaProductos; let i=index">
+    <!--<div class="col-sm-3 col-md-3" *ngFor="let item of listaProductos; let i=index">
       <div class="card hovercard">
         <img src="{{item.imagen}}" alt=""/>
         <div class="avatar">
@@ -43,7 +75,7 @@
       </div>
 
 
-    </div>
+    </div>-->
 
 
 
