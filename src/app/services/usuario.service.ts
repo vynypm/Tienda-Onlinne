@@ -3,16 +3,12 @@ import { Http, Headers } from '@angular/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import 'rxjs/Rx';
 
-
 @Injectable()
 export class UsuarioService {
 
   usuarioSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/usuarios';
 
-  constructor(private _http: Http) {
-
-  }
-
+  constructor(private _http: Http) { }
 
   nuevoUsuario(usuario: Usuario) {
 
@@ -67,7 +63,7 @@ export class UsuarioService {
       );
   }
 
-  isLogged():Promise<boolean>{
+  isLogged():Promise<boolean> {
     if (typeof(Storage) !== 'undefined') {
       if (sessionStorage.getItem('Usuario')) {
         return Promise.resolve(true);
@@ -78,3 +74,4 @@ export class UsuarioService {
 
 
 }
+

@@ -1,0 +1,54 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="cabecera container">
+  <h2>Usuarios Registrados</h2>
+</div><br>
+
+<div class="container">
+
+
+  <div class="row" >
+    <div  class=" col-md-12 text-right">
+      <button [routerLink]="['/registrar-usuariosAdmin/nuevo']" type="button" class="btn btn-primary">+</button>
+      <br>
+    </div>
+  </div>
+
+  <div class="card text-center " *ngFor=" let usuario  of usuarios; let i = index" >
+    <div class="card-header text-left">
+      <p></p>
+    </div>
+    <div class="card-block">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="card-img-top text-center"  [src]="usuario.img" width="100" height="100" alt="Card image cap" >
+        </div>
+        <div class="col-md-4">
+          <p class="card-text text-left">{{i+1}} </p>
+          <p class="card-text text-left">Nombre: {{usuario.nombre}}  {{usuario.apellido}} </p>
+          <p class="card-text text-left">Email: {{usuario.email}}</p>
+          <p class="card-text text-left">Rol: {{usuario.rol}}</p>
+          <p class="card-text text-left">Telefono: {{usuario.telefono}}</p>
+        </div>
+
+        <div class="col-md-4">
+          <button [routerLink]="['/registrar-usuariosAdmin',usuario.id]"
+                  class="btn btn-outline-primary" type="button">Editar</button>
+          <button  class="btn btn-outline-danger" (click)="eliminar(usuario.id, i)"
+                   type="button">Eliminar</button>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+

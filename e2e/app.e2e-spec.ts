@@ -1,14 +1,14 @@
-import { SitioWebPage } from './app.po';
+import { AppPage } from './app.po';
 
-describe('sitio-web App', () => {
-  let page: SitioWebPage;
+describe('tienda-online App', () => {
+  let page: AppPage;
 
   beforeEach(() => {
-    page = new SitioWebPage();
+    page = new AppPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });

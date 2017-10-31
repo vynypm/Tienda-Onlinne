@@ -49,4 +49,15 @@ export class MarcaService {
       );
   }
 
+  eliminarMarca(key$: string) {
+    let url = `${this.urlMarcas}/${key$}`;
+    return this._http.delete(url)
+      .map(
+        res => {
+          return res.json();
+        }
+      );
+  }
+
 }
+

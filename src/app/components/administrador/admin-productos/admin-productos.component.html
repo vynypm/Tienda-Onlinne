@@ -1,0 +1,43 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="cabecera container">
+  <h2>Administracion de Productos</h2>
+</div><br>
+
+
+<div class="container">
+  <div class="text-right">
+    <button [routerLink]="['/registrar-producto', 'nuevo']"
+            type="button" class="btn btn-warning">Nuevo Producto</button>
+  </div>
+
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Imagen</th>
+      <th>Marcar</th>
+      <th>Modelo</th>
+      <th>Precio</th>
+      <th>Administrar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of listaProductos; let i=index">
+      <th>{{i+1}}</th>
+      <td><img class="table-img" [src]="item.image"></td>
+      <td>{{item.marca}}</td>
+      <td>{{item.modelo}}</td>
+      <td>{{item.precio | currency}}</td>
+
+      <td>
+        <button [routerLink]="['/registrar-producto',item.id]"
+                type="button" class="btn btn-info">Editar</button>
+        <button (click)="eliminar(item.id, i)"
+                type="button" class="btn btn-danger">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>

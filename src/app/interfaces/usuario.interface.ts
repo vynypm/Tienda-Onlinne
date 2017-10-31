@@ -1,6 +1,4 @@
 export interface Usuario {
-
-
   nombre: string;
   apellido: string;
   email: string;
@@ -11,7 +9,4 @@ export interface Usuario {
   img: string;
   //key$?: string;
 
-
-
 }
-

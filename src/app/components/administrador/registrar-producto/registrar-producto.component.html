@@ -1,0 +1,115 @@
+<app-navbar-admin></app-navbar-admin>
+
+
+<div class="cabecera container">
+  <h2>Registrar nuevo Producto</h2>
+</div><br>
+
+<div class="text-right container">
+  <button [routerLink]="['/marca', 'nuevo']"
+          type="button" class="btn btn-warning">Nueva Marca</button>
+  <button [routerLink]="['/categoria', 'nuevo']"
+          type="button" class="btn btn-warning">Nueva Categoria</button>
+</div>
+<br>
+<div class="container registro">
+   <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="guardar()" #forma="ngForm">
+
+        <div class="row">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Marca:</label>
+              <div class="col-md-12">
+                <select class="col-12 custom-select"
+                        name="marca"
+                        [(ngModel)]="producto.marca">
+                  <option selected>Seleccionar...</option>
+                  <option *ngFor ="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Modelo:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text"
+                       name="nombre"
+                       placeholder="Producto"
+                       [(ngModel)]="producto.modelo">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Imagen:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text"
+                       name="imagen"
+                       placeholder="Url imagen"
+                       [(ngModel)]="producto.imagen">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Categoria:</label>
+
+              <div class="col-md-12">
+                <select class="col-md-12 custom-select"
+                        name="owner"
+                        [(ngModel)]="producto.categoria">
+                  <option selected>Seleccionar..</option>
+                  <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Precio:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="number"
+                       step="0.01"
+                       name="precio"
+                       placeholder="$ 00,00"
+                       [(ngModel)]="producto.precio">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6"></div>
+
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Descripcion:</label>
+              <div class="col-md-12">
+            <textarea class="form-control" type="text" rows="3"
+                      name="descripcion"
+                      placeholder="descripcion"
+                      [(ngModel)]="producto.descripcion"></textarea>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <div class="text-right from-group">
+          <button type="submit" class="btn btn-outline-primary">Guardar</button>
+          <button [routerLink]="['/admin-productos']"
+                  type="button" class="btn btn-outline-warning">Cancelar</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+

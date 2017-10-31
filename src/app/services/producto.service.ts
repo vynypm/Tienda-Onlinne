@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import {Producto} from '../interfaces/registro.interface';
+import {Producto} from '../interfaces/producto.interface';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/Rx';
+
 
 @Injectable()
 export class ProductoService {
 
   productosSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/productos';
-  categoriaSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/Categorias';
-  pedidosSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/pedidos';
 
   constructor(private _http: Http) { }
 
@@ -20,14 +19,6 @@ export class ProductoService {
     );
   }
 
-  consultarCategoria() {
-    return this._http.get(this.categoriaSails)
-      .map(
-        respuesta => {
-          return respuesta.json();
-        }
-      );
-  }
 
   consultarProductos() {
     return this._http.get(this.productosSails)
@@ -38,14 +29,6 @@ export class ProductoService {
       );
   }
 
-  consultarPedidos() {
-    return this._http.get(this.pedidosSails)
-      .map(
-        respuesta => {
-          return respuesta.json();
-        }
-      );
-  }
 
   editarProducto(producto: Producto, id: string) {
     let body= JSON.stringify(producto);
@@ -80,3 +63,4 @@ export class ProductoService {
       );
   }
 }
+

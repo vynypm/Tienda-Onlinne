@@ -49,4 +49,14 @@ export class CategoriaService {
       );
   }
 
+  eliminarCategoria(key$: string) {
+    let url = `${this.urlCategorias}/${key$}`;
+    return this._http.delete(url)
+      .map(
+        res => {
+          return res.json();
+        }
+      );
+  }
+
 }

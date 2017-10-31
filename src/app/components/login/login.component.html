@@ -1,46 +1,21 @@
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>Iniciar sesión</h2>
+</div><br>
 <div class="container">
-  <br>
-  <br>
-  <div class="row">
-    <div class="col-sm-3">
-    </div>
-    <div class="col-sm-6">
-      <div class="alert alert-info" role="alert">
-        <strong></strong>
-         <form (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
-            <div class="card-block  text-center">
 
-              <h4 class="card-title" >Inicio de Sesión</h4>
-              <hr>
-              <img src="../../../../assets/img/avatar.jpg" class="rounded-circle"  height="150" width="150">
-              <br>
-              <br>
-              <div class="input-group">
-                <input [(ngModel)]="usuario.email" #email name="email" type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
-              </div>
-              <div class="input-group">
-                <input [(ngModel)]="usuario.password" #password name="password" type="password" class="form-control" placeholder="Contraseña" aria-describedby="basic-addon1">
-              </div>
-              <br>
+  <form class="form-signin" (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
 
-              <div class="form-group row">
-                <div class="col">
-                  <button type="submit" class="btn btn-info">
-                    Login
-                  </button>
-                  <a [routerLink]="['/presentacion']" class="nav-link">Página Principal</a>
-                </div>
-              </div>
-              <br>
+    <label class="sr-only">Email address</label>
+    <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+    <label class="sr-only">Password</label>
+    <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Password" required="">
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
 
-            </div>
-          </form>
-
-      </div>
-      <div class="col-sm-3">
-      </div>
-    </div>
-
-  </div>
-  <p-messages [(value)]="msgs"></p-messages>
+</div>
+<div class="container">
+  <a href="#">Forgot the password?</a>
 </div>
