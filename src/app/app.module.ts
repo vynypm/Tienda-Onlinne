@@ -26,6 +26,12 @@ import { AdminUsuariosComponent } from './components/administrador/admin-usuario
 import { RegistroUsuariosAdminComponent } from './components/administrador/registro-usuarios-admin/registro-usuarios-admin.component';
 import { RegistroClienteComponent } from './components/registro-cliente/registro-cliente.component';
 
+// Cloudinary module
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
+import * as cloudinary from 'cloudinary-core';
+import {CloudinarySettings} from './settings';
+import { FileUploadModule } from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +52,9 @@ import { RegistroClienteComponent } from './components/registro-cliente/registro
     BrowserModule,
     FormsModule,
     HttpModule,
-    APP_ROUTING
+    APP_ROUTING,
+    CloudinaryModule.forRoot(cloudinary, CloudinarySettings),
+    FileUploadModule,
   ],
   providers: [
     UsuarioService,

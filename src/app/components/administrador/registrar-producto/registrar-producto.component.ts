@@ -5,6 +5,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {UsuarioService} from '../../../services/usuario.service';
 import { MarcaService } from '../../../services/marca.service';
 import { CategoriaService} from '../../../services/categoria.service';
+import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
+import { Cloudinary } from '@cloudinary/angular-4.x';
 
 @Component({
   selector: 'app-registrar-producto',
@@ -15,6 +17,9 @@ export class RegistrarProductoComponent implements OnInit {
   id: string;
   listaCategorias: any [] = [];
   listaMarcas: any [] = [];
+  public uploader: FileUploader;
+  public hasBaseDropZoneOver = false;
+  listaImagenes: any [] = [];
 
   producto: Producto = {
     marca: "",
@@ -31,7 +36,7 @@ export class RegistrarProductoComponent implements OnInit {
               private _router: Router,
               private _activatedRoute: ActivatedRoute,
               private _marcaService: MarcaService,
-              private _categoriaService: CategoriaService) {
+              private _categoriaService: CategoriaService, private cloudinary: Cloudinary) {
     console.log("registro controlador");
     this._categoriaService.consultarCategorias()
       .subscribe(
@@ -57,6 +62,7 @@ export class RegistrarProductoComponent implements OnInit {
           this._productoServices.getProducto(this.id).subscribe(
             resultado => {
               this.producto = resultado;
+              console.log(this.producto);
             }
           );
         }
@@ -79,11 +85,60 @@ export class RegistrarProductoComponent implements OnInit {
       if (!result) {
         this._router.navigate(['/login']);
       }
-    })
+    });
+
+    const uploaderOptions: FileUploaderOptions = {
+      url: `https://api.cloudinary.com/v1_1/${this.cloudinary.config().cloud_name}/image/upload`,
+      autoUpload: false, // Cargar archivos automáticamente al agregarlos a la cola de carga
+      isHTML5: true, // Use xhrTransport a favor de iframeTransport
+      removeAfterUpload: true, // Calcule el progreso de forma independiente para cada archivo cargado
+      headers: [ // XHR request headers
+        {
+          name: 'X-Requested-With',
+          value: 'XMLHttpRequest'
+        }
+      ]
+    };
+
+    const upsertResponse = fileItem => {
+      // Check if HTTP request was successful
+      if (fileItem.status !== 200) {
+        console.log('Upload to cloudinary Failed');
+        console.log(fileItem);
+        return false;
+      }
+      console.log(fileItem.data.url);
+      this.listaImagenes.push(fileItem.data.url);
+    }
+
+    this.uploader = new FileUploader(uploaderOptions);
+    this.uploader.onBuildItemForm = (fileItem: any, form: FormData): any => {
+      // Agregue el preajuste de carga sin firmar de Cloudinary al formulario de carga
+      form.append('upload_preset', this.cloudinary.config().upload_preset);
+      // Usar el valor predeterminado "withCredentials" para las solicitudes CORS
+      fileItem.withCredentials = false;
+      return { fileItem, form };
+    }
+
+    // Actualizar el modelo al finalizar la carga de un archivo
+    this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: ParsedResponseHeaders) =>
+      upsertResponse(
+        {
+          file: item.file, status,
+          data: JSON.parse(response),
+        }
+      );
+  }
+
+  public fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+    console.log(this.hasBaseDropZoneOver);
   }
 
   guardar() {
+    this.producto.imagen = this.listaImagenes;
     if (this.id == 'nuevo') {
+      console.log(this.producto);
       this._productoServices.nuevoProducto(this.producto).subscribe(
         resultado => {
           console.log(resultado.name);

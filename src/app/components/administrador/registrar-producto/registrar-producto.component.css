@@ -18,3 +18,23 @@ textarea:focus {
 select:focus{
   background-color: #8DB4E7;
 }
+
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+
+#seleccionarImagen {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 6px;
+  padding-left: 6px;
+  font-family: serif;
+  font-size: 17px;
+}
+
+#botonesTabla {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 7px;
+  padding-right: 7px;
+
+}
