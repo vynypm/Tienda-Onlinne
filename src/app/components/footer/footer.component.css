@@ -1,23 +1,7 @@
-.footer-top{
-  background-color: #121212;
-  height: 190px;
-  color: white;
-  margin-top: 20px;
-  border-top: 1px solid #D3D3D3;
-  padding-top:20px;
-  padding-left: 50px;
-}
-
 .footer-buttom{
   background-color: #ebebeb;
   height: 80px;
   padding: 20px;
   font-size: 0.7166em;
-}
-
-.footer-marcas{
-  margin-top:25px;
-  border-top: 1px solid #D3D3D3;
-  border-bottom: 1px solid #D3D3D3;
-  height: 140px;
+  margin-top: 25px;
 }

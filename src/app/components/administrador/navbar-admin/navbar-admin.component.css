@@ -1,15 +1,10 @@
-#mainNavSis {
-  background-color: red; }
-
-#mainNavSis .navbar-toggler {
+#mainNavSis .container .navbar-brand{
+  color: black;
 }
 
-#mainNavSis .container {
+#mainNavSis .container .navbar-brand:hover{
+  color: white;
 }
-#mainNavSis .container .navbar-brand {
-}
-#mainNavSis .container .navbar-brand:hover, #mainNavSis .container .navbar-brand:focus, #mainNavSis .container .navbar-brand:active, #mainNavSis .container .navbar-brand.active {
-  color: red; }
 #mainNavSis .container .navbar-nav .nav-item .nav-link {
   font-size: 90%;
   font-weight: 400;
@@ -17,9 +12,10 @@
   letter-spacing: 1px;
   color: white;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase; }
-#mainNavSis .container .navbar-nav .nav-item .nav-link:hover, #mainNavSis .container .navbar-nav .nav-item .nav-link.active {
-  color: green; }
+  text-transform: uppercase;
+}
+#mainNavSis .container .navbar-nav .nav-item .nav-link:hover {
+  color: black; }
 
 @media (min-width: 992px) {
   #mainNavSis {

@@ -37,7 +37,7 @@ export class AdminMarcaComponent implements OnInit {
                 resultado => {
                   this.marca = resultado;
                 }
-              )
+              );
           }
         }
       );
@@ -48,7 +48,7 @@ export class AdminMarcaComponent implements OnInit {
       if (!result) {
         this._router.navigate(['/login']);
       }
-    })
+    });
   }
 
   guardar() {

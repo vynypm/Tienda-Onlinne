@@ -4,18 +4,29 @@
   <h2>Iniciar sesión</h2>
 </div><br>
 <div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 col-12">
+      <div class="card-block  registro text-center">
 
-  <form class="form-signin" (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
+        <img src="../../../../assets/img/avatar.jpg" class="rounded-circle"  height="150" width="150">
 
-    <label class="sr-only">Email address</label>
-    <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-    <label class="sr-only">Password</label>
-    <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Password" required="">
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+        <br><br>
+        <form class="form-signin" (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
 
+          <label class="sr-only">Email address</label>
+          <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
+          <label class="sr-only">Password</label>
+          <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Password" required="">
+          <br>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
 </div>
 <div class="container">
-  <a href="#">Forgot the password?</a>
+  <a [routerLink] = "['/registrarse']">No tienes una cuenta?</a>
 </div>
+<app-nosotros></app-nosotros>

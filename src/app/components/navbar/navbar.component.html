@@ -1,26 +1,26 @@
-<nav class="navbar navbar-toggleable-md fixed-top bg-faded" id="mainNav">
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top" id="mainNav">
   <div class="container">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <a class="navbar-brand" [routerLink] = "['home']">Tienda Online</a>
     <img src="https://static1.squarespace.com/static/573a10b34d088e2c9c1f932b/t/57520a0d22482e7d77f1f071/1464994355556/?format=100w">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto text-center">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/home']">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tecnología</a>
+          <a class="nav-link" [routerLink] = "['/celulares']">Tecnología</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contactos</a>
+          <a class="nav-link" [routerLink] = "['/contactanos']">Contáctenos</a>
         </li>
       </ul>
 
-      <ul class="nav navbar-nav pull-right">
+      <ul class="navbar-nav ml-auto text-center">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/registrarse']">Registrarse</a>
         </li>

@@ -4,29 +4,40 @@
   <h2>Administración de Marcas</h2>
 </div><br>
 
-<div class="container">
+<div class="container registro">
   <h3>Marca: <small>{{marca.nombre}}</small></h3><br>
 
 
   <form (ngSubmit)="guardar()" #forma ="ngForm">
 
-    <div class="form-group row">
-      <label  class="col-2 col-form-label">Nombre: </label>
-      <div class="col-10">
-        <input class="form-control" type="text" placeholder="Nombre"
-               name="nombre" [(ngModel)]="marca.nombre">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="form-group row">
+
+          <label  class="col-md-2 col-12 col-form-label">Nombre: </label>
+          <div class="col-md-10 col-12">
+            <input class="form-control" type="text" placeholder="Nombre"
+                   name="nombre" [(ngModel)]="marca.nombre" autofocus="">
+          </div>
+        </div>
+
       </div>
     </div>
 
-
-
-    <div class="text-right from-group">
-      <button type="submit" class="btn btn-outline-primary">Guardar</button>
-      <button [routerLink]="['/registrar-producto', 'nuevo']"
-              type="button" class="btn btn-outline-warning">Cancelar</button>
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="text-right from-group">
+          <button type="submit" class="btn btn-outline-primary">Guardar</button>
+          <button [routerLink]="['/registrar-producto', 'nuevo']"
+                  type="button" class="btn btn-outline-warning">Cancelar</button>
+        </div>
+      </div>
     </div>
 
   </form>
+
+</div>
+<div class="container">
   <h5>Marcas Registradas</h5>
 
   <table class="table table-striped">

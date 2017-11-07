@@ -15,7 +15,7 @@ export class NavbarAdminComponent implements OnInit {
 
   salir(){
     sessionStorage.removeItem('Usuario');
-    this._router.navigate(['/login']);
+    this._router.navigate(['/home']);
   }
 
 }

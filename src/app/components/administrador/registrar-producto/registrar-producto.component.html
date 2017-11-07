@@ -1,6 +1,7 @@
 <app-navbar-admin></app-navbar-admin>
 
-<div class="cabecera container" style="text-align: center">
+
+<div class="cabecera container">
   <h2>Registrar nuevo Producto</h2>
 </div><br>
 
@@ -20,8 +21,20 @@
 
           <div class="col-md-6">
             <div class="form-group">
+              <label class="col-md-12 col-form-label">Modelo-Nombre:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="text"
+                       name="nombre"
+                       placeholder="Producto"
+                       [(ngModel)]="producto.modelo" autofocus="">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
               <label class="col-md-12 col-form-label">Marca:</label>
-              <div class="col-md-12 input-group" >
+              <div class="col-md-12">
                 <select class="col-12 custom-select"
                         name="marca"
                         [(ngModel)]="producto.marca">
@@ -32,14 +45,18 @@
             </div>
           </div>
 
+
           <div class="col-md-6">
             <div class="form-group">
-              <label class="col-md-12 col-form-label">Modelo:</label>
+              <label class="col-md-12 col-form-label">Categoria:</label>
+
               <div class="col-md-12">
-                <input class="form-control" type="text"
-                       name="nombre"
-                       placeholder="Producto"
-                       [(ngModel)]="producto.modelo">
+                <select class="col-md-12 custom-select"
+                        name="owner"
+                        [(ngModel)]="producto.categoria">
+                  <option selected>Seleccionar..</option>
+                  <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -57,20 +74,7 @@
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Categoria:</label>
-
-              <div class="col-md-12">
-                <select class="col-md-12 custom-select"
-                        name="owner"
-                        [(ngModel)]="producto.categoria">
-                  <option selected>Seleccionar..</option>
-                  <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
-                </select>
-              </div>
-            </div>
-          </div>
+          <div class="col-md-6"></div>
 
           <div class="col-md-12">
             <div class="form-group">
@@ -86,6 +90,7 @@
 
 
         </div>
+
 
         <div class="row">
             <div class="col-md-12">
@@ -200,6 +205,5 @@
       </form>
     </div>
 
-  </div>
+   </div>
 </div>
-

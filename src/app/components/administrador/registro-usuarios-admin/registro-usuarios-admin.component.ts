@@ -19,7 +19,7 @@ export class RegistroUsuariosAdminComponent implements OnInit {
     password: '',
     password1: '',
     rol: '',
-    telefono: ' ',
+    telefono: '',
     img: '',
   };
 

@@ -8,6 +8,8 @@ import { AdminCategoriaComponent } from './components/administrador/admin-catego
 import { AdminUsuariosComponent} from './components/administrador/admin-usuarios/admin-usuarios.component';
 import { RegistroUsuariosAdminComponent} from './components/administrador/registro-usuarios-admin/registro-usuarios-admin.component';
 import { RegistroClienteComponent} from './components/registro-cliente/registro-cliente.component';
+import { ContactenosComponent } from './components/contactenos/contactenos.component';
+import { CelularesComponent } from './components/celulares/celulares.component';
 
 const APP_ROUTES: Routes = [
 
@@ -20,6 +22,8 @@ const APP_ROUTES: Routes = [
   {path: 'admin-usuarios' , component: AdminUsuariosComponent},
   {path: 'registrar-usuariosAdmin/:id' , component: RegistroUsuariosAdminComponent},
   {path: 'registrarse' , component: RegistroClienteComponent},
+  {path: 'contactanos' , component: ContactenosComponent},
+  {path: 'celulares' , component: CelularesComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

@@ -15,7 +15,7 @@
 #mainNav .container .navbar-nav .nav-item .nav-link {
   font-size: 90%;
   font-weight: 400;
-  padding: 5em 0;
+  padding: .75em 0;
   letter-spacing: 1px;
   color: white;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -46,3 +46,4 @@
     padding: 1.1em 1em !important;
   }
 }
+.container{position: static;}

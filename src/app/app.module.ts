@@ -12,6 +12,16 @@ import { ProductoService } from './services/producto.service';
 import { MarcaService } from './services/marca.service';
 import { CategoriaService } from './services/categoria.service';
 
+// Cloudinary module
+import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
+import * as cloudinary from 'cloudinary-core';
+import {CloudinarySettings} from './settings';
+import { FileUploadModule } from 'ng2-file-upload';
+
+//MAPA
+import { AgmCoreModule } from '@agm/core';
+
+//COMPONENTS
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -25,12 +35,9 @@ import { NavbarAdminComponent } from './components/administrador/navbar-admin/na
 import { AdminUsuariosComponent } from './components/administrador/admin-usuarios/admin-usuarios.component';
 import { RegistroUsuariosAdminComponent } from './components/administrador/registro-usuarios-admin/registro-usuarios-admin.component';
 import { RegistroClienteComponent } from './components/registro-cliente/registro-cliente.component';
-
-// Cloudinary module
-import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
-import * as cloudinary from 'cloudinary-core';
-import {CloudinarySettings} from './settings';
-import { FileUploadModule } from 'ng2-file-upload';
+import { ContactenosComponent } from './components/contactenos/contactenos.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { CelularesComponent } from './components/celulares/celulares.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +53,10 @@ import { FileUploadModule } from 'ng2-file-upload';
     NavbarAdminComponent,
     AdminUsuariosComponent,
     RegistroUsuariosAdminComponent,
-    RegistroClienteComponent
+    RegistroClienteComponent,
+    ContactenosComponent,
+    NosotrosComponent,
+    CelularesComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +65,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     APP_ROUTING,
     CloudinaryModule.forRoot(cloudinary, CloudinarySettings),
     FileUploadModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB1HDcId9-ArNag9QzqA8pByXbuHhn48z8'
+    })
   ],
   providers: [
     UsuarioService,

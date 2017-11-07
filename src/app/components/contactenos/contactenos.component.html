@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>Contáctenos</h2>
+</div><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-12">
+      <h5>Quito</h5>
+      <p>Iñaquito E2-32 y Unión Nacional de Periodistas, Edificio UNP 3er. Piso</p>
+
+      <h3>Horarios de Atencion</h3>
+      <p>- Lunes - Viernes</p>
+      <p>9:00am-1:30pm / 2:30pm-6:30pm</p>
+      <p>- Sábados</p>
+      <p>10:00am-3:00</p>
+    </div>
+    <div class="col-md-6 col-12">
+      <agm-map [latitude]="lat"
+               [longitude]="lng"
+               [zoom]="zoom">
+
+        <agm-marker [latitude]="lat"
+                    [longitude]="lng">
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-12"><h3>Nuestra Empresa</h3></div>
+    <div class="col-md-12 col-12">Somos....</div>
+    <div class="col-md-6 col-12"><h4>Misión:</h4></div>
+    <div class="col-md-6 col-12"><h4>Visión:</h4></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-12"><h4>Envianos un mensaje</h4></div>
+  </div>
+
+</div>
+
+<app-nosotros></app-nosotros>
+
