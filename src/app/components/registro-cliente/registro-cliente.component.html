@@ -7,46 +7,45 @@
 </div>
 
 <div class="container registro">
-  <form (ngSubmit)="registrar()" #form="ngForm">
+  <div></div>
+  <form>
     <div class="form-group row">
       <div class="col-md-6 col-12">
         <label class="col-form-label">Nombre: </label>
-        <input [(ngModel)]="cliente.nombre" #nombre name="nombre" type="text" class="form-control" placeholder="Nombre" autofocus="">
+        <input type="text" class="form-control" autofocus="">
       </div>
       <div class="col-md-6 col-12">
         <label class="col-form-label">Apellido: </label>
-        <input [(ngModel)]="cliente.apellido" #apellido name="apellido" type="text" class="form-control"  placeholder="Apellido">
+        <input type="text" class="form-control col-md-6"  placeholder="Apellido">
       </div>
     </div>
 
     <div class="form-group row">
       <div class="col-md-6 col-12">
         <label class="col-form-label">Teléfono: </label>
-        <input [(ngModel)]="cliente.telefono" #telefono name="telefono" type="number" class="form-control" placeholder="Telefono">
+        <input type="number" class="form-control col-md-6" placeholder="Telefono">
       </div>
       <div class="col-md-6 col-12">
         <label class="col-form-label">Movil: </label>
-        <input [(ngModel)]="cliente.movil" #movil name="movil" type="number" class="form-control"  placeholder="Movil">
+        <input type="number" class="form-control col-md-6"  placeholder="Movil">
       </div>
     </div>
 
     <div class="form-group row">
       <div class="col-md-6 col-12">
-        <label class="col-form-label">Dirección de Email: </label>
-        <input [(ngModel)]="cliente.email" #email name="email" type="email" class="form-control" placeholder="Email">
+        <label class="col-form-label col-md-6">Dirección de Email: </label>
+        <input type="email" class="form-control col-md-6" placeholder="Email">
       </div>
     </div>
 
     <div class="form-group row">
       <div class="col-md-6 col-12">
         <label class="col-form-label">Password</label>
-        <input [(ngModel)]="cliente.password" #password name="password" type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control col-md-6" placeholder="Password">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary">Registrar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
   </form>
-
-
 
 </div>
 

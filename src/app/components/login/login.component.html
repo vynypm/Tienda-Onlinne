@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 
-<div class="cabecera container" style="text-align: center">
+<div class="cabecera container">
   <h2>Iniciar sesión</h2>
 </div><br>
 <div class="container">
@@ -15,11 +15,11 @@
         <form class="form-signin" (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
 
           <label class="sr-only">Email address</label>
-          <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email" required="" autofocus="">
+          <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
           <label class="sr-only">Password</label>
-          <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Contraseña" required="">
+          <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Password" required="">
           <br>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
       </div>
 
@@ -29,5 +29,4 @@
 <div class="container">
   <a [routerLink] = "['/registrarse']">No tienes una cuenta?</a>
 </div>
-<!--<p-messages [(value)]="msgs"></p-messages>-->
 <app-nosotros></app-nosotros>

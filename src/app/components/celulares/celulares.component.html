@@ -6,16 +6,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <div class="card" *ngFor="let cell of listaCelulares; let i=index">
-        <div class="card-block">
-          <img class="card-img-top" [src]="cell.imagen" alt="Card image cap">
-          <div class="card-block">
-            <h4 class="card-title">{{cell.marca}} {{cell.modelo}}</h4>
-            <p class="card-text">{{cell.descripcion}}</p>
-          </div>
+    <div class="card-prod col-md-4" *ngFor="let cell of listaCelulares; let i=index">
+      <div class="card">
+        <div class="text-center">
+          <img class="card-img-top card-image img-fluid" [src]="cell.imagen" alt="Card image cap">
+        </div>
+        <div class="card-block text-center">
+          <h4 class="card-title">{{cell.marca}} {{cell.modelo}}</h4>
           <div class="card-footer">
-            <small class="text-muted">{{cell.precio}}</small>
+            <span class="precio"><h5>{{cell.precio | currency}}</h5></span>
+            <br>
+            <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
           </div>
         </div>
       </div>
