@@ -11,6 +11,7 @@ import { UsuarioService } from './services/usuario.service';
 import { ProductoService } from './services/producto.service';
 import { MarcaService } from './services/marca.service';
 import { CategoriaService } from './services/categoria.service';
+import { ClienteService } from './services/cliente.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -20,6 +21,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 //MAPA
 import { AgmCoreModule } from '@agm/core';
+
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -38,6 +40,9 @@ import { RegistroClienteComponent } from './components/registro-cliente/registro
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { CelularesComponent } from './components/celulares/celulares.component';
+
+//Primeng
+//import {MessagesModule} from 'primeng/primeng';
 
 @NgModule({
   declarations: [
@@ -73,7 +78,8 @@ import { CelularesComponent } from './components/celulares/celulares.component';
     UsuarioService,
     ProductoService,
     MarcaService,
-    CategoriaService
+    CategoriaService,
+    ClienteService
   ],
   bootstrap: [AppComponent]
 })

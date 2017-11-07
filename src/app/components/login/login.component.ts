@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Usuario} from '../../interfaces/usuario.interface';
 import {UsuarioService} from '../../services/usuario.service';
+import {ClienteService} from '../../services/cliente.service';
+//import {MessagesModule} from 'primeng/primeng';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
   listaUsuario: Usuario [] = [];
 
-  constructor(private _router: Router, private _usuarioServices: UsuarioService) { }
+  constructor(private _router: Router, private _usuarioServices: UsuarioService, private _clienteServices: ClienteService) { }
 
   ngOnInit() {
     this._usuarioServices.isLogged().then((result:boolean)=>{
@@ -54,10 +56,10 @@ export class LoginComponent implements OnInit {
             console.log("Email correcto");
             console.log(usuarioNew);
             this._router.navigate(['/admin-productos']);
-          }else{
-            console.log("Email incorrectocorrecto");
-            this.msgs = [];
-            this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ', detail:'Por favor ingrese correctamente su email y contraseña'});
+          }else {
+              console.log("Email incorrectocorrecto");
+              this.msgs = [];
+              this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ', detail:'Por favor ingrese correctamente su email y contraseña'});
           }
 
         }

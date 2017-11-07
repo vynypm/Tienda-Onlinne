@@ -20,14 +20,8 @@ export class AdminProductosComponent implements OnInit {
           //console.log(respuesta);
           for (let key$ in respuesta ) {
             //console.log(respuesta[key$]);
-            let marca, imagen ;
-            marca = respuesta[key$].marca;
-            imagen = respuesta[key$].imagen;
-
             let productoNew = respuesta[key$];
             productoNew.id = respuesta[key$].id;
-            productoNew.marca = marca.nombre;
-            productoNew.imagen = imagen[0];
             //console.log(productoNew.id);
             //console.log(respuesta[key$].id);
             this.listaProductos.push(productoNew);
