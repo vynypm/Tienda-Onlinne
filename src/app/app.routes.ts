@@ -10,6 +10,7 @@ import { RegistroUsuariosAdminComponent} from './components/administrador/regist
 import { RegistroClienteComponent} from './components/registro-cliente/registro-cliente.component';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { CelularesComponent } from './components/celulares/celulares.component';
+import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
 
 const APP_ROUTES: Routes = [
 
@@ -24,6 +25,7 @@ const APP_ROUTES: Routes = [
   {path: 'registrarse' , component: RegistroClienteComponent},
   {path: 'contactanos' , component: ContactenosComponent},
   {path: 'celulares' , component: CelularesComponent},
+  {path: 'producto/:id' , component: CaractProductoComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

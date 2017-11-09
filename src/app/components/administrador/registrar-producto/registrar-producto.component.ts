@@ -21,13 +21,15 @@ export class RegistrarProductoComponent implements OnInit {
   public hasBaseDropZoneOver = false;
   listaImagenes: any [] = [];
 
-  producto: Producto = {
+  producto: any = {
     marca: "",
     modelo: "",
     precio: 0,
     descripcion: "",
     imagen: "",
     categoria: "",
+    promocion: false,
+    precio_promo: 0,
   }
 
 

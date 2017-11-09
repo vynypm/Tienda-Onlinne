@@ -88,6 +88,30 @@
             </div>
           </div>
 
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input"
+                       name="promocion"
+                       [(ngModel)]="producto.promocion">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Esta en Promocion</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Precio-Promocion:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="number"
+                       step="0.01"
+                       name="precio_promo"
+                       placeholder="$ 00,00"
+                       [(ngModel)]="producto.precio_promo"
+                       [disabled]="!producto.promocion">
+              </div>
+            </div>
+          </div>
 
         </div>
 
