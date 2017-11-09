@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Usuario } from '../interfaces/usuario.interface';
+
 import 'rxjs/Rx';
 
 @Injectable()
@@ -66,6 +67,15 @@ export class UsuarioService {
   isLogged():Promise<boolean> {
     if (typeof(Storage) !== 'undefined') {
       if (sessionStorage.getItem('Usuario')) {
+        return Promise.resolve(true);
+      }
+    }
+    return Promise.resolve(false);
+  }
+
+  isLogged_cliente():Promise<boolean> {
+    if (typeof(Storage) !== 'undefined') {
+      if (sessionStorage.getItem('Cliente')) {
         return Promise.resolve(true);
       }
     }

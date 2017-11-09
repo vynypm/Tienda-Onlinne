@@ -33,25 +33,27 @@ export class LoginComponent implements OnInit {
       if (result) {
         this._router.navigate(['/admin-productos']);
       }
+    });
+    this._usuarioServices.isLogged_cliente().then((result:boolean)=>{
+      if (result) {
+        this._router.navigate(['/celulares']);
+      }
     })
   }
 
-  login(email, password){
+  login(email, password) {
     console.log("email:" + email);
     console.log("password:" + password);
     this._usuarioServices.consultarUsuarios().subscribe(
       respuesta => {
-        //console.log(respuesta);
         for (let key$ in respuesta ) {
-          //console.log(respuesta[key$]);
           let usuarioNew = respuesta[key$];
           usuarioNew.id = respuesta[key$].id;
-          //console.log(usuarioNew.id);
-          //console.log(respuesta[key$].id);
           this.listaUsuario.push(usuarioNew);
-          if (usuarioNew.email === email && usuarioNew.password === password && (usuarioNew.rol === "Administrador" ||  usuarioNew.rol === "Tecnico") ){
+          if (usuarioNew.email === email && usuarioNew.password === password &&
+            (usuarioNew.rol === "Administrador" ||  usuarioNew.rol === "Tecnico") ) {
             if (typeof(Storage) !== 'undefined') {
-              sessionStorage.setItem('Usuario', this.usuario.email)
+              sessionStorage.setItem('Usuario', this.usuario.email);
             }
             console.log("Email correcto");
             console.log(usuarioNew);
@@ -59,16 +61,41 @@ export class LoginComponent implements OnInit {
           }else {
               console.log("Email incorrectocorrecto");
               this.msgs = [];
-              this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ', detail:'Por favor ingrese correctamente su email y contraseña'});
+              this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ',
+                detail:'Por favor ingrese correctamente su email y contraseña'});
           }
 
         }
         //console.log(this.listaUsuario);
         return this.listaUsuario;
       });
-
     //console.log(this.listaUsuario);
 
+    this._clienteServices.consultarCliente().subscribe(
+      respuesta => {
+        for (let key$ in respuesta ) {
+          let usuarioNew = respuesta[key$];
+          usuarioNew.id = respuesta[key$].id;
+          //this.listaUsuario.push(usuarioNew);
+          if (usuarioNew.email === email && usuarioNew.password === password &&
+            (usuarioNew.rol === "cliente") ) {
+            if (typeof(Storage) !== 'undefined') {
+              sessionStorage.setItem('Cliente', this.usuario.email);
+            }
+            console.log("Email correcto");
+            console.log(usuarioNew);
+            this._router.navigate(['/home']);
+          }else {
+            console.log("Email incorrectocorrecto");
+            this.msgs = [];
+            this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ',
+              detail:'Por favor ingrese correctamente su email y contraseña'});
+          }
+
+        }
+        //console.log(this.listaUsuario);
+        return this.listaUsuario;
+      });
 
   }
 
