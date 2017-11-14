@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Producto} from '../../interfaces/producto.interface';
 import {ProductoService} from '../../services/producto.service';
 import {PaginationService} from '../../services/pagination.service';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-celulares',
@@ -18,7 +19,8 @@ export class CelularesComponent implements OnInit {
   // paged items
   pagedItems: any[] = [];
 
-  constructor(private _productoServices: ProductoService, private _paginationService: PaginationService) {
+  constructor(private _productoServices: ProductoService, private _paginationService: PaginationService,
+              private _carritoService: CarritoService) {
     this._productoServices.consultarProductos()
       .subscribe(
         resultado => {
@@ -58,6 +60,12 @@ export class CelularesComponent implements OnInit {
 
     // get current page of items
     this.pagedItems = this.listaCelulares.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  anadir(cell){
+    cell.cantidad = 1;
+    console.log("Boton añadir");
+    this._carritoService.añadirProducto(cell);
   }
 
 }

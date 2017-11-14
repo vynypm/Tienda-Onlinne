@@ -13,6 +13,7 @@ import { MarcaService } from './services/marca.service';
 import { CategoriaService } from './services/categoria.service';
 import { ClienteService } from './services/cliente.service';
 import { PaginationService } from './services/pagination.service';//PARA LA PAGINACION
+import { CarritoService } from './services/carrito.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -43,6 +44,8 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { CelularesComponent } from './components/celulares/celulares.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
 import { LaptopsComponent } from './components/laptops/laptops.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
@@ -66,7 +69,8 @@ import { LaptopsComponent } from './components/laptops/laptops.component';
     NosotrosComponent,
     CelularesComponent,
     CaractProductoComponent,
-    LaptopsComponent
+    LaptopsComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ import { LaptopsComponent } from './components/laptops/laptops.component';
     MarcaService,
     CategoriaService,
     ClienteService,
-    PaginationService
+    PaginationService,
+    CarritoService
   ],
   bootstrap: [AppComponent]
 })

@@ -68,7 +68,7 @@
             <del>{{promo.precio | currency}}</del>
             <span class="precio"><h5>{{promo.precio_promo | currency}}</h5></span>
             <br>
-            <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
+            <button type="button" class="btn btn-primary" (click)="anadir(promo)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@
           <div class="card-footer">
             <span class="precio"><h5>{{cell.precio | currency}}</h5></span>
             <br>
-            <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
+            <button type="button" class="btn btn-primary" (click)="anadir(cell)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
           </div>
         </div>
       </div>

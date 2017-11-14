@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from '../../services/producto.service';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ export class HomeComponent implements OnInit {
   listaPromo: any [] = [];
 
 
-  constructor(private _productoServices: ProductoService) { this._productoServices.consultarProductos()
+  constructor(private _productoServices: ProductoService, private _carritoService: CarritoService) {
+    this._productoServices.consultarProductos()
     .subscribe(
       resultado => {
         for (let key in resultado) {
@@ -32,6 +34,12 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  anadir(promo){
+    promo.cantidad = 1;
+    console.log("Boton añadir");
+    this._carritoService.añadirProducto(promo);
   }
 
 }

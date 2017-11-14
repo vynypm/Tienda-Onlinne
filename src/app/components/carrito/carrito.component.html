@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>Carrito de compras</h2>
+</div><br>
+
+<div class="container">
+  <table class="table ">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th></th>
+      </tr>
+    </thead>
+    <!--<tbody>
+      <tr *ngFor="let item of carrito; let i=index">
+        <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
+        <td>{{item.marca}} {{item.modelo}}</td>
+        <td *ngIf="item.precio_promo; else precio">{{item.precio_promo | currency}}</td>
+            <ng-template #precio><td>{{item.precio | currency}}</td></ng-template>
+        <td><input class="form-control" [(ngModel)]="item.cantidad" type="number" placeholder=""></td>
+        <td *ngIf="item.precio_promo; else subtotal" >{{item.cantidad * item.precio_promo | currency}}</td>
+            <ng-template #subtotal><td > {{item.cantidad * item.precio | currency}}</td></ng-template>
+        <th><a (click)="eliminarProducto(item)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a></th>
+        <th><button class="btn" (click)="calcular()"></button></th>
+      </tr>
+    </tbody>-->
+    <tbody>
+    <tr *ngFor="let item of carrito; let i=index" >
+      <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
+      <td>{{item.marca}} {{item.modelo}}</td>
+      <td *ngIf="item.precio_promo; else precio" id="precio_{{i}}">{{item.precio_promo}}</td>
+          <ng-template #precio><td id="precio_{{i}}">{{item.precio}}</td></ng-template>
+      <td><input class="form-control" type="text" placeholder="" value="1" (keypress)="keyPress($event,i)"></td>
+      <td  *ngIf="item.precio_promo; else sub" id="subtotal_{{i}}"> {{item.precio_promo}} </td>
+          <ng-template #sub><td id="subtotal_{{i}}">{{item.precio}}</td></ng-template>
+      <td><a (click)="eliminarProducto(item)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a></td>
+    </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="1"><strong>Valor Total:</strong></td>
+        <td  colspan="2" id="total"></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
