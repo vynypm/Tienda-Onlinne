@@ -18,18 +18,15 @@ export class HomeComponent implements OnInit {
           let marca, imagen ;
           marca = resultado[key].marca;
           imagen = resultado[key].imagen;
-          let celularNew = resultado[key];
-          celularNew.marca = marca.nombre;
-          celularNew.imagen = imagen[0];
-          //console.log(imagen);
-          if (celularNew.promocion === true ){
-            this.listaPromo.push(celularNew);
-          }
 
+          let promoNew = resultado[key];
+          promoNew.marca = marca.nombre;
+          promoNew.imagen = imagen[0];
+
+          if (promoNew.promocion === true ) {
+            this.listaPromo.push(promoNew);
+          }
         }
-        //this.listaCelulares = resultado;
-        //console.log(resultado[0].marca);
-        //console.log(this.listaCelulares);
       }
     );
   }

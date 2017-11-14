@@ -58,7 +58,9 @@
     <div class="card-prod col-md-4" *ngFor="let promo of listaPromo; let i=index">
       <div class="card">
         <div class="text-center">
-          <img class="card-img-top card-image img-fluid" [src]="promo.imagen" alt="Card image cap">
+          <a [routerLink]="['/producto', promo.id, promo.modelo]">
+            <img class="card-img-top card-image img-fluid" [src]="promo.imagen" alt="Card image cap">
+          </a>
         </div>
         <div class="card-block text-center">
           <h4 class="card-title">{{promo.marca}} {{promo.modelo}}</h4>

@@ -11,6 +11,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class RegistroUsuariosAdminComponent implements OnInit {
 
   id: string;
+  habilitarBoton: boolean = true;
 
   usuario: Usuario = {
     nombre: '',
@@ -18,7 +19,7 @@ export class RegistroUsuariosAdminComponent implements OnInit {
     email: '',
     password: '',
     password1: '',
-    rol: '',
+    rol: 'Administrador',
     telefono: '',
     img: '',
   };
@@ -50,18 +51,19 @@ export class RegistroUsuariosAdminComponent implements OnInit {
       if (!result) {
         this._router.navigate(['/login']);
       }
-    })
+    });
   }
 
   guardar() {
+    this.habilitarBoton = false;
+    if (this.id === 'nuevo') {
 
-    if (this.id == 'nuevo') {
-
-      if (this.usuario.password == this.usuario.password1) {
+      if (this.usuario.password === this.usuario.password1) {
         this._usuarioService.nuevoUsuario(this.usuario).subscribe(
           resp => {
-            console.log(resp);
-            this._router.navigate(['/usuarios']);
+            //console.log(resp);
+            this.habilitarBoton = true;
+            this._router.navigate(['/admin-usuarios']);
           });
       } else {
         console.log('las contraseñas no coiciden');
@@ -71,7 +73,9 @@ export class RegistroUsuariosAdminComponent implements OnInit {
 
       this._usuarioService.editarUsuario(this.usuario, this.id).subscribe(
         resultado => {
-          this._router.navigate(['/usuarios']);
+          //console.log(resultado);
+          this.habilitarBoton = true;
+          this._router.navigate(['/admin-usuarios']);
         }
       );
     }

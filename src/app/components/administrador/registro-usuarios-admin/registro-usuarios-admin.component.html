@@ -1,7 +1,7 @@
 <app-navbar-admin></app-navbar-admin>
 
 <div class="cabecera container">
-  <h2>Registrar nuevo Usuario</h2>
+  <h2>Registrar Administrador</h2>
 </div><br>
 
 <div class="container registro">
@@ -52,7 +52,7 @@
       </div>
 
       <div class="col-md-6 col-12">
-        <div class="form-group" [ngClass]="{'has-danger': (email.errors?.required || email.errors?.minlength)&& email.touched}" >
+        <div class="form-group" [ngClass]="{'has-danger': (email.errors?.required || email.errors?.pattern)&& email.touched}" >
           <label class="col-md-12 col-form-label">Email    <strong class="requerido">*</strong></label>
           <div class="col-md-12">
 
@@ -63,12 +63,12 @@
                    #email="ngModel"
                    required
                    minlength="3"
-                   pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                   pattern="^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$"
                    [(ngModel)]="usuario.email">
             <div class="form-control-feedback" *ngIf="email.errors?.required">
             </div>
-            <div class="form-control-feedback" *ngIf="email.errors?.minlength">
-              Este campo require minimo 3 caracteres
+            <div class="form-control-feedback" *ngIf="email.errors?.pattern">
+              correo invalido
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@
             <div class="form-control-feedback" *ngIf="password1.errors?.required">
             </div>
             <div class="form-control-feedback" *ngIf="password1.errors?.minlength">
-              Este campo require minimo 3 caracteres
+              minimo 3 caracteres
             </div>
           </div>
         </div>
@@ -175,7 +175,10 @@
     </div>
 
     <div class="text-right from-group">
-      <button type="submit" class="btn btn-outline-primary">Guardar</button>
+      <button type="submit"
+              class="btn btn-outline-primary"
+              [disabled]="!(form.valid && habilitarBoton)">
+        Guardar</button>
       <button [routerLink]="['/admin-usuarios']"
               type="button" class="btn btn-outline-warning">Cancelar</button>
       <div class="col-12 requerido">

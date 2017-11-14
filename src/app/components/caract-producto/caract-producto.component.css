@@ -1,0 +1,19 @@
+.cabecera{
+  margin-top: 100px;
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.img-miniatura{
+  width: 100px;
+  height: 100px;
+}
+.card-image{
+  width: 235px;
+  height: 180px;
+}
+
+.img-list li {
+  list-style-type: none;
+  display: inline;
+  margin: 5px 5px 5px 5px;
+}

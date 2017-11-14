@@ -6,38 +6,53 @@
 
 
 <div class="container">
-  <div class="text-right">
-    <button [routerLink]="['/registrar-producto', 'nuevo']"
-            type="button" class="btn btn-warning">Nuevo Producto</button>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav flex-column">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link active"[routerLink]="['/admin-productos']" (click)="filtrarCategoria(null)">Todos</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" *ngFor="let categoria of listaCategorias; let i = index">
+          <a class="nav-link" [routerLink]="['/admin-productos']" (click)="filtrarCategoria(categoria.nombre)">{{categoria.nombre}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <div class="text-right">
+        <button [routerLink]="['/registrar-producto', 'nuevo']"
+                type="button" class="btn btn-warning">Nuevo Producto</button>
+      </div>
+
+      <table class="table table-striped">
+        <thead class="thead-inverse">
+        <tr>
+          <th>#</th>
+          <th>Imagen</th>
+          <th>Marcar</th>
+          <th>Modelo</th>
+          <th>Precio</th>
+          <th>Administrar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of listaProductos; let i=index">
+          <th>{{i+1}}</th>
+          <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
+          <td>{{item.marca}}</td>
+          <td>{{item.modelo}}</td>
+          <td>{{item.precio | currency}}</td>
+
+          <td>
+            <button [routerLink]="['/registrar-producto',item.id]"
+                    type="button" class="btn btn-info">Editar</button>
+            <button (click)="eliminar(item.id, i)"
+                    type="button" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
-
-  <table class="table table-striped">
-    <thead class="thead-inverse">
-    <tr>
-      <th>#</th>
-      <th>Imagen</th>
-      <th>Marcar</th>
-      <th>Modelo</th>
-      <th>Precio</th>
-      <th>Administrar</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of listaProductos; let i=index">
-      <th>{{i+1}}</th>
-      <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
-      <td>{{item.marca}}</td>
-      <td>{{item.modelo}}</td>
-      <td>{{item.precio | currency}}</td>
-
-      <td>
-        <button [routerLink]="['/registrar-producto',item.id]"
-                type="button" class="btn btn-info">Editar</button>
-        <button (click)="eliminar(item.id, i)"
-                type="button" class="btn btn-danger">Eliminar</button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
 
 </div>

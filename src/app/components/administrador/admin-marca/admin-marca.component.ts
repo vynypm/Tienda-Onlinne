@@ -12,6 +12,7 @@ export class AdminMarcaComponent implements OnInit {
 
   marcas: any[] = [];
   id: string;
+  habilitarBoton: boolean = true;
   marca: any = {
     nombre: ""
   }
@@ -52,13 +53,15 @@ export class AdminMarcaComponent implements OnInit {
   }
 
   guardar() {
+    this.habilitarBoton = false;
     //console.log(this.marca);
-    if (this.id == "nuevo") {
+    if (this.id === "nuevo") {
       //GUARDAR NUEVO
       this._marcaService.nuevaMarca(this.marca)
         .subscribe(
           resultado => {
             //console.log(resultado);
+            this.habilitarBoton = true;
             this._router.navigate(['/registrar-producto', 'nuevo' ]);
           }
         );
@@ -67,6 +70,7 @@ export class AdminMarcaComponent implements OnInit {
       this._marcaService.editarMarca(this.marca, this.id)
         .subscribe(
           resultado => {
+            this.habilitarBoton = true;
             //console.log(resultado);
             this._router.navigate(['/registrar-producto', 'nuevo' ]);
           }

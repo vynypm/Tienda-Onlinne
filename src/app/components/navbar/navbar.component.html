@@ -12,8 +12,12 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/home']">Inicio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink] = "['/celulares']">Tecnología</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tecnología</a>
+          <div class="dropdown-menu">
+            <a class=" dropdown-item nav-link" [routerLink] = "['/celulares']">Celulares</a>
+            <a class=" dropdown-item nav-link" [routerLink] = "['/laptops']">Laptops</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink] = "['/contactanos']">Contáctenos</a>

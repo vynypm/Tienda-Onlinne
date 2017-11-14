@@ -1,22 +1,22 @@
 <app-navbar></app-navbar>
 
 <div class="cabecera container">
-  <h2>Celulares</h2>
+  <h2>Laptops</h2>
 </div><br>
 
 <div class="container">
   <div class="row">
-    <div class="card-prod col-md-4" *ngFor="let cell of pagedItems; let i = index">
+    <div class="card-prod col-md-4" *ngFor="let laptop of pagedItems; let i = index">
       <div class="card">
         <div class="text-center">
-          <a [routerLink]="['/producto', cell.id, cell.modelo]">
-            <img class="card-img-top card-image img-fluid" [src]="cell.imagen" alt="Card image cap">
+          <a [routerLink]="['/producto', laptop.id, laptop.modelo]">
+            <img class="card-img-top card-image img-fluid" [src]="laptop.imagen" alt="Card image cap">
           </a>
         </div>
         <div class="card-block text-center">
-          <h4 class="card-title">{{cell.marca}} {{cell.modelo}}</h4>
+          <h4 class="card-title">{{laptop.marca}} {{laptop.modelo}}</h4>
           <div class="card-footer">
-            <span class="precio"><h5>{{cell.precio | currency}}</h5></span>
+            <span class="precio"><h5>{{laptop.precio | currency}}</h5></span>
             <br>
             <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
           </div>
@@ -51,3 +51,4 @@
 </div>
 
 <app-nosotros></app-nosotros>
+

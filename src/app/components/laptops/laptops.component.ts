@@ -4,13 +4,12 @@ import {ProductoService} from '../../services/producto.service';
 import {PaginationService} from '../../services/pagination.service';
 
 @Component({
-  selector: 'app-celulares',
-  templateUrl: './celulares.component.html',
-  styleUrls: ['./celulares.component.css']
+  selector: 'app-laptops',
+  templateUrl: './laptops.component.html',
+  styleUrls: ['./laptops.component.css']
 })
-export class CelularesComponent implements OnInit {
-
-  listaCelulares: Producto [] = [];
+export class LaptopsComponent implements OnInit {
+  listaLaptops: Producto [] = [];
 
   // pager object
   pager: any = {};
@@ -27,20 +26,18 @@ export class CelularesComponent implements OnInit {
             marca = resultado[key].marca;
             imagen = resultado[key].imagen;
             categoria = resultado[key].categoria;
-            let celularNew = resultado[key];
-            celularNew.marca = marca.nombre;
-            celularNew.imagen = imagen[0];
-            celularNew.categoria = categoria.nombre;
-            //console.log(imagen);
-            //this.listaCelulares.push(celularNew);
-            if (celularNew.categoria === 'Celular' ) {
-              this.listaCelulares.push(celularNew);
+
+            let laptopNew = resultado[key];
+            laptopNew.marca = marca.nombre;
+            laptopNew.imagen = imagen[0];
+            laptopNew.categoria = categoria.nombre;
+
+            if (laptopNew.categoria === 'Laptop' ) {
+              this.listaLaptops.push(laptopNew);
             }
           }
           this.setPage(1);
-          //this.listaCelulares = resultado;
-          //console.log(resultado[0].marca);
-          //console.log(this.listaCelulares);
+
         }
       );
   }
@@ -54,10 +51,10 @@ export class CelularesComponent implements OnInit {
     }
 
     // get pager object from service
-    this.pager = this._paginationService.getPager(this.listaCelulares.length, page);
+    this.pager = this._paginationService.getPager(this.listaLaptops.length, page);
 
     // get current page of items
-    this.pagedItems = this.listaCelulares.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.pagedItems = this.listaLaptops.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 }

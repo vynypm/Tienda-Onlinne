@@ -15,6 +15,7 @@ import { Cloudinary } from '@cloudinary/angular-4.x';
 })
 export class RegistrarProductoComponent implements OnInit {
   id: string;
+  habilitarBoton: boolean = true;
   listaCategorias: any [] = [];
   listaMarcas: any [] = [];
   public uploader: FileUploader;
@@ -39,7 +40,7 @@ export class RegistrarProductoComponent implements OnInit {
               private _activatedRoute: ActivatedRoute,
               private _marcaService: MarcaService,
               private _categoriaService: CategoriaService, private cloudinary: Cloudinary) {
-    console.log("registro controlador");
+    //console.log("registro controlador");
     this._categoriaService.consultarCategorias()
       .subscribe(
         respuesta => {
@@ -138,18 +139,21 @@ export class RegistrarProductoComponent implements OnInit {
   }
 
   guardar() {
+    this.habilitarBoton = false;
     this.producto.imagen = this.listaImagenes;
-    if (this.id == 'nuevo') {
+    if (this.id === 'nuevo') {
       console.log(this.producto);
       this._productoServices.nuevoProducto(this.producto).subscribe(
         resultado => {
           console.log(resultado.name);
+          this.habilitarBoton = true;
           this._router.navigate(['/admin-productos']);
         }
       );
     }else {
       this._productoServices.editarProducto(this.producto, this.id).subscribe(
         resultado => {
+          this.habilitarBoton = true;
           this._router.navigate(['/admin-productos' ]);
         }
       );

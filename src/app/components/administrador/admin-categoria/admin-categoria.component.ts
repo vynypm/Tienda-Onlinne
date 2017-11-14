@@ -9,8 +9,10 @@ import { UsuarioService } from '../../../services/usuario.service';
   styleUrls: ['./admin-categoria.component.css']
 })
 export class AdminCategoriaComponent implements OnInit {
+
   categorias: any[] = [];
   id: string;
+  habilitarBoton: boolean = true;
   categoria: any = {
     nombre: ""
   }
@@ -51,13 +53,15 @@ export class AdminCategoriaComponent implements OnInit {
   }
 
   guardar() {
+    this.habilitarBoton = false;
     //console.log(this.marca);
-    if (this.id == "nuevo") {
+    if (this.id === "nuevo") {
       //GUARDAR NUEVO
       this._categoriaService.nuevaCategoria(this.categoria)
         .subscribe(
           resultado => {
             //console.log(resultado);
+            this.habilitarBoton = true;
             this._router.navigate(['/registrar-producto', 'nuevo' ]);
           }
         );
@@ -67,6 +71,7 @@ export class AdminCategoriaComponent implements OnInit {
         .subscribe(
           resultado => {
             //console.log(resultado);
+            this.habilitarBoton = true;
             this._router.navigate(['/registrar-producto', 'nuevo' ]);
           }
         );

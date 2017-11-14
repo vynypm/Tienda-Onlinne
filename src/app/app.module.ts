@@ -42,6 +42,7 @@ import { ContactenosComponent } from './components/contactenos/contactenos.compo
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { CelularesComponent } from './components/celulares/celulares.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
+import { LaptopsComponent } from './components/laptops/laptops.component';
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
@@ -64,7 +65,8 @@ import { CaractProductoComponent } from './components/caract-producto/caract-pro
     ContactenosComponent,
     NosotrosComponent,
     CelularesComponent,
-    CaractProductoComponent
+    CaractProductoComponent,
+    LaptopsComponent
   ],
   imports: [
     BrowserModule,

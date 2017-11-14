@@ -8,7 +8,7 @@ import {UsuarioService} from '../../services/usuario.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  private hide: boolean = true;
+  hide: boolean = true;
 
   constructor(private _router: Router, private _usuarioServices: UsuarioService) { }
 

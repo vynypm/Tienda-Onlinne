@@ -1,3 +1,75 @@
-<p>
-  caract-producto works!
-</p>
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>{{producto.modelo}} {{producto.marca}}</h2>
+</div><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+
+      <img class="img-fluid" [src]="producto.imagen" alt="Card image cap">
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>{{producto.marca}} {{producto.modelo}}</h2>
+        </div>
+        <div class="col-md-12">
+          <p>{{producto.descripcion}}</p>
+        </div>
+        <div class="col-md-12">
+          <h5 [hidden]="producto.precio_promo ">{{producto.precio | currency}}</h5>
+          <del [hidden]="!producto.precio_promo">{{producto.precio | currency}}</del>
+          <h5 [hidden]="!producto.precio_promo">{{producto.precio_promo | currency}}</h5>
+          <button type="button" class="btn btn-primary">
+            <span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <ul class="img-list">
+          <li *ngFor="let img of allImages.url, let i = index">
+            <img [src]="img"  class="rounded img-miniatura">
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <p>Tags redes sociales</p>
+    </div>
+  </div>
+</div>
+
+<div class="cabecera container">
+  <h2>Productos de la misma Categoria</h2>
+</div><br>
+
+<div class="container">
+  <div class="row">
+    <div class="card-prod col-md-3" *ngFor="let item of prodCategoria; let i = index">
+      <div class="card">
+        <div class="text-center">
+          <a [routerLink]="['/producto', item.id, item.modelo]">
+            <img class="card-img-top card-image img-fluid" [src]="item.imagen" alt="Card image cap">
+          </a>
+        </div>
+        <div class="card-block text-center">
+          <h4 class="card-title">{{item.marca}} {{item.modelo}}</h4>
+          <div class="card-footer">
+            <span class="precio"><h5>{{item.precio | currency}}</h5></span>
+            <br>
+            <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
