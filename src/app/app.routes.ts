@@ -12,6 +12,7 @@ import { ContactenosComponent } from './components/contactenos/contactenos.compo
 import { CelularesComponent } from './components/celulares/celulares.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
 import { LaptopsComponent } from './components/laptops/laptops.component';
+import { CarritoComponent} from './components/carrito/carrito.component';
 
 const APP_ROUTES: Routes = [
 
@@ -28,6 +29,7 @@ const APP_ROUTES: Routes = [
   {path: 'celulares' , component: CelularesComponent},
   {path: 'laptops' , component: LaptopsComponent},
   {path: 'producto/:id/:nombre' , component: CaractProductoComponent},
+  {path: 'carrito' , component: CarritoComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
