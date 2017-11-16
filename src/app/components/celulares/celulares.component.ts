@@ -12,7 +12,7 @@ import { CarritoService } from '../../services/carrito.service';
 export class CelularesComponent implements OnInit {
 
   listaCelulares: Producto [] = [];
-
+  carrito:any[]=[];
   // pager object
   pager: any = {};
 
@@ -64,8 +64,15 @@ export class CelularesComponent implements OnInit {
 
   anadir(cell){
     cell.cantidad = 1;
+    cell.subtotal = cell.cantidad * cell.precio_promo;
     console.log("Boton añadir");
     this._carritoService.añadirProducto(cell);
+
+    //Conseguir productos del carrito
+    this.carrito = this._carritoService.getProducto();
+    console.log(this.carrito);
+    document.getElementById('carrito').innerHTML =
+      "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
   }
 
 }

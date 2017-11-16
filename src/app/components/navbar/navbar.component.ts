@@ -23,13 +23,21 @@ export class NavbarComponent implements OnInit {
       }
     });
 
-    //Conseguir productos del carrito
-    this.carrito = this._carritoService.getProducto().length;
-    console.log(this._carritoService.getProducto().length);
+    this.carrito = this._carritoService.getProducto();
+
+
+   /* if (!isNaN(this._carritoService.getProducto().length)){
+      //Conseguir productos del carrito
+      this.carrito = this._carritoService.getProducto().length;
+      console.log(this._carritoService.getProducto().length);
+    }else {
+      console.log("Cesta vacia");
+    }*/
   }
 
   salir() {
     sessionStorage.removeItem('Cliente');
+    localStorage.clear();
     this._router.navigate(['/login']);
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Cliente} from '../../interfaces/cliente.interface';
 import {ClienteService} from '../../services/cliente.service';
 import {Router} from '@angular/router';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-registro-cliente',
@@ -20,7 +21,7 @@ export class RegistroClienteComponent implements OnInit {
     pedido: '',
   }
 
-  constructor(private _clienteService: ClienteService, private _router: Router) { }
+  constructor(private _clienteService: ClienteService, private _router: Router,  private _carritoService: CarritoService) { }
 
   ngOnInit() {
   }
@@ -29,7 +30,19 @@ export class RegistroClienteComponent implements OnInit {
     this._clienteService.nuevoCliente(this.cliente).subscribe(
       resp => {
         console.log(resp);
-        this._router.navigate(['/login']);
+        if (typeof(Storage) !== 'undefined') {
+          sessionStorage.setItem('Cliente', this.cliente.email);
+        }
+
+        var cesta = this._carritoService.getProducto();
+        if (cesta.length != 0){
+            this._router.navigate(['/carrito']);
+        }else{
+            this._router.navigate(['/home']);
+        }
+      },
+      error => {
+        console.log("Email ya existe");
       });
   }
 

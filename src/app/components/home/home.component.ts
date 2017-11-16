@@ -10,7 +10,7 @@ import { CarritoService } from '../../services/carrito.service';
 export class HomeComponent implements OnInit {
 
   listaPromo: any [] = [];
-
+  carrito:any[]=[];
 
   constructor(private _productoServices: ProductoService, private _carritoService: CarritoService) {
     this._productoServices.consultarProductos()
@@ -38,8 +38,17 @@ export class HomeComponent implements OnInit {
 
   anadir(promo){
     promo.cantidad = 1;
+    promo.subtotal = promo.cantidad * promo.precio_promo;
     console.log("Boton añadir");
     this._carritoService.añadirProducto(promo);
+
+    //Conseguir productos del carrito
+    this.carrito = this._carritoService.getProducto();
+    console.log(this.carrito);
+    document.getElementById('carrito').innerHTML =
+      "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
+
+
   }
 
 }

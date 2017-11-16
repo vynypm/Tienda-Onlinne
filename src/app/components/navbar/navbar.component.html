@@ -35,8 +35,8 @@
           <a class="nav-link"(click)="salir()">Salir</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink] = "['/carrito']"><span class="fa fa-cart-plus fa-1x fa-inverse"
-                                                                  aria-hidden="true"></span>{{carrito}}</a>
+          <a class="nav-link" [routerLink] = "['/carrito']" id="carrito"><span class="fa fa-cart-plus fa-1x fa-inverse"
+                                                                  aria-hidden="true"></span>{{carrito.length}}</a>
         </li>
       </ul>
     </div>
