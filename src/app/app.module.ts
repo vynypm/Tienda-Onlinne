@@ -73,7 +73,9 @@ import { LogoComponent } from './components/administrador/logo/logo.component';
     CaractProductoComponent,
     LaptopsComponent,
     CarritoComponent,
-    VerificarDatosComponent
+    VerificarDatosComponent,
+    LogoComponent
+
   ],
   imports: [
     BrowserModule,
