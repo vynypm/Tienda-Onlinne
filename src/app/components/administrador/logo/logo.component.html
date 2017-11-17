@@ -1,0 +1,114 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="cabecera container">
+  <h2>Registrar LOGO</h2>
+</div><br>
+
+<div class="container registro">
+
+  <form (ngSubmit)="guardar()" #forma ="ngForm">
+
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="form-group row">
+          <label  class="col-md-2 col-12 col-form-label">Logo:    <strong class="requerido">*</strong></label>
+          <div class="col-md-10 col-12">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Img LOGO"
+                   name="imgLogo"
+                   [(ngModel)]="logo.imgLogo" autofocus="">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input"
+                   name="facebook"
+                   [(ngModel)]="facebook">
+            <span class="custom-control-indicator"></span><br>
+            <span class="custom-control-description">Link Facebook</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="col-md-12 col-form-label">Facebook</label>
+          <div class="col-md-12">
+            <input class="form-control" type="text"
+                   name="linkFacebook"
+                   placeholder="Url Facebook"
+                   [(ngModel)]="logo.linkFacebook" [disabled]="!facebook">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input"
+                   name="youtube"
+                   [(ngModel)]="youtube">
+            <span class="custom-control-indicator"></span><br>
+            <span class="custom-control-description">Link Youtube</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="col-md-12 col-form-label">Youtube</label>
+          <div class="col-md-12">
+            <input class="form-control" type="text"
+                   name="linkYoutube"
+                   placeholder="Url Youtube"
+                   [(ngModel)]="logo.linkYoutube" [disabled]="!youtube">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input"
+                   name="twitter"
+                   [(ngModel)]="twitter">
+            <span class="custom-control-indicator"></span><br>
+            <span class="custom-control-description">Link Twitter</span>
+          </label>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="col-md-12 col-form-label">Twitter</label>
+          <div class="col-md-12">
+            <input class="form-control" type="text"
+                   name="linkTwitter"
+                   placeholder="Url Twitter"
+                   [(ngModel)]="logo.linkTwitter" [disabled]="!twitter">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="text-right from-group">
+          <button type="submit"
+                  class="btn btn-outline-primary"
+                  [disabled]="!habilitarBoton">
+            Guardar</button>
+          <button [routerLink]="['/admin-productos']"
+                  type="button" class="btn btn-outline-warning">Cancelar</button>
+        </div>
+      </div>
+      <div class="col-md-12 col-12 text-right requerido">
+        <p><strong>*</strong> Campos Requeridos</p>
+      </div>
+    </div>
+
+  </form>
+
+</div>

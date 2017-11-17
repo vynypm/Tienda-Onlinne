@@ -14,6 +14,7 @@ import { CategoriaService } from './services/categoria.service';
 import { ClienteService } from './services/cliente.service';
 import { PaginationService } from './services/pagination.service';//PARA LA PAGINACION
 import { CarritoService } from './services/carrito.service';
+import { LogoService } from './services/logo.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -46,7 +47,7 @@ import { CaractProductoComponent } from './components/caract-producto/caract-pro
 import { LaptopsComponent } from './components/laptops/laptops.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { VerificarDatosComponent } from './components/verificar-datos/verificar-datos.component';
-
+import { LogoComponent } from './components/administrador/logo/logo.component';
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
@@ -92,7 +93,8 @@ import { VerificarDatosComponent } from './components/verificar-datos/verificar-
     CategoriaService,
     ClienteService,
     PaginationService,
-    CarritoService
+    CarritoService,
+    LogoService
   ],
   bootstrap: [AppComponent]
 })

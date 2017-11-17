@@ -14,6 +14,7 @@ import { CaractProductoComponent } from './components/caract-producto/caract-pro
 import { LaptopsComponent } from './components/laptops/laptops.component';
 import { CarritoComponent} from './components/carrito/carrito.component';
 import { VerificarDatosComponent} from './components/verificar-datos/verificar-datos.component';
+import { LogoComponent} from './components/administrador/logo/logo.component';
 
 const APP_ROUTES: Routes = [
 
@@ -32,6 +33,7 @@ const APP_ROUTES: Routes = [
   {path: 'producto/:id/:nombre' , component: CaractProductoComponent},
   {path: 'carrito' , component: CarritoComponent},
   {path: 'verificar' , component: VerificarDatosComponent},
+  {path: 'logo' , component: LogoComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

@@ -40,13 +40,15 @@
           </div>
 
           <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Marca:</label>
+            <div class="form-group" [ngClass]="{'has-danger': (marca.errors?.required || marca.errors?.minlength)&& marca.touched}">
+              <label class="col-md-12 col-form-label">Marca:    <strong class="requerido">*</strong></label>
               <div class="col-md-12">
                 <select class="col-12 custom-select"
                         name="marca"
+                        #marca="ngModel"
+                        required
+                        minlength="1"
                         [(ngModel)]="producto.marca">
-                  <option selected>Seleccionar...</option>
                   <option *ngFor ="let marca of listaMarcas" [value]="marca.id">{{marca.nombre}}</option>
                 </select>
               </div>
@@ -55,14 +57,15 @@
 
 
           <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Categoria:</label>
-
+            <div class="form-group" [ngClass]="{'has-danger': (categoria.errors?.required || categoria.errors?.minlength)&& categoria.touched}">
+              <label class="col-md-12 col-form-label">Categoria:    <strong class="requerido">*</strong></label>
               <div class="col-md-12">
                 <select class="col-md-12 custom-select"
-                        name="owner"
+                        name="categoria"
+                        #categoria="ngModel"
+                        required
+                        minlength="1"
                         [(ngModel)]="producto.categoria">
-                  <option selected>Seleccionar..</option>
                   <option *ngFor="let categoria of listaCategorias" [value]="categoria.id">{{categoria.nombre}}</option>
                 </select>
               </div>
@@ -70,12 +73,15 @@
           </div>
 
           <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Precio:</label>
+            <div class="form-group" [ngClass]="{'has-danger': (precio.errors?.required || precio.errors?.minlength)&& precio.touched}">
+              <label class="col-md-12 col-form-label">Precio:    <strong class="requerido">*</strong></label>
               <div class="col-md-12">
                 <input class="form-control" type="number"
                        step="0.01"
                        name="precio"
+                       #precio="ngModel"
+                       required
+                       minlength="1"
                        placeholder="$ 00,00"
                        [(ngModel)]="producto.precio">
               </div>
@@ -85,11 +91,14 @@
           <div class="col-md-6"></div>
 
           <div class="col-md-12">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Descripcion:</label>
+            <div class="form-group" [ngClass]="{'has-danger': (descripcion.errors?.required || descripcion.errors?.minlength)&& descripcion.touched}">
+              <label class="col-md-12 col-form-label">Descripcion:    <strong class="requerido">*</strong></label>
               <div class="col-md-12">
             <textarea class="form-control" type="text" rows="3"
                       name="descripcion"
+                      #descripcion="ngModel"
+                      required
+                      minlength="1"
                       placeholder="descripcion"
                       [(ngModel)]="producto.descripcion"></textarea>
               </div>
@@ -98,7 +107,7 @@
 
           <div class="col-md-6">
             <div class="form-group">
-              <label class="custom-control custom-checkbox">
+              <label class="col-md-11 offset-md-1 custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"
                        name="promocion"
                        [(ngModel)]="producto.promocion">
@@ -231,7 +240,7 @@
 
         <div class="text-right from-group">
           <button type="submit" class="btn btn-outline-primary"
-                  [disabled]="!(forma.valid && habilitarBoton)">Guardar</button>
+                  [disabled]="!(forma.valid && habilitarBoton)||(uploader.getNotUploadedItems().length)">Guardar</button>
           <button [routerLink]="['/admin-productos']"
                   type="button" class="btn btn-outline-warning">Cancelar</button>
         </div>
