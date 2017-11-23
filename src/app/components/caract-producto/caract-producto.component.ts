@@ -13,7 +13,7 @@ export class CaractProductoComponent implements OnInit {
     url:""
   };
 
-  catSimilar = "Celular";
+  catSimilar = null;
 
   prodCategoria: any [] = [];
 
@@ -30,7 +30,6 @@ export class CaractProductoComponent implements OnInit {
 
   constructor(private _activatedRoute: ActivatedRoute,
               private _productoService: ProductoService) {
-
     this._activatedRoute.params.subscribe(
       parametros => {
         this._productoService.getProducto(parametros['id']).subscribe(
@@ -47,11 +46,20 @@ export class CaractProductoComponent implements OnInit {
             this.producto.imagen = imagen[0];
             this.catSimilar = categoria.nombre;
             //console.log(this.producto.imagen);
+            this.mismaCategoria();
           }
         );
       }
     );
 
+  }
+
+  ngOnInit() {
+
+  }
+
+  mismaCategoria() {
+    this.prodCategoria = [];
     this._productoService.consultarProductos()
       .subscribe(
         resultado => {
@@ -74,11 +82,12 @@ export class CaractProductoComponent implements OnInit {
           }
         }
       );
-
   }
 
-  ngOnInit() {
-
+  cambiarImg(img: string) {
+    //console.log(img);
+    this.producto.imagen = img;
   }
+
 
 }

@@ -36,7 +36,7 @@
       <div>
         <ul class="img-list">
           <li *ngFor="let img of allImages.url, let i = index">
-            <img [src]="img"  class="rounded img-miniatura">
+            <img [src]="img" (click)="cambiarImg(img)" class="rounded img-miniatura">
           </li>
         </ul>
       </div>

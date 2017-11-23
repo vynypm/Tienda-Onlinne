@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {UsuarioService} from '../../services/usuario.service';
 import { CarritoService } from '../../services/carrito.service';
+import { LogoService } from '../../services/logo.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,25 @@ import { CarritoService } from '../../services/carrito.service';
 export class NavbarComponent implements OnInit {
   hide: boolean = true;
   carrito: any;
+  empresaImg: string;
+  empresaNombre: string;
 
-  constructor(private _router: Router, private _usuarioServices: UsuarioService, private _carritoService: CarritoService) { }
+  constructor(private _router: Router,
+              private _usuarioServices: UsuarioService,
+              private _carritoService: CarritoService,
+              private _logoService: LogoService) {
+
+    this._logoService.consultarLogo()
+      .subscribe(
+        resultado => {
+          let empresa = resultado;
+          //console.log(empresa);
+          //console.log(empresa[0].nombre);
+          this.empresaNombre = empresa[0].nombre;
+          this.empresaImg = empresa[0].imgLogo;
+        }
+      );
+  }
 
   ngOnInit() {
     this._usuarioServices.isLogged_cliente().then((result:boolean)=>{

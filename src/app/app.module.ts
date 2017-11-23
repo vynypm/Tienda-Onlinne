@@ -42,12 +42,11 @@ import { RegistroUsuariosAdminComponent } from './components/administrador/regis
 import { RegistroClienteComponent } from './components/registro-cliente/registro-cliente.component';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
 import { NosotrosComponent } from './components/nosotros/nosotros.component';
-import { CelularesComponent } from './components/celulares/celulares.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
-import { LaptopsComponent } from './components/laptops/laptops.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { VerificarDatosComponent } from './components/verificar-datos/verificar-datos.component';
 import { LogoComponent } from './components/administrador/logo/logo.component';
+import { ProductosComponent } from './components/productos/productos.component';
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
@@ -69,12 +68,11 @@ import { LogoComponent } from './components/administrador/logo/logo.component';
     RegistroClienteComponent,
     ContactenosComponent,
     NosotrosComponent,
-    CelularesComponent,
     CaractProductoComponent,
-    LaptopsComponent,
     CarritoComponent,
     VerificarDatosComponent,
-    LogoComponent
+    LogoComponent,
+    ProductosComponent
 
   ],
   imports: [

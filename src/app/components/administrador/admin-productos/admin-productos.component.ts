@@ -28,6 +28,8 @@ export class AdminProductosComponent implements OnInit {
           console.log(this.listaCategorias);
         }
       );
+
+    this.consultaProductos();
   }
 
   ngOnInit() {
@@ -37,7 +39,19 @@ export class AdminProductosComponent implements OnInit {
         this._router.navigate(['/login']);
       }
     });
+  }
 
+  eliminar(id: string, posicion: number) {
+    this._productoServices.eliminarProducto(id)
+      .subscribe(
+        resultado => {
+          //console.log('se eliminó');
+          this.listaProductos.splice(posicion, 1);
+        }
+      );
+  }
+
+  consultaProductos() {
     this._productoServices.consultarProductos()
       .subscribe(
         respuesta => {
@@ -71,17 +85,6 @@ export class AdminProductosComponent implements OnInit {
           return this.listaProductos;
         }
       );
-
-  }
-
-  eliminar(id: string, posicion: number) {
-    this._productoServices.eliminarProducto(id)
-      .subscribe(
-        resultado => {
-          //console.log('se eliminó');
-          this.listaProductos.splice(posicion, 1);
-        }
-      );
   }
 
   filtrarCategoria(nombre) {
@@ -89,6 +92,6 @@ export class AdminProductosComponent implements OnInit {
     this.filtroCategoria = nombre;
     //console.log(this.filtroCategoria);
     this.listaProductos = [];
-    this.ngOnInit();
+    this.consultaProductos();
   }
 }

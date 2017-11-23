@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>Productos</h2>
+</div><br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav flex-column">
+        <li class="nav-item" routerLinkActive="active-link" *ngFor="let categoria of listaCategorias; let i = index">
+          <a class="nav-link"  (click)="filtrarCategoria(categoria.nombre)">{{categoria.nombre}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-10">
+      <div class="row">
+        <div class="card-prod col-md-4" *ngFor="let cell of pagedItems; let i = index">
+          <div class="card">
+            <div class="text-center">
+              <a [routerLink]="['/producto', cell.id, cell.modelo]">
+                <img class="card-img-top card-image img-fluid" [src]="cell.imagen" alt="Card image cap">
+              </a>
+            </div>
+            <div class="card-block text-center">
+              <h4 class="card-title">{{cell.marca}} {{cell.modelo}}</h4>
+              <div class="card-footer">
+                <span class="precio"><h5>{{cell.precio | currency}}</h5></span>
+                <br>
+                <button type="button" class="btn btn-primary" (click)="anadir(cell)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+  <nav aria-label="Page navigation example">
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
+      <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+        <a (click)="setPage(pager.currentPage - 1)" class="page-link" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+        <a (click)="setPage(page)" class="page-link">{{page}}</a>
+      </li>
+
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+        <a (click)="setPage(pager.currentPage + 1)" class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+</div>
+
+<app-nosotros></app-nosotros>

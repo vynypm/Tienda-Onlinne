@@ -17,10 +17,11 @@ export class LogoComponent implements OnInit {
   habilitarBoton: boolean = true;
   id: string;
   logo: any = {
-    imgLogo: null,
-    linkFacebook: null,
-    linkYoutube: null,
-    linkTwitter: null
+    nombre: "",
+    imgLogo: "",
+    linkFacebook: "",
+    linkYoutube: "",
+    linkTwitter: ""
   };
 
   constructor(private _router: Router,
@@ -34,7 +35,7 @@ export class LogoComponent implements OnInit {
             this.id = resultado[key].id;
             this.lengthLogo = resultado.length;
 
-            this.ngOnInit();
+            this.consultaLogo();
           }
         }
       );
@@ -47,7 +48,9 @@ export class LogoComponent implements OnInit {
         this._router.navigate(['/login']);
       }
     });
+  }
 
+  consultaLogo() {
     let estadopagina = document.readyState;
     console.log(estadopagina);
     if (estadopagina === "complete") {
@@ -76,13 +79,13 @@ export class LogoComponent implements OnInit {
         );
     }else {
       if (this.facebook === false) {
-        this.logo.linkFacebook = null;
+        this.logo.linkFacebook = "";
       }
       if (this.youtube === false) {
-        this.logo.linkYoutube = null;
+        this.logo.linkYoutube = "";
       }
       if (this.twitter === false) {
-        this.logo.linkTwitter = null;
+        this.logo.linkTwitter = "";
       }
       //GUARDAR NUEVO
       this._logoService.nuevoLogo(this.logo)

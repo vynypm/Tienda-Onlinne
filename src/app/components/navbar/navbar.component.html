@@ -4,22 +4,19 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a class="navbar-brand" [routerLink] = "['home']">Tienda Online</a>
-    <img src="https://static1.squarespace.com/static/573a10b34d088e2c9c1f932b/t/57520a0d22482e7d77f1f071/1464994355556/?format=100w">
+
+    <a class="navbar-brand" [routerLink] = "['home']">{{empresaNombre}}</a>
+    <img class="img-logo" [src]="empresaImg">
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto text-center">
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/home']">Inicio</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tecnología</a>
-          <div class="dropdown-menu">
-            <a class=" dropdown-item nav-link" [routerLink] = "['/celulares']">Celulares</a>
-            <a class=" dropdown-item nav-link" [routerLink] = "['/laptops']">Laptops</a>
-          </div>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink] = "['/productos']">Productos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/contactanos']">Contáctenos</a>
         </li>
       </ul>

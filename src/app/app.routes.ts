@@ -9,12 +9,11 @@ import { AdminUsuariosComponent} from './components/administrador/admin-usuarios
 import { RegistroUsuariosAdminComponent} from './components/administrador/registro-usuarios-admin/registro-usuarios-admin.component';
 import { RegistroClienteComponent} from './components/registro-cliente/registro-cliente.component';
 import { ContactenosComponent } from './components/contactenos/contactenos.component';
-import { CelularesComponent } from './components/celulares/celulares.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
-import { LaptopsComponent } from './components/laptops/laptops.component';
 import { CarritoComponent} from './components/carrito/carrito.component';
 import { VerificarDatosComponent} from './components/verificar-datos/verificar-datos.component';
 import { LogoComponent} from './components/administrador/logo/logo.component';
+import { ProductosComponent} from './components/productos/productos.component';
 
 const APP_ROUTES: Routes = [
 
@@ -28,12 +27,11 @@ const APP_ROUTES: Routes = [
   {path: 'registrar-usuariosAdmin/:id' , component: RegistroUsuariosAdminComponent},
   {path: 'registrarse' , component: RegistroClienteComponent},
   {path: 'contactanos' , component: ContactenosComponent},
-  {path: 'celulares' , component: CelularesComponent},
-  {path: 'laptops' , component: LaptopsComponent},
   {path: 'producto/:id/:nombre' , component: CaractProductoComponent},
   {path: 'carrito' , component: CarritoComponent},
   {path: 'verificar' , component: VerificarDatosComponent},
   {path: 'logo' , component: LogoComponent},
+  {path: 'productos' , component: ProductosComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
