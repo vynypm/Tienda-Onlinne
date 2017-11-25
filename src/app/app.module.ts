@@ -15,6 +15,7 @@ import { ClienteService } from './services/cliente.service';
 import { PaginationService } from './services/pagination.service';//PARA LA PAGINACION
 import { CarritoService } from './services/carrito.service';
 import { LogoService } from './services/logo.service';
+import { OpcionService } from './services/opcion.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -94,7 +95,8 @@ import { ProductosComponent } from './components/productos/productos.component';
     ClienteService,
     PaginationService,
     CarritoService,
-    LogoService
+    LogoService,
+    OpcionService
   ],
   bootstrap: [AppComponent]
 })

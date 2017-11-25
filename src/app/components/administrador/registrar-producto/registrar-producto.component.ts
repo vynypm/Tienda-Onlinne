@@ -4,9 +4,13 @@ import {ProductoService} from '../../../services/producto.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UsuarioService} from '../../../services/usuario.service';
 import { MarcaService } from '../../../services/marca.service';
+import { OpcionService } from '../../../services/opcion.service';
 import { CategoriaService} from '../../../services/categoria.service';
 import { FileUploader, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
 import { Cloudinary } from '@cloudinary/angular-4.x';
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
   selector: 'app-registrar-producto',
@@ -18,6 +22,7 @@ export class RegistrarProductoComponent implements OnInit {
   habilitarBoton: boolean = true;
   listaCategorias: any [] = [];
   listaMarcas: any [] = [];
+  listaOpciones: any [] = [];
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
   listaImagenes: any [] = [];
@@ -31,6 +36,8 @@ export class RegistrarProductoComponent implements OnInit {
     categoria: "",
     promocion: false,
     precio_promo: 0,
+    opciones:"",
+    stock: 0,
   }
 
 
@@ -39,7 +46,8 @@ export class RegistrarProductoComponent implements OnInit {
               private _router: Router,
               private _activatedRoute: ActivatedRoute,
               private _marcaService: MarcaService,
-              private _categoriaService: CategoriaService, private cloudinary: Cloudinary) {
+              private _categoriaService: CategoriaService,
+              private _opcionService: OpcionService, private cloudinary: Cloudinary) {
     //console.log("registro controlador");
     this._categoriaService.consultarCategorias()
       .subscribe(
@@ -79,11 +87,20 @@ export class RegistrarProductoComponent implements OnInit {
           //console.log(this.listaMarcas);
         }
       );
+    this._opcionService.consultarOpciones()
+      .subscribe(
+        resultado => {
+          this.listaOpciones = resultado;
+          console.log(this.listaOpciones);
+        }
+      );
   }
 
 
   ngOnInit() {
+    console.log(this.selected);
     console.log("registro ngOnInit");
+
     this._usuarioServices.isLogged().then((result:boolean)=>{
       if (!result) {
         this._router.navigate(['/login']);
@@ -141,11 +158,13 @@ export class RegistrarProductoComponent implements OnInit {
   guardar() {
     this.habilitarBoton = false;
     this.producto.imagen = this.listaImagenes;
+    //this.producto.opciones = this.selected;
+    console.log(this.producto);
     if (this.id === 'nuevo') {
       console.log(this.producto);
       this._productoServices.nuevoProducto(this.producto).subscribe(
         resultado => {
-          console.log(resultado.name);
+          //console.log(resultado.name);
           this.habilitarBoton = true;
           this._router.navigate(['/admin-productos']);
         }
@@ -159,5 +178,25 @@ export class RegistrarProductoComponent implements OnInit {
       );
     }
   }
+
+
+  public selected:any[]=[];
+  opciones(event, val){
+    event.preventDefault();
+    if(this.selected.indexOf(val.nombre) == -1){
+      this.selected = [...this.selected, val.nombre];
+      $("#" + val.id).toggleClass("fa fa-check");
+      this.producto.opciones = this.selected;
+    }else{
+      $("#" + val.id).toggleClass("fa fa-check");
+      this.selected = this.selected.filter(function(elem){
+        return elem != val.nombre;
+      });
+      this.producto.opciones = this.selected;
+    }
+  }
+
+
+
 }
 

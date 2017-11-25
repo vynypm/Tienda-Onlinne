@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
 import {UsuarioService} from '../../services/usuario.service';
+import {Pedido} from '../../interfaces/pedido.interface';
 
 @Component({
   selector: 'app-carrito',
@@ -12,6 +13,12 @@ export class CarritoComponent implements OnInit {
   carrito: any[] = [];
   total: any;
   carritoCompra: any[]=[]; //Variable para enviar al pedido
+  habilitar:boolean = false;
+  pedido: Pedido = {
+    carritopedido: [],
+    preciototal: 0,
+    email:""
+  };
 
   constructor(private _carritoService: CarritoService, private _router: Router, private _usuarioServices: UsuarioService) {
     //Conseguir productos del carrito
@@ -25,10 +32,12 @@ export class CarritoComponent implements OnInit {
   ngOnInit() {
     var estadopagina = document.readyState;
     console.log(estadopagina);
-    if (estadopagina === "complete"){
-      console.log(document.getElementById('carritoCompras'));
+    if (estadopagina === "complete" || estadopagina === "loading"){
+      //console.log(document.getElementById('carritoCompras'));
       if(this.carrito.length === 0){
-        document.getElementById('carritoCompras').innerHTML = "<p>No hay productos en la cesta</p>"
+        document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
+        this.habilitar = true;
+
       }
 
     }
@@ -79,6 +88,10 @@ export class CarritoComponent implements OnInit {
     if (typeof(Storage) !== 'undefined') {
       localStorage.cesta = JSON.stringify(this.carrito);
     }
+    if(this.total == 0){
+      document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
+      this.habilitar = true;
+    }
 
   }
 
@@ -87,16 +100,18 @@ export class CarritoComponent implements OnInit {
       console.log(result);
       if (result === true) {
         console.log("Usted esta logeado PLEASE");
-        console.log(this.total);
-        //Conseguir productos del carrito
-        this.carritoCompra = this._carritoService.getProducto();
-        console.log(this.carritoCompra);
-        var email = sessionStorage.getItem('Cliente');
-        console.log(email);
+        this.carritoCompra = this._carritoService.getProducto(); //Guardar los productos almacenados en el carrito
+        var email = sessionStorage.getItem('Cliente'); // Guardar el email del usuario que inició sesion
+        console.log(this.pedido.carritopedido);
+        this.pedido.carritopedido = this.carritoCompra;
+        this.pedido.preciototal = this.total;
+        this.pedido.email = email;
+        console.log(this.pedido);
+        localStorage.pedido = JSON.stringify(this.pedido);
         this._router.navigate(['/verificar']);
       }
       else {
-        console.log("Registresessee")
+        console.log("Registresessee");
         this._router.navigate(['/login']);
       }
     });
