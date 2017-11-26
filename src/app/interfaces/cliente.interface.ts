@@ -7,4 +7,9 @@ export interface Cliente {
   telefono: number;
   movil: number;
   pedido: string;
+  callePrincipal: string;
+  calleSecundaria: string;
+  numCasa: string;
+  ciudad: string;
+  provincia: string;
 }

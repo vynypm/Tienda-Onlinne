@@ -16,6 +16,7 @@ import { PaginationService } from './services/pagination.service';//PARA LA PAGI
 import { CarritoService } from './services/carrito.service';
 import { LogoService } from './services/logo.service';
 import { OpcionService } from './services/opcion.service';
+import { PedidoService } from './services/pedido.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -48,6 +49,7 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { VerificarDatosComponent } from './components/verificar-datos/verificar-datos.component';
 import { LogoComponent } from './components/administrador/logo/logo.component';
 import { ProductosComponent } from './components/productos/productos.component';
+import { InformacionFinalComponent } from './components/informacion-final/informacion-final.component';
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
@@ -73,7 +75,8 @@ import { ProductosComponent } from './components/productos/productos.component';
     CarritoComponent,
     VerificarDatosComponent,
     LogoComponent,
-    ProductosComponent
+    ProductosComponent,
+    InformacionFinalComponent
 
   ],
   imports: [
@@ -96,7 +99,8 @@ import { ProductosComponent } from './components/productos/productos.component';
     PaginationService,
     CarritoService,
     LogoService,
-    OpcionService
+    OpcionService,
+    PedidoService
   ],
   bootstrap: [AppComponent]
 })

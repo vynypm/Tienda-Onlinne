@@ -33,6 +33,7 @@ export class LogoComponent implements OnInit {
         resultado => {
           for (let key in resultado ) {
             this.id = resultado[key].id;
+            console.log(this.id);
             this.lengthLogo = resultado.length;
 
             this.consultaLogo();

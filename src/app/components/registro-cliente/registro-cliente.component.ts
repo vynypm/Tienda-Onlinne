@@ -19,6 +19,11 @@ export class RegistroClienteComponent implements OnInit {
     telefono: 0,
     movil: 0,
     pedido: '',
+    callePrincipal: '',
+    calleSecundaria: '',
+    numCasa: '',
+    ciudad: '',
+    provincia: '',
   }
 
   constructor(private _clienteService: ClienteService, private _router: Router,  private _carritoService: CarritoService) { }

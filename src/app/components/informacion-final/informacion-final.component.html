@@ -1,0 +1,83 @@
+<app-navbar></app-navbar>
+
+<div class="cabecera container">
+  <h2>Información Final</h2>
+</div><br>
+
+<div class="container fondo"  *ngFor="let inf of informacion; let i=index">
+
+    <div class="form-group row">
+      <div class="col-md-1 col-12 ">
+      </div>
+
+      <div class="col-md-10 col-12">
+          <div class="form-group row">
+              <div  class="col-md-6">
+                <label class="col-form-label" > <strong>Cliente:</strong> {{inf.nombre}} {{inf.apellido}}</label>
+              </div>
+              <div class="col-md-6" style="text-align: right">
+                <label class="col-form-label"><strong>Telefono fijo/movil:</strong> {{inf.telefono}}/{{inf.movil}}</label>
+              </div>
+          </div>
+          <div class="form-group row">
+              <div  class="col-md-6">
+                <label class="col-form-label"><strong>Dirección:</strong> {{inf.callePrincipal}} {{inf.numCasa}} y {{inf.calleSecundaria}}</label>
+              </div>
+              <div class="col-md-6" style="text-align: right">
+                <label class="col-form-label"><strong>Provincia/Ciudad:</strong> {{inf.provincia}}/{{inf.ciudad}}</label>
+              </div>
+          </div>
+          <div class="form-group row">
+              <div  class="col-md-6">
+                <label class="col-form-label"><strong>Dirección de Email:</strong> {{inf.email}}</label>
+              </div>
+              <div class="col-md-6" style="text-align: right">
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-1 col-12 ">
+      </div>
+    </div>
+
+    <div class="form-group row" >
+        <div class="col-md-1 col-12 "></div>
+
+        <div class="col-md-10 col-12 ">
+          <table class="table">
+            <thead>
+            <tr>
+              <th></th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of pedido.carritopedido; let i=index">
+              <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
+              <td>{{item.marca}} {{item.modelo}}</td>
+              <td *ngIf="item.precio_promo; else precio" id="precio_{{i}}">$ {{item.precio_promo }}</td>
+                  <ng-template #precio><td id="precio_{{i}}">$ {{item.precio}}</td></ng-template>
+              <td>{{item.cantidad }}</td>
+              <td *ngIf="item.precio_promo; else sub" id="subtotal_{{i}}">$ {{ item.subtotal }}</td>
+                  <ng-template #sub><td id="subtotal_{{i}}">$ {{item.subtotal}}</td></ng-template>
+            </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3"></td>
+                <td colspan="1"><strong>Valor Total:</strong></td>
+                <td colspan="2">$ {{pedido.preciototal}} </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="col-md-1 col-12 "></div>
+    </div>
+
+    <div><button type="submit" (click)="comprar()" class="btn btn-primary">Comprar</button></div>
+
+</div>

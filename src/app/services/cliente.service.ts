@@ -28,4 +28,17 @@ export class ClienteService {
         }
       );
   }
+
+  editarCliente(cliente: Cliente, id: string) {
+    let body= JSON.stringify(cliente);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let url = `${this.clienteSails}/${id }`;
+    return this._http.put(url, body, {headers: headers}).map(
+      resultado => {
+        return resultado.json;
+      }
+    );
+  }
 }

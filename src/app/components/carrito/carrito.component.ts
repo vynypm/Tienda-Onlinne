@@ -37,39 +37,41 @@ export class CarritoComponent implements OnInit {
       if(this.carrito.length === 0){
         document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
         this.habilitar = true;
-
       }
-
     }
-
   }
 
-  eliminarProducto(item){
-    this._carritoService.eliminarProducto(item);
-    //Conseguir productos del carrito
-    this.carrito = this._carritoService.getProducto();
-    console.log(this.carrito);
-    console.log(this.carrito.length);
-    document.getElementById('carrito').innerHTML =
-      "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
+  eliminarProducto(producto){
+      var indice;
+      for ( let key in this.carrito){
+          if (this.carrito[key] === producto){
+              indice = key;
+          }
+      }
+      this._carritoService.eliminarProducto(indice);
+      //Conseguir productos del carrito
+      this.carrito = this._carritoService.getProducto();
+      console.log(this.carrito);
+      console.log(this.carrito.length);
+      document.getElementById('carrito').innerHTML =
+        "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
   }
 
   keyPress(event: KeyboardEvent,i){
-    console.log(i);
-    console.log(String.fromCharCode(event.charCode));
-    var num = parseInt(String.fromCharCode(event.charCode));
-    if(!isNaN(num)){
-      var precio = document.getElementById('precio_'+i).innerText;
-      console.log(precio);
-      var subtotal = num * parseFloat(precio);
-      document.getElementById('subtotal_'+i).innerText = String(subtotal.toFixed(2));
-    }else {
-      //var aux = document.getElementById('cantidad_'+i);
-      //console.log(aux);
-      //aux.setAttribute('value','1');
-      console.log("Valor ingresado incorrecto")
-    }
-
+      console.log(i);
+      console.log(String.fromCharCode(event.charCode));
+      var num = parseInt(String.fromCharCode(event.charCode));
+      if(!isNaN(num)){
+          var precio = document.getElementById('precio_'+i).innerText;
+          console.log(precio);
+          var subtotal = num * parseFloat(precio);
+          document.getElementById('subtotal_'+i).innerText = String(subtotal.toFixed(2));
+      }else {
+          //var aux = document.getElementById('cantidad_'+i);
+          //console.log(aux);
+          //aux.setAttribute('value','1');
+          console.log("Valor ingresado incorrecto")
+      }
   }
 
   movimiento(event){

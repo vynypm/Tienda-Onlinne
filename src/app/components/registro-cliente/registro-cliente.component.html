@@ -10,11 +10,11 @@
   <form (ngSubmit)="registrar()" #form="ngForm">
     <div class="form-group row">
       <div class="col-md-6 col-12">
-        <label class="col-form-label">Nombre: </label>
+        <label class="col-form-label">Nombres: </label>
         <input [(ngModel)]="cliente.nombre" #nombre name="nombre" type="text" class="form-control" placeholder="Nombre" autofocus="">
       </div>
       <div class="col-md-6 col-12">
-        <label class="col-form-label">Apellido: </label>
+        <label class="col-form-label">Apellidos: </label>
         <input [(ngModel)]="cliente.apellido" #apellido name="apellido" type="text" class="form-control"  placeholder="Apellido">
       </div>
     </div>

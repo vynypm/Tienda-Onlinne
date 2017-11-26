@@ -14,6 +14,7 @@ import { CarritoComponent} from './components/carrito/carrito.component';
 import { VerificarDatosComponent} from './components/verificar-datos/verificar-datos.component';
 import { LogoComponent} from './components/administrador/logo/logo.component';
 import { ProductosComponent} from './components/productos/productos.component';
+import { InformacionFinalComponent} from './components/informacion-final/informacion-final.component';
 
 const APP_ROUTES: Routes = [
 
@@ -32,6 +33,7 @@ const APP_ROUTES: Routes = [
   {path: 'verificar' , component: VerificarDatosComponent},
   {path: 'logo' , component: LogoComponent},
   {path: 'productos' , component: ProductosComponent},
+  {path: 'informacionfinal' , component: InformacionFinalComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

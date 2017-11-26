@@ -30,11 +30,16 @@ export class CarritoService {
 
   }
 
-  eliminarProducto(producto: Producto) {
-    var carritoSorage = JSON.parse(localStorage.cesta);
+  eliminarProducto(indice) {
+    /*var carritoSorage = JSON.parse(localStorage.cesta);
     this.item = carritoSorage;
-    console.log(this.item);
-    this.item.splice(this.item.indexOf(producto), 1);
+    console.log(this.item);*/
+    console.log(indice);
+    //console.log(this.item.indexOf(producto));
+    //var pos = this.item.indexOf(producto)
+    //console.log(pos);
+
+    this.item.splice(indice,1);
     if (typeof(Storage) !== 'undefined') {
       localStorage.cesta = JSON.stringify(this.item);
     }
