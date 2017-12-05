@@ -26,13 +26,14 @@ export class RegistrarProductoComponent implements OnInit {
   public uploader: FileUploader;
   public hasBaseDropZoneOver = false;
   listaImagenes: any [] = [];
+  hide: boolean = true;
 
   producto: any = {
     marca: "",
     modelo: "",
     precio: 0,
     descripcion: "",
-    imagen: "",
+    imagen: [],
     categoria: "",
     promocion: false,
     precio_promo: 0,
@@ -73,12 +74,18 @@ export class RegistrarProductoComponent implements OnInit {
           this._productoServices.getProducto(this.id).subscribe(
             resultado => {
               this.producto = resultado;
-              console.log(this.producto);
+              console.log(this.producto.imagen);
+              if(this.producto.imagen.length != 0){
+                console.log("Imagenes guardad");
+                this.listaImagenes = this.producto.imagen;
+                this.hide = false;
+              }
             }
           );
         }
       }
     );
+
 
     this._marcaService.consultarMarcas()
       .subscribe(
@@ -94,6 +101,8 @@ export class RegistrarProductoComponent implements OnInit {
           console.log(this.listaOpciones);
         }
       );
+
+
   }
 
 
@@ -129,6 +138,7 @@ export class RegistrarProductoComponent implements OnInit {
       }
       console.log(fileItem.data.url);
       this.listaImagenes.push(fileItem.data.url);
+      this.hide = false;
     }
 
     this.uploader = new FileUploader(uploaderOptions);
@@ -153,6 +163,12 @@ export class RegistrarProductoComponent implements OnInit {
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
     console.log(this.hasBaseDropZoneOver);
+  }
+
+  eliminarImg(img){
+    var pos = this.listaImagenes.indexOf(img);
+    console.log(pos);
+    this.listaImagenes.splice(pos, 1);
   }
 
   guardar() {
@@ -195,6 +211,8 @@ export class RegistrarProductoComponent implements OnInit {
       this.producto.opciones = this.selected;
     }
   }
+
+
 
 
 
