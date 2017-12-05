@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
+import { Pagination2Service } from '../../services/pagination2.service';
 
 @Component({
   selector: 'app-caract-producto',
@@ -11,6 +12,10 @@ export class CaractProductoComponent implements OnInit {
 
   allImages: any = {
     url:""
+  };
+
+  allOptions: any = {
+    opciones:""
   };
 
   catSimilar = null;
@@ -26,24 +31,34 @@ export class CaractProductoComponent implements OnInit {
     categoria: "",
     promocion: false,
     precio_promo: 0,
+    opciones: ""
   }
+// pager object
+  pager: any = {};
+
+  // paged items
+  pagedItems: any[] = [];
+
 
   constructor(private _activatedRoute: ActivatedRoute,
-              private _productoService: ProductoService) {
+              private _productoService: ProductoService,
+              private _paginationService: Pagination2Service) {
     this._activatedRoute.params.subscribe(
       parametros => {
         this._productoService.getProducto(parametros['id']).subscribe(
           resultado => {
 
             this.allImages.url = resultado.imagen;
+            this.allOptions.opciones = resultado.opciones;
 
-            let marca, imagen, categoria;
+            let marca, categoria ;
             marca = resultado.marca;
-            imagen = resultado.imagen;
             categoria = resultado.categoria;
+
             this.producto = resultado;
             this.producto.marca = marca.nombre;
-            this.producto.imagen = imagen[0];
+            this.producto.imagen = this.allImages.url[0];
+            this.producto.opciones = this.allOptions.opciones[0];
             this.catSimilar = categoria.nombre;
             //console.log(this.producto.imagen);
             this.mismaCategoria();
@@ -78,6 +93,7 @@ export class CaractProductoComponent implements OnInit {
 
             if (productoNew.categoria === this.catSimilar ) {
               this.prodCategoria.push(productoNew);
+              this.setPage(1);
             }
           }
         }
@@ -88,6 +104,21 @@ export class CaractProductoComponent implements OnInit {
     //console.log(img);
     this.producto.imagen = img;
   }
+//PARA LA PAGINACION
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
 
+    // get pager object from service
+    this.pager = this._paginationService.getPager(this.prodCategoria.length, page);
+
+    // get current page of items
+    this.pagedItems = this.prodCategoria.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  anadir() {
+    console.log(this.producto);
+  }
 
 }

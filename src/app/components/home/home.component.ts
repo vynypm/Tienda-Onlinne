@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductoService} from '../../services/producto.service';
 import { CarritoService } from '../../services/carrito.service';
+import { Pagination2Service } from '../../services/pagination2.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +11,16 @@ import { CarritoService } from '../../services/carrito.service';
 export class HomeComponent implements OnInit {
 
   listaPromo: any [] = [];
-  carrito:any[]=[];
+  carrito: any [] = [];
+// pager object
+  pager: any = {};
 
-  constructor(private _productoServices: ProductoService, private _carritoService: CarritoService) {
+  // paged items
+  pagedItems: any[] = [];
+
+  constructor(private _productoServices: ProductoService,
+              private _carritoService: CarritoService,
+              private _paginationService: Pagination2Service) {
     this._productoServices.consultarProductos()
     .subscribe(
       resultado => {
@@ -28,10 +36,11 @@ export class HomeComponent implements OnInit {
           if (promoNew.promocion === true ) {
             this.listaPromo.push(promoNew);
           }
+
         }
+        this.setPage(1);
       }
     );
-    console.log(this.listaPromo);
   }
 
   ngOnInit() {
@@ -49,7 +58,18 @@ export class HomeComponent implements OnInit {
     document.getElementById('carrito').innerHTML =
       "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
 
+  }
+//PARA LA PAGINACION
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
 
+    // get pager object from service
+    this.pager = this._paginationService.getPager(this.listaPromo.length, page);
+
+    // get current page of items
+    this.pagedItems = this.listaPromo.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
 }

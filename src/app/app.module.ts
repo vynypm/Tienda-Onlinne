@@ -17,6 +17,7 @@ import { CarritoService } from './services/carrito.service';
 import { LogoService } from './services/logo.service';
 import { OpcionService } from './services/opcion.service';
 import { PedidoService } from './services/pedido.service';
+import { Pagination2Service } from './services/pagination2.service';//PARA LA PAGINACION
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
@@ -106,7 +107,8 @@ export const cloudinaryLib = {
     CarritoService,
     LogoService,
     OpcionService,
-    PedidoService
+    PedidoService,
+    Pagination2Service
   ],
   bootstrap: [AppComponent]
 })

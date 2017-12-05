@@ -16,4 +16,14 @@
   list-style-type: none;
   display: inline;
   margin: 5px 5px 5px 5px;
+
+}
+
+.img-producto{
+  width: 300px;
+  height: 300px;
+}
+
+li{
+  cursor: pointer;
 }
