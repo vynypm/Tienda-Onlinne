@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class ProductoService {
 
-  productosSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/productos';
+  productosSails: string = 'https://store-onlinne.herokuapp.com/productos';
 
   constructor(private _http: Http) { }
 

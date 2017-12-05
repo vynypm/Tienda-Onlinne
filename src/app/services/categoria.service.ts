@@ -4,7 +4,7 @@ import 'rxjs/Rx';//para el map
 
 @Injectable()
 export class CategoriaService {
-  urlCategorias: string ='http://port-1337.tienda-vynypm52876.codeanyapp.com/categorias';
+  urlCategorias: string ='https://store-onlinne.herokuapp.com/categorias';
 
   constructor(private _http: Http) { }
 

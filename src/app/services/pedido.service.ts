@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class PedidoService {
 
-  pedidoSails: string = 'http://port-1337.tienda-vynypm52876.codeanyapp.com/pedidos';
+  pedidoSails: string = 'https://store-onlinne.herokuapp.com/pedidos';
 
   constructor(private _http: Http) { }
 

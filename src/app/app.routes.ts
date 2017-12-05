@@ -15,6 +15,7 @@ import { VerificarDatosComponent} from './components/verificar-datos/verificar-d
 import { LogoComponent} from './components/administrador/logo/logo.component';
 import { ProductosComponent} from './components/productos/productos.component';
 import { InformacionFinalComponent} from './components/informacion-final/informacion-final.component';
+import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
 
 const APP_ROUTES: Routes = [
 
@@ -34,6 +35,7 @@ const APP_ROUTES: Routes = [
   {path: 'logo' , component: LogoComponent},
   {path: 'productos' , component: ProductosComponent},
   {path: 'informacionfinal' , component: InformacionFinalComponent},
+  {path: 'opcion/:id' , component: AdminOpcionesComponent},
 
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

@@ -4,7 +4,7 @@ import 'rxjs/Rx';//para el map
 
 @Injectable()
 export class LogoService {
-  urlLogo: string ='http://port-1337.tienda-vynypm52876.codeanyapp.com/links';
+  urlLogo: string ='https://store-onlinne.herokuapp.com/links';
 
   constructor(private _http: Http) { }
 

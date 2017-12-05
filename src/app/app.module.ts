@@ -20,7 +20,7 @@ import { PedidoService } from './services/pedido.service';
 
 // Cloudinary module
 import {CloudinaryModule, CloudinaryConfiguration, provideCloudinary} from '@cloudinary/angular-4.x';
-import * as cloudinary from 'cloudinary-core';
+import { Cloudinary } from 'cloudinary-core';
 import {CloudinarySettings} from './settings';
 import { FileUploadModule } from 'ng2-file-upload';
 
@@ -50,9 +50,14 @@ import { VerificarDatosComponent } from './components/verificar-datos/verificar-
 import { LogoComponent } from './components/administrador/logo/logo.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { InformacionFinalComponent } from './components/informacion-final/informacion-final.component';
+import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
 
 //Primeng
 //import {MessagesModule} from 'primeng/primeng';
+
+export const cloudinaryLib = {
+  Cloudinary: Cloudinary
+};
 
 @NgModule({
   declarations: [
@@ -76,7 +81,8 @@ import { InformacionFinalComponent } from './components/informacion-final/inform
     VerificarDatosComponent,
     LogoComponent,
     ProductosComponent,
-    InformacionFinalComponent
+    InformacionFinalComponent,
+    AdminOpcionesComponent
 
   ],
   imports: [
@@ -84,7 +90,7 @@ import { InformacionFinalComponent } from './components/informacion-final/inform
     FormsModule,
     HttpModule,
     APP_ROUTING,
-    CloudinaryModule.forRoot(cloudinary, CloudinarySettings),
+    CloudinaryModule.forRoot(cloudinaryLib, CloudinarySettings),
     FileUploadModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB1HDcId9-ArNag9QzqA8pByXbuHhn48z8'

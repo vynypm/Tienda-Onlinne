@@ -1,0 +1,83 @@
+<app-navbar-admin></app-navbar-admin>
+
+<div class="cabecera container">
+  <h2>Administración de Opciones</h2>
+</div><br>
+
+<div class="container registro">
+  <h1>Opción: <small>{{opcion.nombre}}</small></h1><br>
+
+
+  <form (ngSubmit)="guardar()" #forma ="ngForm">
+
+    <div class="row">
+      <div class=" col-md-12 col-12">
+        <div class="form-group row" [ngClass]="{'has-danger': (nombre.errors?.required || nombre.errors?.minlength)&& nombre.touched}">
+          <label  class="col-md-2 col-12 col-form-label">Nombre:    <strong class="requerido">*</strong></label>
+          <div class="col-md-10 col-12">
+            <input class="form-control"
+                   type="text"
+                   placeholder="Nombre"
+                   name="nombre"
+                   #nombre="ngModel"
+                   required
+                   minlength="3"
+                   [(ngModel)]="opcion.nombre" autofocus="">
+            <div class="form-control-feedback" *ngIf="nombre.errors?.required">
+            </div>
+            <div class="form-control-feedback" *ngIf="nombre.errors?.minlength">
+              minimo 3 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="text-right from-group">
+          <button type="submit"
+                  class="btn btn-outline-primary"
+                  [disabled]="!(forma.valid && habilitarBoton)">
+            Guardar</button>
+          <button [routerLink]="['/registrar-producto', 'nuevo']"
+                  type="button" class="btn btn-outline-warning">Cancelar</button>
+        </div>
+      </div>
+      <div class="col-md-12 col-12 text-right requerido">
+        <p><strong>*</strong> Campos Requeridos</p>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+<div class="container">
+  <h5>Categorias Registradas</h5>
+
+  <table class="table table-striped">
+    <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Nombre
+      <th>Administrar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let op of opciones; let i = index">
+      <th>{{i+1}}</th>
+      <td>{{op.nombre}}</td>
+      <td>
+        <button [routerLink]="['/categoria',op.id]"
+                type="button" class="btn btn-info">Editar</button>
+        <button (click)="eliminar(op.id, i)"
+                type="button" class="btn btn-danger">Eliminar</button>
+      </td>
+
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>

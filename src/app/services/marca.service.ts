@@ -4,7 +4,7 @@ import 'rxjs/Rx';//para el map
 
 @Injectable()
 export class MarcaService {
-  urlMarcas: string ='http://port-1337.tienda-vynypm52876.codeanyapp.com/marcas';
+  urlMarcas: string ='https://store-onlinne.herokuapp.com/marcas';
 
   constructor(private _http: Http) { }
 
