@@ -3,12 +3,19 @@ import { Router } from '@angular/router';
 import {UsuarioService} from '../../services/usuario.service';
 import { CarritoService } from '../../services/carrito.service';
 import { LogoService } from '../../services/logo.service';
+import { HostListener} from "@angular/core";
+import { Inject } from "@angular/core";
+import { DOCUMENT } from "@angular/platform-browser";
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
   hide: boolean = true;
   carrito: any;
@@ -18,7 +25,8 @@ export class NavbarComponent implements OnInit {
   constructor(private _router: Router,
               private _usuarioServices: UsuarioService,
               private _carritoService: CarritoService,
-              private _logoService: LogoService) {
+              private _logoService: LogoService,
+              @Inject(DOCUMENT) private document: Document) {
 
     this._logoService.consultarLogo()
       .subscribe(
@@ -30,6 +38,8 @@ export class NavbarComponent implements OnInit {
           this.empresaImg = empresa[0].imgLogo;
         }
       );
+
+
   }
 
   ngOnInit() {
@@ -59,4 +69,16 @@ export class NavbarComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
+  @HostListener("window:scroll")
+  onWindowScroll() {
+    //console.log(window.scrollY)
+    if( window.scrollY >  450){
+      $("nav").addClass('mainNav2');
+      $("nav").removeClass('mainNav');
+      //console.log("mayor")
+    } else {
+      $("nav").addClass('mainNav');
+      $("nav").removeClass('mainNav2');
+    }
+  }
 }

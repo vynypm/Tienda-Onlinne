@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 //RUTAS
@@ -52,9 +52,17 @@ import { LogoComponent } from './components/administrador/logo/logo.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { InformacionFinalComponent } from './components/informacion-final/informacion-final.component';
 import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
+import { PedidoComponent } from './components/administrador/pedido/pedido.component';
 
 //Primeng
-//import {MessagesModule} from 'primeng/primeng';
+import {GrowlModule} from 'primeng/primeng';
+import {MessagesModule} from 'primeng/primeng';
+//Autocomplete
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { BuscadorComponent } from './components/buscador/buscador.component';
+
+//Ng2 Expansion Panels
+import { ExpansionPanelsModule } from 'ng2-expansion-panels';
 
 export const cloudinaryLib = {
   Cloudinary: Cloudinary
@@ -83,12 +91,13 @@ export const cloudinaryLib = {
     LogoComponent,
     ProductosComponent,
     InformacionFinalComponent,
-    AdminOpcionesComponent
-
+    AdminOpcionesComponent,
+    BuscadorComponent,
+    PedidoComponent,
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
+    BrowserModule, GrowlModule, MessagesModule, NguiAutoCompleteModule,
+    FormsModule, ReactiveFormsModule, ExpansionPanelsModule,
     HttpModule,
     APP_ROUTING,
     CloudinaryModule.forRoot(cloudinaryLib, CloudinarySettings),

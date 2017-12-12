@@ -19,15 +19,17 @@ export class PedidoService {
     );
   }
 
-  /*
-  consultarProductos() {
-    return this._http.get(this.productosSails)
+  consultarPedido() {
+    return this._http.get(this.pedidoSails)
       .map(
         respuesta => {
           return respuesta.json();
         }
       );
   }
+
+  /*
+
 
   editarProducto(producto: Producto, id: string) {
     let body= JSON.stringify(producto);

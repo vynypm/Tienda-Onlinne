@@ -1,8 +1,7 @@
 <app-navbar></app-navbar>
-
-<div class="cabecera container">
-  <h2>{{producto.marca}} {{producto.modelo}}</h2>
-</div><br>
+<br><br><br><br>
+<app-buscador></app-buscador>
+<br><br>
 
 <div class="container">
   <div class="row">
@@ -62,21 +61,20 @@
 
 <div class="container">
   <div class="row">
-    <div class="card-prod col-md-4" *ngFor="let item of pagedItems; let i = index">
+    <div class="card-prod col-md-3 col-sm-6 col-xs-6" *ngFor="let item of pagedItems; let i = index">
       <div class="card">
         <div class="text-center">
-          <a [routerLink]="['/producto', item.id, item.modelo]">
+          <p id="{{item.id}}"></p>
+          <a [routerLink]="['/producto', item.id, item.modelo]" (click)="detalles()">
             <img class="card-img-top card-image img-fluid" [src]="item.imagen" alt="Card image cap">
           </a>
         </div>
         <div class="card-block text-center">
-          <h4 class="card-title">{{item.marca}} {{item.modelo}}</h4>
-          <div class="card-footer">
-            <span class="precio"><h5>{{item.precio | currency}}</h5></span>
-            <br>
-            <button type="button" class="btn btn-primary"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
-          </div>
+          <h6 class="card-text">{{item.marca}} {{item.modelo}}</h6>
+          <del>{{item.precio | currency}}</del>
+          <span class="precio"><h5>{{item.precio_promo | currency}}</h5></span>
         </div>
+        <button type="button" class="btn btn-primary" (click)="anadir2(item)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
       </div>
 
     </div>

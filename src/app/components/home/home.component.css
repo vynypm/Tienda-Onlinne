@@ -28,7 +28,7 @@
 
 /* PRDUCTOS DE PROMOCION */
 .cabecera{
-  margin-top: 100px;
+  margin-top: 10px;
   border-bottom: 1px solid #D3D3D3;
   color: white;
   background-color: black;
@@ -40,9 +40,26 @@
 }
 
 .card-prod{
-  margin-bottom: 25px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  height: auto;
 }
 
 .precio{
   color: #26a3e4;
 }
+
+.card-text {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+.card-text:hover {
+  width: auto;
+  white-space: initial;
+  overflow:visible;
+  cursor: pointer;
+}
+

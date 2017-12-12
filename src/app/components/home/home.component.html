@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
-
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
+<br><br><br>
+<div id="myCarousel" class="carousel slide" style="margin-bottom: 15px;" data-ride="carousel">
+   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -48,34 +48,34 @@
   </a>
 </div>
 
+<app-buscador></app-buscador>
 
 <div class="cabecera container">
   <h2>En promoción</h2>
 </div>
+<br>
 
 <div class="container">
   <div class="row">
-    <div class="card-prod col-md-4" *ngFor="let promo of pagedItems; let i=index">
+    <div class="card-prod col-md-3 col-sm-6 col-xs-6" *ngFor="let promo of pagedItems; let i=index">
       <div class="card">
         <div class="text-center">
-          <a [routerLink]="['/producto', promo.id, promo.modelo]">
-            <img class="card-img-top card-image img-fluid" [src]="promo.imagen" alt="Card image cap">
+          <p id="{{promo.id}}"></p>
+          <a [routerLink]="['/producto', promo.id, promo.modelo]" (click)="detalles()">
+            <img style="border:solid black " class="card-img-top card-image img-fluid" [src]="promo.imagen" alt="Card image cap">
           </a>
         </div>
         <div class="card-block text-center">
-          <h4 class="card-title">{{promo.marca}} {{promo.modelo}}</h4>
-          <div class="card-footer">
-            <del>{{promo.precio | currency}}</del>
-            <span class="precio"><h5>{{promo.precio_promo | currency}}</h5></span>
-            <br>
-            <button type="button" class="btn btn-primary" (click)="anadir(promo)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
-          </div>
+          <h6 class="card-text">{{promo.marca}} {{promo.modelo}}</h6>
+          <del>{{promo.precio | currency}}</del>
+          <span class="precio"><h5>{{promo.precio_promo | currency}}</h5></span>
         </div>
+        <button type="button" class="btn btn-primary" (click)="anadir(promo)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
       </div>
-
     </div>
   </div>
 </div>
+
 <div class="container">
   <nav aria-label="Page navigation example">
     <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
@@ -88,7 +88,6 @@
       <li  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
         <a (click)="setPage(page)" class="page-link">{{page}}</a>
       </li>
-
       <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
         <a (click)="setPage(pager.currentPage + 1)" class="page-link" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
@@ -101,3 +100,6 @@
 </div>
 
 <app-nosotros></app-nosotros>
+<br>
+
+

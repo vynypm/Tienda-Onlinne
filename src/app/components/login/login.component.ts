@@ -63,9 +63,6 @@ export class LoginComponent implements OnInit {
                 this._router.navigate(['/admin-productos']);
           }else {
                 console.log("Email incorrectocorrecto");
-                this.msgs = [];
-                this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ',
-                  detail:'Por favor ingrese correctamente su email y contraseña'});
           }
 
         }
@@ -96,9 +93,11 @@ export class LoginComponent implements OnInit {
                 }
           }else {
                 console.log("Email incorrectocorrecto");
-                this.msgs = [];
-                this.msgs.push({severity:'error', summary:'ERROR DE AUTENTICACIÓN: ',
-                  detail:'Por favor ingrese correctamente su email y contraseña'});
+              document.getElementById('sms').innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-danger\">\n" +
+                "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
+                "   <i class=\"fa fa-times\" aria-hidden=\"true\"></i> <strong>&nbsp Ingrese correctamente su email y contraseña &nbsp &nbsp</strong>" +
+                "</div>";
+
           }
         }
         //console.log(this.listaUsuario);

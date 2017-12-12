@@ -12,11 +12,28 @@ a{
   height: 180px;
 }
 
-.card-prod{
-  margin-bottom: 25px;
-}
-
 .precio{
   color: #26a3e4;
 }
+
+.card-text {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+.card-text:hover {
+  width: auto;
+  white-space: initial;
+  overflow:visible;
+  cursor: pointer;
+}
+
+.card-prod{
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  height: auto;
+}
+
 

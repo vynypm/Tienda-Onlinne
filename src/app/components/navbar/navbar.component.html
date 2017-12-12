@@ -1,12 +1,12 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top" id="mainNav">
+<nav class="navbar navbar-toggleable-md fixed-top navbar-light bg-faded mainNav" >
+
   <div class="container">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-
     <a class="navbar-brand" [routerLink] = "['home']">{{empresaNombre}}</a>
-    <img class="img-logo" [src]="empresaImg">
+    <img class="img-logo" [src]="empresaImg"  [routerLink] = "['/home']">
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto text-center">
@@ -19,12 +19,6 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink] = "['/contactanos']">Contáctenos</a>
         </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto text-center">
-        <li class="nav-item" routerLinkActive="active" [hidden]="hide">
-          <a class="nav-link" [routerLink] = "['/registrarse']">Registrarse</a>
-        </li>
         <li class="nav-item" routerLinkActive="active" [hidden]="hide">
           <a class="nav-link" [routerLink] = "['/login']">Login</a>
         </li>
@@ -32,10 +26,12 @@
           <a class="nav-link"(click)="salir()">Salir</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" [routerLink] = "['/carrito']" id="carrito"><span class="fa fa-cart-plus fa-1x fa-inverse"
-                                                                  aria-hidden="true"></span>{{carrito.length}}</a>
+          <a class="nav-link" [routerLink] = "['/carrito']" id="carrito"><span class="fa fa-cart-plus fa-1x "
+                                                                               aria-hidden="true"></span>{{carrito.length}}</a>
         </li>
       </ul>
+
     </div>
   </div>
+
 </nav>

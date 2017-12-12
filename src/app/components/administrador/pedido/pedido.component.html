@@ -1,0 +1,48 @@
+<app-navbar-admin></app-navbar-admin>
+<br><br><br>
+
+<div class="container">
+
+  <section class="container py-4">
+    <div class="row">
+      <div class="col-md-12">
+
+        <ul id="tabsJustified" class="nav nav-tabs">
+            <li class="nav-item"><a href="" data-target="#pedidos" data-toggle="tab" class="nav-link small text-uppercase active">Pedidos</a></li>
+            <li class="nav-item"><a href="" data-target="#historial" data-toggle="tab" class="nav-link small text-uppercase">Historial</a></li>
+        </ul>
+        <br>
+
+        <div id="tabsJustifiedContent" class="tab-content">
+
+            <div id="pedidos" class="tab-pane fade active show">
+              <p>Pedidos</p>
+              <expansion-panels-container *ngFor="let p of pedidos ">
+                  <expansion-panel>
+                      <expansion-panel-title>
+                          {{p.email.nombre}}
+                      </expansion-panel-title>
+                      <expansion-panel-description-hidden>
+                          Descripción hidden
+                      </expansion-panel-description-hidden>
+                      <expansion-panel-description-toggled>
+                          Descripcion toggled
+                      </expansion-panel-description-toggled>
+                      <expansion-panel-content>
+                          Contenido
+                      </expansion-panel-content>
+                  </expansion-panel>
+              </expansion-panels-container>
+            </div>
+
+            <div id="historial" class="tab-pane fade ">
+              <p>Hstroial</p>
+            </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>

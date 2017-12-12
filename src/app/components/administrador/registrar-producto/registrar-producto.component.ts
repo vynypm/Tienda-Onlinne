@@ -37,7 +37,7 @@ export class RegistrarProductoComponent implements OnInit {
     categoria: "",
     promocion: false,
     precio_promo: 0,
-    opciones:"",
+    opciones:[],
     stock: 0,
   }
 

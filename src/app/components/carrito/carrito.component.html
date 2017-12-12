@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
-<div class="cabecera container" (mousemove)="movimiento($event)">
+<div class="cabecera container">
   <h2>Carrito de compras</h2>
 </div><br>
 
-<div class="container" (mousemove)="movimiento($event)">
+<div class="container">
   <table class="table">
     <thead>
     <tr>
@@ -19,7 +19,7 @@
     <tbody>
     <tr *ngFor="let item of carrito; let i=index">
       <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
-      <td>{{item.marca}} {{item.modelo}}</td>
+      <td><a [routerLink]="['/producto', item.id, item.modelo]" (click)="detalles()">{{item.marca}} {{item.modelo}}</a></td>
       <td *ngIf="item.precio_promo; else precio" id="precio_{{i}}">$ {{item.precio_promo }}</td>
       <ng-template #precio><td id="precio_{{i}}">$ {{item.precio}}</td></ng-template>
       <td><input class="form-control" [(ngModel)]="item.cantidad" type="number" min="1" max="9" placeholder="" (keypress)="keyPress($event,i)"></td>
@@ -51,3 +51,5 @@
   <h2 id="carritoCompras"></h2>
   <button type="button" id="botonComprar"  [disabled]="habilitar" class="btn btn-success" (click)="comprar()">Comprar</button>
 </div>
+
+

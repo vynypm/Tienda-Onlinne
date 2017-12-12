@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
 import {UsuarioService} from '../../services/usuario.service';
@@ -9,7 +9,7 @@ import {Pedido} from '../../interfaces/pedido.interface';
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css']
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements AfterViewInit, OnInit, OnDestroy  {
   carrito: any[] = [];
   total: any;
   carritoCompra: any[]=[]; //Variable para enviar al pedido
@@ -19,14 +19,47 @@ export class CarritoComponent implements OnInit {
     preciototal: 0,
     email:""
   };
+  public timerInterval:any;
 
-  constructor(private _carritoService: CarritoService, private _router: Router, private _usuarioServices: UsuarioService) {
+  constructor(private _carritoService: CarritoService, private _router: Router,
+              private _usuarioServices: UsuarioService) {
     //Conseguir productos del carrito
     this.carrito = this._carritoService.getProducto();
     console.log(this.carrito);
     /*var carritoSorage = JSON.parse(localStorage.cesta);
     this.carrito = carritoSorage;
     console.log(this.carrito);*/
+
+  }
+
+  ngAfterViewInit(){
+    this.timerInterval = setInterval(()=>{
+      //console.log("setInterval saludo");
+      var totalcarrito = 0;
+      for( let key in this.carrito){
+        if(document.getElementById('subtotal_'+key)!= null){
+          var num = document.getElementById('subtotal_'+key).innerText.split('$');
+          var subtotal = parseFloat(num[1].replace(/[,]/g,"")); //Reemplazo la coma por el vacio
+          //console.log(subtotal);
+          this.carrito[key].subtotal = subtotal //Guardo el subtotal del producto
+          totalcarrito = subtotal + totalcarrito;
+        }
+      }
+      this.total = totalcarrito.toFixed(2);
+      document.getElementById('total').innerHTML = "USD $ "+this.total;
+      if (typeof(Storage) !== 'undefined') {
+        localStorage.cesta = JSON.stringify(this.carrito);
+      }
+      if(this.total == 0){
+        document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
+        this.habilitar = true;
+      }
+    }, 100);
+  }
+
+  ngOnDestroy() {
+    // Will clear when component is destroyed e.g. route is navigated away from.
+    clearInterval(this.timerInterval);
   }
 
   ngOnInit() {
@@ -74,29 +107,6 @@ export class CarritoComponent implements OnInit {
       }
   }
 
-  movimiento(event){
-    var totalcarrito = 0;
-    for( let key in this.carrito){
-      if(document.getElementById('subtotal_'+key)!= null){
-        var num = document.getElementById('subtotal_'+key).innerText.split('$');
-        var subtotal = parseFloat(num[1].replace(/[,]/g,"")); //Reemplazo la coma por el vacio
-        //console.log(subtotal);
-        this.carrito[key].subtotal = subtotal //Guardo el subtotal del producto
-        totalcarrito = subtotal + totalcarrito;
-      }
-    }
-    this.total = totalcarrito.toFixed(2);
-    document.getElementById('total').innerHTML = "USD $ "+this.total;
-    if (typeof(Storage) !== 'undefined') {
-      localStorage.cesta = JSON.stringify(this.carrito);
-    }
-    if(this.total == 0){
-      document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
-      this.habilitar = true;
-    }
-
-  }
-
   comprar(){
     this._usuarioServices.isLogged_cliente().then((result:boolean)=>{
       console.log(result);
@@ -117,8 +127,34 @@ export class CarritoComponent implements OnInit {
         this._router.navigate(['/login']);
       }
     });
-
-
   }
+
+  detalles(){
+    window.scrollTo(0,0);
+  }
+
+  /*movimiento(event){
+    var totalcarrito = 0;
+    for( let key in this.carrito){
+      if(document.getElementById('subtotal_'+key)!= null){
+        var num = document.getElementById('subtotal_'+key).innerText.split('$');
+        var subtotal = parseFloat(num[1].replace(/[,]/g,"")); //Reemplazo la coma por el vacio
+        //console.log(subtotal);
+        this.carrito[key].subtotal = subtotal //Guardo el subtotal del producto
+        totalcarrito = subtotal + totalcarrito;
+      }
+    }
+    this.total = totalcarrito.toFixed(2);
+    document.getElementById('total').innerHTML = "USD $ "+this.total;
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.cesta = JSON.stringify(this.carrito);
+    }
+    if(this.total == 0){
+      document.getElementById('carritoCompras').innerHTML = "<h2>No hay productos en la cesta</h2>";
+      this.habilitar = true;
+    }
+
+  }*/
+
 
 }

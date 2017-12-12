@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Pagination2Service } from '../../services/pagination2.service';
+import { CarritoService } from '../../services/carrito.service';
 
 @Component({
   selector: 'app-caract-producto',
@@ -38,11 +39,13 @@ export class CaractProductoComponent implements OnInit {
 
   // paged items
   pagedItems: any[] = [];
-
+  carrito: any [] = [];
 
   constructor(private _activatedRoute: ActivatedRoute,
               private _productoService: ProductoService,
-              private _paginationService: Pagination2Service) {
+              private _paginationService: Pagination2Service,
+              private _carritoService: CarritoService,
+              private _router: Router) {
     this._activatedRoute.params.subscribe(
       parametros => {
         this._productoService.getProducto(parametros['id']).subscribe(
@@ -104,7 +107,8 @@ export class CaractProductoComponent implements OnInit {
     //console.log(img);
     this.producto.imagen = img;
   }
-//PARA LA PAGINACION
+
+  //PARA LA PAGINACION
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
@@ -119,6 +123,45 @@ export class CaractProductoComponent implements OnInit {
 
   anadir() {
     console.log(this.producto);
+    this.producto.cantidad = 1;
+    this.producto.subtotal = this.producto.cantidad * this.producto.precio_promo;
+    console.log("Boton añadir");
+    this._carritoService.añadirProducto(this.producto);
+
+    //Conseguir productos del carrito
+    this.carrito = this._carritoService.getProducto();
+    console.log(this.carrito);
+    document.getElementById('carrito').innerHTML =
+      "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
+    this._router.navigate(['/carrito']);
+  }
+
+  anadir2(item){
+    console.log(item.opciones.length);
+    if (item.opciones.length === 0){
+      item.cantidad = 1;
+      item.subtotal = item.cantidad * item.precio_promo;
+      console.log("Boton añadir");
+      this._carritoService.añadirProducto(item);
+
+      //Conseguir productos del carrito
+      this.carrito = this._carritoService.getProducto();
+      console.log(this.carrito);
+      document.getElementById('carrito').innerHTML =
+        "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
+      document.getElementById(item.id).innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-success alert-dismissable\">\n" +
+        "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
+        "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
+        "</div>";
+    }
+    else {
+      this._router.navigate(['/producto', item.id, item.modelo]);
+      window.scrollTo(0,0);
+    }
+  }
+
+  detalles(){
+    window.scrollTo(0,0);
   }
 
 }

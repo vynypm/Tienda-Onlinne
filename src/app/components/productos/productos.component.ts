@@ -4,6 +4,7 @@ import { Producto } from '../../interfaces/producto.interface';
 import { ProductoService } from '../../services/producto.service';
 import { PaginationService } from '../../services/pagination.service';
 import { CarritoService } from '../../services/carrito.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -24,7 +25,8 @@ export class ProductosComponent implements OnInit {
   constructor(private _categoriaService: CategoriaService,
               private _productoServices: ProductoService,
               private _paginationService: PaginationService,
-              private _carritoService: CarritoService) {
+              private _carritoService: CarritoService,
+              private _router: Router) {
 
     this._categoriaService.consultarCategorias()
       .subscribe(
@@ -71,30 +73,44 @@ export class ProductosComponent implements OnInit {
     console.log(this.filtroCategoria);
   }
 
-//PARA LA PAGINACION
+  //PARA LA PAGINACION
   setPage(page: number) {
     if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-
     // get pager object from service
     this.pager = this._paginationService.getPager(this.listaProductos.length, page);
-
     // get current page of items
     this.pagedItems = this.listaProductos.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
   anadir(cell) {
-    cell.cantidad = 1;
-    cell.subtotal = cell.cantidad * cell.precio_promo;
-    console.log("Boton añadir");
-    this._carritoService.añadirProducto(cell);
+    console.log(cell.opciones);
+    if (cell.opciones.length === 0){
+      cell.cantidad = 1;
+      cell.subtotal = cell.cantidad * cell.precio_promo;
+      console.log("Boton añadir");
+      this._carritoService.añadirProducto(cell);
 
-    //Conseguir productos del carrito
-    this.carrito = this._carritoService.getProducto();
-    console.log(this.carrito);
-    document.getElementById('carrito').innerHTML =
-      "<span class=\"fa fa-cart-plus fa-1x fa-inverse\" aria-hidden=\"true\"></span>"+this.carrito.length;
+      //Conseguir productos del carrito
+      this.carrito = this._carritoService.getProducto();
+      console.log(this.carrito);
+      document.getElementById('carrito').innerHTML =
+        "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
+      document.getElementById(cell.id).innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-success alert-dismissable\">\n" +
+        "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
+        "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
+        "</div>";
+    }
+    else{
+      this._router.navigate(['/producto', cell.id, cell.modelo]);
+      window.scrollTo(0,0);
+    }
+
+  }
+
+  detalles(){
+    window.scrollTo(0,0);
   }
 
 }
