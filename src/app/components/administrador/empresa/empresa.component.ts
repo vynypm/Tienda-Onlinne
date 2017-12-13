@@ -4,11 +4,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LogoService } from '../../../services/logo.service';
 
 @Component({
-  selector: 'app-logo',
-  templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.css']
+  selector: 'app-empresa',
+  templateUrl: './empresa.component.html',
+  styleUrls: ['./empresa.component.css']
 })
-export class LogoComponent implements OnInit {
+export class EmpresaComponent implements OnInit {
 
   facebook: boolean = false;
   youtube: boolean = false;

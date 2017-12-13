@@ -12,7 +12,7 @@ import { ContactenosComponent } from './components/contactenos/contactenos.compo
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
 import { CarritoComponent} from './components/carrito/carrito.component';
 import { VerificarDatosComponent} from './components/verificar-datos/verificar-datos.component';
-import { LogoComponent} from './components/administrador/logo/logo.component';
+import { EmpresaComponent} from './components/administrador/empresa/empresa.component';
 import { ProductosComponent} from './components/productos/productos.component';
 import { InformacionFinalComponent} from './components/informacion-final/informacion-final.component';
 import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
@@ -33,7 +33,7 @@ const APP_ROUTES: Routes = [
   {path: 'producto/:id/:nombre' , component: CaractProductoComponent},
   {path: 'carrito' , component: CarritoComponent},
   {path: 'verificar' , component: VerificarDatosComponent},
-  {path: 'logo' , component: LogoComponent},
+  {path: 'empresa' , component: EmpresaComponent},
   {path: 'productos' , component: ProductosComponent},
   {path: 'informacionfinal' , component: InformacionFinalComponent},
   {path: 'opcion/:id' , component: AdminOpcionesComponent},

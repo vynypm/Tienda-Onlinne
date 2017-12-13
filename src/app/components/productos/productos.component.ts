@@ -14,8 +14,10 @@ import { Router } from '@angular/router';
 export class ProductosComponent implements OnInit {
 
   listaCategorias: any[] = [];
-  filtroCategoria: string = 'Celular';
+  filtroCategoria: string = null;
   listaProductos: Producto [] = [];
+  habilitar: boolean = false;
+
   carrito:any [] = [];
   // pager object
   pager: any = {};
@@ -43,6 +45,7 @@ export class ProductosComponent implements OnInit {
   }
 
   consultarProductos() {
+    this.habilitar = true;
     this._productoServices.consultarProductos()
       .subscribe(
         resultado => {
@@ -57,10 +60,13 @@ export class ProductosComponent implements OnInit {
             productoNew.imagen = imagen[0];
             productoNew.categoria = categoria.nombre;
 
-            if (productoNew.categoria === this.filtroCategoria ) {
+            if (this.filtroCategoria === null ) {
+              this.listaProductos.push(productoNew);
+            }else if (productoNew.categoria === this.filtroCategoria ) {
               this.listaProductos.push(productoNew);
             }
           }
+          this.habilitar = false;
           this.setPage(1);
         }
       );
@@ -71,6 +77,33 @@ export class ProductosComponent implements OnInit {
     this.listaProductos = [];
     this.consultarProductos();
     console.log(this.filtroCategoria);
+  }
+
+  productosPromo() {
+    this.listaProductos = [];
+    this.habilitar = true;
+    console.log(this.habilitar);
+    this._productoServices.consultarProductos()
+      .subscribe(
+        resultado => {
+          for (let key in resultado) {
+            let marca, imagen ;
+            marca = resultado[key].marca;
+            imagen = resultado[key].imagen;
+
+            let promoNew = resultado[key];
+            promoNew.marca = marca.nombre;
+            promoNew.imagen = imagen[0];
+
+            if (promoNew.promocion === true ) {
+              this.listaProductos.push(promoNew);
+            }
+
+          }
+          this.habilitar = false;
+          this.setPage(1);
+        }
+      );
   }
 
   //PARA LA PAGINACION

@@ -7,7 +7,19 @@
   <div class="row">
     <div class="col-md-6">
 
-      <img class="img-fluid img-producto" [src]="producto.imagen" alt="Card image cap">
+      <div class="row">
+        <div class="col-md-12">
+          <img class="img-fluid img-producto" [imageZoom]="producto.imagen" [src]="producto.imagen" alt="Card image cap">
+        </div>
+
+        <div class="col-md-12">
+          <ul class="img-list">
+            <li *ngFor="let img of allImages.url, let i = index">
+              <img [src]="img" (click)="cambiarImg(img)" class="rounded img-miniatura">
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-6">
       <div class="row">
@@ -34,28 +46,15 @@
           <button type="button" class="btn btn-primary" (click)="anadir()">
             <span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito
           </button>
-
+        </div>
+        <div class="col-md-6">
+          <p>Tags redes sociales</p>
         </div>
       </div>
     </div>
   </div>
-<br>
-  <div class="row">
-    <div class="col-md-6">
-      <ul class="img-list">
-        <li *ngFor="let img of allImages.url, let i = index">
-          <img [src]="img" (click)="cambiarImg(img)" class="rounded img-miniatura">
-        </li>
-      </ul>
 
-    </div>
-    <div class="col-md-6">
-      <p>Tags redes sociales</p>
-    </div>
-  </div>
-</div>
-
-<div class="cabecera container">
+  <div class="cabecera container">
   <h2>Productos de la misma Categoria</h2>
 </div><br>
 

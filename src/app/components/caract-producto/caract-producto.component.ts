@@ -31,7 +31,7 @@ export class CaractProductoComponent implements OnInit {
     imagen: "",
     categoria: "",
     promocion: false,
-    precio_promo: 0,
+    precio_promo: null,
     opciones: ""
   }
 // pager object

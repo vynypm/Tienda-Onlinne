@@ -7,10 +7,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 categoria">
       <ul class="nav flex-column">
+        <li class="nav-item">
+          <button type="button" class="btn btn-link">TODAS LAS CATEGORIAS</button>
+        </li>
         <li class="nav-item" routerLinkActive="active-link" *ngFor="let categoria of listaCategorias; let i = index">
-          <a class="nav-link"  (click)="filtrarCategoria(categoria.nombre)">{{categoria.nombre}}</a>
+          <button type="button" class="btn btn-link" (click)="filtrarCategoria(categoria.nombre)" [disabled]="habilitar">{{categoria.nombre}}</button>
+        </li>
+        <li class="nav-item" routerLinkActive="active-link">
+          <!--<a class="nav-link" [class.disabled]="habilitar ? true : null" (click)="productosPromo()">Promociones</a>-->
+          <button type="button" class="btn btn-link" (click)="productosPromo()" [disabled]="habilitar">Promociones</button>
         </li>
       </ul>
     </div>
@@ -27,8 +34,10 @@
             </div>
             <div class="card-block text-center">
               <h6 class="card-text">{{cell.marca}} {{cell.modelo}}</h6>
-              <del>{{cell.precio | currency}}</del>
-              <span class="precio"><h5>{{cell.precio_promo | currency}}</h5></span>
+              <br [hidden]="cell.precio_promo">
+              <span [hidden]="cell.precio_promo" class="precio"><h5>{{cell.precio | currency}}</h5></span>
+              <del [hidden]="!cell.precio_promo">{{cell.precio | currency}}</del>
+              <span [hidden]="!cell.precio_promo" class="precio"><h5>{{cell.precio_promo | currency}}</h5></span>
             </div>
             <button type="button" class="btn btn-primary" (click)="anadir(cell)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
           </div>

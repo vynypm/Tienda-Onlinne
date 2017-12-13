@@ -28,6 +28,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 //MAPA
 import { AgmCoreModule } from '@agm/core';
 
+//ZOOM IMG
+import {ImageZoomModule} from 'angular2-image-zoom';
 
 //COMPONENTS
 import { AppComponent } from './app.component';
@@ -48,7 +50,7 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { CaractProductoComponent } from './components/caract-producto/caract-producto.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { VerificarDatosComponent } from './components/verificar-datos/verificar-datos.component';
-import { LogoComponent } from './components/administrador/logo/logo.component';
+import { EmpresaComponent } from './components/administrador/empresa/empresa.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { InformacionFinalComponent } from './components/informacion-final/informacion-final.component';
 import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
@@ -88,7 +90,7 @@ export const cloudinaryLib = {
     CaractProductoComponent,
     CarritoComponent,
     VerificarDatosComponent,
-    LogoComponent,
+    EmpresaComponent,
     ProductosComponent,
     InformacionFinalComponent,
     AdminOpcionesComponent,
@@ -104,7 +106,8 @@ export const cloudinaryLib = {
     FileUploadModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB1HDcId9-ArNag9QzqA8pByXbuHhn48z8'
-    })
+    }),
+    ImageZoomModule
   ],
   providers: [
     UsuarioService,
