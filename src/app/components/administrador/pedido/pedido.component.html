@@ -1,3 +1,4 @@
+<script src="../../../../../../store-onlinne/api/models/Pedidos.js"></script>
 <app-navbar-admin></app-navbar-admin>
 <br><br><br>
 
@@ -8,8 +9,8 @@
       <div class="col-md-12">
 
         <ul id="tabsJustified" class="nav nav-tabs">
-            <li class="nav-item"><a href="" data-target="#pedidos" data-toggle="tab" class="nav-link small text-uppercase active">Pedidos</a></li>
-            <li class="nav-item"><a href="" data-target="#historial" data-toggle="tab" class="nav-link small text-uppercase">Historial</a></li>
+            <li class="nav-item"><a href="" data-target="#pedidos" data-toggle="tab" class="nav-link small text-uppercase active" (click)="ngOnInit()">Pedidos</a></li>
+            <li class="nav-item"><a href="" data-target="#historial" data-toggle="tab" class="nav-link small text-uppercase" (click)="ngOnInit()">Historial</a></li>
         </ul>
         <br>
 
@@ -17,26 +18,152 @@
 
             <div id="pedidos" class="tab-pane fade active show">
               <p>Pedidos</p>
-              <expansion-panels-container *ngFor="let p of pedidos ">
+              <expansion-panels-container *ngFor="let p of pedidosSolicitados; let i= index ">
                   <expansion-panel>
                       <expansion-panel-title>
-                          {{p.email.nombre}}
+                          Pedido {{i+1}}
                       </expansion-panel-title>
                       <expansion-panel-description-hidden>
-                          Descripción hidden
+                          {{p.email.nombre}} {{p.email.apellido}}
                       </expansion-panel-description-hidden>
                       <expansion-panel-description-toggled>
-                          Descripcion toggled
+                          Detalles
                       </expansion-panel-description-toggled>
                       <expansion-panel-content>
-                          Contenido
+                        <div class="row">
+                          <div class="col-md-6">
+                            <p><strong>Cliente: </strong>{{p.email.nombre}} {{p.email.apellido}}</p>
+                            <p *ngIf="p.email.callePrincipal && p.email.numCasa &&
+                                              p.email.calleSecundaria; else dir">
+                              <strong>Domicilio: </strong>{{p.email.callePrincipal}} {{p.email.numCasa}} y {{p.email.calleSecundaria}}</p>
+                            <ng-template #dir><p></p></ng-template>
+                            <p><strong>Correo: </strong>{{p.email.email}}</p>
+                          </div>
+                          <div class="col-md-6">
+                            <p><strong>Contacto: </strong>{{p.email.telefono}}/{{p.email.movil}}</p>
+                            <p *ngIf="p.email.provincia && p.email.ciudad; else ciudad">
+                              <strong>Lugar: </strong>{{p.email.provincia}}/{{p.email.ciudad}}</p>
+                            <ng-template #ciudad><p></p></ng-template>
+                          </div>
+                        </div>
+                        <div class="card text-center" >
+                          <div class="card-block" >
+                            <div class="row" *ngFor="let item of p.carritopedido">
+                              <div class="col-md-3">
+                                <img class="table-img" [src]="item.imagen" style="width: 75px; height: 75px; border: solid 1px">
+                              </div>
+                              <div class="col-md-9">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <p class="card-text text-left"><strong>Producto: </strong>{{item.marca}} {{item.modelo}}</p>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <p *ngIf="item.precio_promo; else precio" class="card-text text-left"><strong>Precio: </strong>$ {{item.precio_promo }}</p>
+                                    <ng-template #precio><p class="card-text text-left"><strong>Precio: </strong>$ {{item.precio}}</p></ng-template>
+                                    <p class="card-text text-left"><strong>Cantidad: </strong>{{item.cantidad }}</p>
+                                    <p *ngIf="item.precio_promo; else sub" class="card-text text-right">Subtotal: $ {{ item.subtotal }}</p>
+                                    <ng-template #sub><p class="card-text text-right">Subtotal: $ {{item.subtotal}}</p></ng-template>
+                                  </div>
+                                </div>
+                                <hr>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9">
+                                <p class="card-text text-right"><strong>Valor Total: </strong>$ {{p.preciototal}} </p>
+                              </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                              <div class="col-md-3">
+                              </div>
+                              <div class="col-md-9 text-right">
+                                <button class="btn-info" (click)="aprobar(p)">Atendido</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </expansion-panel-content>
                   </expansion-panel>
               </expansion-panels-container>
             </div>
 
             <div id="historial" class="tab-pane fade ">
-              <p>Hstroial</p>
+              <p>Historial</p>
+              <expansion-panels-container *ngFor="let p of pedidosAprobados; let i= index ">
+                <expansion-panel>
+                  <expansion-panel-title>
+                    Pedido {{i+1}}
+                  </expansion-panel-title>
+                  <expansion-panel-description-hidden>
+                    {{p.email.nombre}} {{p.email.apellido}}
+                  </expansion-panel-description-hidden>
+                  <expansion-panel-description-toggled>
+                    Detalles
+                  </expansion-panel-description-toggled>
+                  <expansion-panel-content>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p><strong>Cliente: </strong>{{p.email.nombre}} {{p.email.apellido}}</p>
+                        <p *ngIf="p.email.callePrincipal && p.email.numCasa &&
+                                              p.email.calleSecundaria; else dir">
+                          <strong>Domicilio: </strong>{{p.email.callePrincipal}} {{p.email.numCasa}} y {{p.email.calleSecundaria}}</p>
+                        <ng-template #dir><p></p></ng-template>
+                        <p><strong>Correo: </strong>{{p.email.email}}</p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><strong>Contacto: </strong>{{p.email.telefono}}/{{p.email.movil}}</p>
+                        <p *ngIf="p.email.provincia && p.email.ciudad; else ciudad">
+                          <strong>Lugar: </strong>{{p.email.provincia}}/{{p.email.ciudad}}</p>
+                        <ng-template #ciudad><p></p></ng-template>
+                      </div>
+                    </div>
+                    <div class="card text-center" >
+                      <div class="card-block" >
+                        <div class="row" *ngFor="let item of p.carritopedido">
+                          <div class="col-md-3">
+                            <img class="table-img" [src]="item.imagen" style="width: 75px; height: 75px; border: solid 1px">
+                          </div>
+                          <div class="col-md-9">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <p class="card-text text-left"><strong>Producto: </strong>{{item.marca}} {{item.modelo}}</p>
+                              </div>
+                              <div class="col-md-6">
+                                <p *ngIf="item.precio_promo; else precio" class="card-text text-left"><strong>Precio: </strong>$ {{item.precio_promo }}</p>
+                                <ng-template #precio><p class="card-text text-left"><strong>Precio: </strong>$ {{item.precio}}</p></ng-template>
+                                <p class="card-text text-left"><strong>Cantidad: </strong>{{item.cantidad }}</p>
+                                <p *ngIf="item.precio_promo; else sub" class="card-text text-right">Subtotal: $ {{ item.subtotal }}</p>
+                                <ng-template #sub><p class="card-text text-right">Subtotal: $ {{item.subtotal}}</p></ng-template>
+                              </div>
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-3">
+                          </div>
+                          <div class="col-md-9">
+                            <p class="card-text text-right"><strong>Valor Total: </strong>$ {{p.preciototal}} </p>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="col-md-3">
+                          </div>
+                          <div class="col-md-9 text-right">
+                            <button class="btn-info" (click)="solicitar(p)">Cambiar a solicitado</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </expansion-panel-content>
+                </expansion-panel>
+              </expansion-panels-container>
             </div>
 
         </div>

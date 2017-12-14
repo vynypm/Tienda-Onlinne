@@ -4,13 +4,14 @@ import {Cliente} from '../../interfaces/cliente.interface';
 import { Router } from '@angular/router';
 import { PedidoService } from '../../services/pedido.service';
 declare let paypal: any;
+declare var io: any;
 
 @Component({
   selector: 'app-informacion-final',
   templateUrl: './informacion-final.component.html',
   styleUrls: ['./informacion-final.component.css']
 })
-export class InformacionFinalComponent implements OnInit, AfterViewChecked {
+export class InformacionFinalComponent implements OnInit {
 
   informacion:Cliente[]=[];
   pedido: any;
@@ -20,6 +21,8 @@ export class InformacionFinalComponent implements OnInit, AfterViewChecked {
 
 
   ngOnInit() {
+    io.sails.url="https://store-onlinne.herokuapp.com";
+
     var pedidoSorage = JSON.parse(localStorage.pedido);
     this.pedido = pedidoSorage;
     console.log(this.pedido);
@@ -40,19 +43,22 @@ export class InformacionFinalComponent implements OnInit, AfterViewChecked {
 
 
   comprar(){
+    this.pedido.estado = "solicitado";
     this.pedido.email = this.id;
     console.log(this.pedido);
-    this._pedidoServices.nuevoPedido(this.pedido).subscribe(
+    /*this._pedidoServices.nuevoPedido(this.pedido).subscribe(
       resultado =>{
         console.log(resultado);
         console.log("Compra realizada con exito");
       }
-    );
+    );*/
+    console.log('Realizar Pedido');
+    io.socket.post("https://store-onlinne.herokuapp.com/pedidos/realizarPedido/",this.pedido);
 
   }
 
   //Payment with paypal
-  public didPaypalScriptLoad: boolean = false;
+  /*public didPaypalScriptLoad: boolean = false;
   public loading: boolean = true;
 
   public paypalConfig: any = {
@@ -97,6 +103,6 @@ export class InformacionFinalComponent implements OnInit, AfterViewChecked {
       document.body.appendChild(scriptElement);
       console.log("funcion_3")
     });
-  }
+  }*/
 
 }

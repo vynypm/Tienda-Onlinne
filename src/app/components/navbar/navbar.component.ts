@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
               private _carritoService: CarritoService,
               private _logoService: LogoService,
               @Inject(DOCUMENT) private document: Document) {
-
+    //io.sails.url="https://store-onlinne.herokuapp.com/";
     this._logoService.consultarLogo()
       .subscribe(
         resultado => {

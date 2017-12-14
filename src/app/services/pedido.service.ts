@@ -28,21 +28,20 @@ export class PedidoService {
       );
   }
 
-  /*
-
-
-  editarProducto(producto: Producto, id: string) {
-    let body= JSON.stringify(producto);
+  editarProducto(pedido: Pedido, id: string) {
+    let body= JSON.stringify(pedido);
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
-    let url = `${this.productosSails}/${id }`;
+    let url = `${this.pedidoSails}/${id }`;
     return this._http.put(url, body, {headers: headers}).map(
       resultado => {
         return resultado.json;
       }
     );
   }
+
+  /*
 
   getProducto(indice: string) {
     let url = `${this.productosSails}/${ indice }`;

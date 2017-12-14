@@ -66,6 +66,9 @@ import { BuscadorComponent } from './components/buscador/buscador.component';
 //Ng2 Expansion Panels
 import { ExpansionPanelsModule } from 'ng2-expansion-panels';
 
+//Sails
+import {SailsModule} from "angular2-sails";
+
 export const cloudinaryLib = {
   Cloudinary: Cloudinary
 };
@@ -107,7 +110,8 @@ export const cloudinaryLib = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB1HDcId9-ArNag9QzqA8pByXbuHhn48z8'
     }),
-    ImageZoomModule
+    ImageZoomModule,
+    SailsModule.forRoot()
   ],
   providers: [
     UsuarioService,
