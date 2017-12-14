@@ -19,7 +19,7 @@
           <label class="sr-only">Password</label>
           <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Contraseña" required="">
           <br>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!habilitarBoton">Ingresar</button>
         </form>
         <p id="sms"></p>
       </div>

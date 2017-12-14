@@ -19,6 +19,7 @@ export class EmpresaComponent implements OnInit {
   logo: any = {
     nombre: "",
     imgLogo: "",
+    imgCarousel: "",
     linkFacebook: "",
     linkYoutube: "",
     linkTwitter: ""

@@ -14,6 +14,7 @@ import { CarritoService } from '../../services/carrito.service';
 export class LoginComponent implements OnInit {
 
   msgs: any[] = [];
+  habilitarBoton: boolean = true;
 
   usuario: Usuario = {
     nombre: "",
@@ -40,10 +41,11 @@ export class LoginComponent implements OnInit {
       if (result) {
         this._router.navigate(['/celulares']);
       }
-    })
+    });
   }
 
   login(email, password) {
+    this.habilitarBoton = false;
     console.log("email:" + email);
     console.log("password:" + password);
     //Login si es Administrador
@@ -67,7 +69,9 @@ export class LoginComponent implements OnInit {
 
         }
         //console.log(this.listaUsuario);
+        this.habilitarBoton = true;
         return this.listaUsuario;
+
       });
 
     //Login si es Cliente
@@ -101,6 +105,7 @@ export class LoginComponent implements OnInit {
           }
         }
         //console.log(this.listaUsuario);
+        this.habilitarBoton = true;
         return this.listaUsuario;
       });
 

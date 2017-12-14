@@ -47,3 +47,11 @@ li{
   padding-top: 2px;
   height: auto;
 }
+
+.description ul{
+  list-style-type: disc;
+}
+
+.precio{
+  color: #26a3e4;
+}

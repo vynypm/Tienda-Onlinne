@@ -19,6 +19,8 @@ export class CaractProductoComponent implements OnInit {
     opciones:""
   };
 
+  splittedDescriipcion;
+
   catSimilar = null;
 
   prodCategoria: any [] = [];
@@ -65,6 +67,10 @@ export class CaractProductoComponent implements OnInit {
             this.catSimilar = categoria.nombre;
             //console.log(this.producto.imagen);
             this.mismaCategoria();
+
+            let str = this.producto.descripcion;
+            this.splittedDescriipcion = str.split("+");
+            console.log(this.splittedDescriipcion);
           }
         );
       }

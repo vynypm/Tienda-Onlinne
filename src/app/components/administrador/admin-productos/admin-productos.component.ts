@@ -15,6 +15,7 @@ export class AdminProductosComponent implements OnInit {
   listaProductos: Producto [] = [];
   listaCategorias: any[] = [];
   filtroCategoria: string = null;
+  habilitar: boolean = false;
 
   constructor(private _usuarioServices: UsuarioService,
               private _productoServices: ProductoService,
@@ -52,6 +53,7 @@ export class AdminProductosComponent implements OnInit {
   }
 
   consultaProductos() {
+    this.habilitar = true;
     this._productoServices.consultarProductos()
       .subscribe(
         respuesta => {
@@ -82,6 +84,7 @@ export class AdminProductosComponent implements OnInit {
 
           }
           //console.log(this.listaProductos);
+          this.habilitar = false;
           return this.listaProductos;
         }
       );

@@ -7,13 +7,17 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 filtro">
       <ul class="nav flex-column">
+        <li class="nav-item">
+          <button type="button" class="btn btn-link">TODAS LAS CATEGORIAS</button>
+        </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link active"[routerLink]="['/admin-productos']" (click)="filtrarCategoria(null)">Todos</a>
+          <button type="button" class="btn btn-link" (click)="filtrarCategoria(null)" [disabled]="habilitar">Todos</button>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngFor="let categoria of listaCategorias; let i = index">
-          <a class="nav-link" [routerLink]="['/admin-productos']" (click)="filtrarCategoria(categoria.nombre)">{{categoria.nombre}}</a>
+          <button type="button" class="btn btn-link" (click)="filtrarCategoria(categoria.nombre)" [disabled]="habilitar">
+            {{categoria.nombre}}</button>
         </li>
       </ul>
     </div>

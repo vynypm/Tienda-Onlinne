@@ -3,7 +3,7 @@ import {ProductoService} from '../../services/producto.service';
 import { CarritoService } from '../../services/carrito.service';
 import { Pagination2Service } from '../../services/pagination2.service';
 import { Router } from '@angular/router';
-
+import { LogoService } from '../../services/logo.service';
 
 @Component ({
   selector: 'app-home',
@@ -16,12 +16,13 @@ export class HomeComponent implements OnInit {
   carrito: any [] = [];
   pager: any = {};    // pager object
   pagedItems: any[] = [];  // paged items
-
+  empresaCarousel;
 
   constructor(private _productoServices: ProductoService,
               private _carritoService: CarritoService,
               private _paginationService: Pagination2Service,
-              private _router: Router) {
+              private _router: Router,
+              private _logoService: LogoService,) {
     this._productoServices.consultarProductos()
     .subscribe(
       resultado => {
@@ -43,6 +44,15 @@ export class HomeComponent implements OnInit {
         this.setPage(1);
       }
     );
+
+    this._logoService.consultarLogo()
+      .subscribe(
+        resultado => {
+          let empresa = resultado;
+          this.empresaCarousel = empresa[0].imgCarousel;
+          console.log(this.empresaCarousel);
+        }
+      );
   }
 
   ngOnInit() {

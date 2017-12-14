@@ -11,3 +11,6 @@ input:focus {
   padding-bottom: 25px;
 
 }
+.requerido{
+  color: red;
+}

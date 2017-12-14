@@ -16,8 +16,8 @@ export class RegistroClienteComponent implements OnInit {
     email: '',
     password: '',
     rol: 'cliente',
-    telefono: 0,
-    movil: 0,
+    telefono: null,
+    movil: null,
     pedido: '',
     callePrincipal: '',
     calleSecundaria: '',
@@ -26,11 +26,14 @@ export class RegistroClienteComponent implements OnInit {
     provincia: '',
   }
 
+  habilitarBoton: boolean = true;
+
   constructor(private _clienteService: ClienteService, private _router: Router,  private _carritoService: CarritoService) { }
 
   ngOnInit() {
   }
   registrar() {
+    this.habilitarBoton = false;
     console.log(this.cliente);
     this._clienteService.nuevoCliente(this.cliente).subscribe(
       resp => {
@@ -45,6 +48,7 @@ export class RegistroClienteComponent implements OnInit {
         }else{
             this._router.navigate(['/home']);
         }
+        this.habilitarBoton = true;
       },
       error => {
         console.log("Email ya existe");

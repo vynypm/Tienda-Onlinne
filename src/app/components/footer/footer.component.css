@@ -4,4 +4,9 @@
   padding: 20px;
   font-size: 0.7166em;
   margin-top: 25px;
+
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
+
