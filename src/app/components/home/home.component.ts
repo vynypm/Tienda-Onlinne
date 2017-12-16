@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ProductoService} from '../../services/producto.service';
 import { CarritoService } from '../../services/carrito.service';
 import { Pagination2Service } from '../../services/pagination2.service';
 import { Router } from '@angular/router';
 import { LogoService } from '../../services/logo.service';
+import swal from 'sweetalert2';
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component ({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 
   listaPromo: any [] = [];
@@ -22,7 +27,7 @@ export class HomeComponent implements OnInit {
               private _carritoService: CarritoService,
               private _paginationService: Pagination2Service,
               private _router: Router,
-              private _logoService: LogoService,) {
+              private _logoService: LogoService) {
     this._productoServices.consultarProductos()
     .subscribe(
       resultado => {
@@ -56,10 +61,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   anadir(promo){
-    console.log(promo.opciones);
+    console.log(promo);
     if (promo.opciones.length === 0){
       promo.cantidad = 1;
       promo.subtotal = promo.cantidad * promo.precio_promo;
@@ -75,7 +81,26 @@ export class HomeComponent implements OnInit {
         "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
         "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
         "</div>";
-    }
+
+          swal({
+              title: 'Añadido al carrito',
+              text: promo.marca + promo.modelo,
+              html: '<p>'+promo.marca + promo.modelo+' / $'+promo.precio_promo+'</p>',
+              imageUrl: promo.imagen,
+              imageWidth: 150,
+              imageHeight: 150,
+              animation: true,
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#00BFFF',
+              cancelButtonText: 'Seguir viendo',
+              confirmButtonText: 'Ir al Carrito <span class="fa fa-cart-plus fa-1x " aria-hidden="true"></span>',
+              }).then((result) => {
+                if (result.value) {
+                  this._router.navigate(['/carrito']);
+                }
+          })
+      }
     else {
       this._router.navigate(['/producto', promo.id, promo.modelo]);
       window.scrollTo(0,0);

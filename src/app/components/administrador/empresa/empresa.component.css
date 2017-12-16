@@ -22,3 +22,29 @@ select:focus{
 .requerido{
   color: red;
 }
+
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+
+#seleccionarImagen {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 6px;
+  padding-left: 6px;
+  font-family: serif;
+  font-size: 17px;
+}
+#seleccionarCarrusel{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 6px;
+  padding-left: 6px;
+  font-family: serif;
+  font-size: 17px;
+}
+.img-edit{
+  width: 75px;
+  height: 75px;
+}
+
+

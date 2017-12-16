@@ -3,6 +3,7 @@ import { ActivatedRoute, Router} from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Pagination2Service } from '../../services/pagination2.service';
 import { CarritoService } from '../../services/carrito.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-caract-producto',
@@ -139,6 +140,7 @@ export class CaractProductoComponent implements OnInit {
     console.log(this.carrito);
     document.getElementById('carrito').innerHTML =
       "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
+
     this._router.navigate(['/carrito']);
   }
 
@@ -159,6 +161,24 @@ export class CaractProductoComponent implements OnInit {
         "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
         "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
         "</div>";
+          swal({
+            title: 'Añadido al carrito',
+            text: item.marca + item.modelo,
+            html: '<p>'+item.marca + item.modelo+'</p>',
+            imageUrl: item.imagen,
+            imageWidth: 150,
+            imageHeight: 150,
+            animation: true,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#00BFFF',
+            cancelButtonText: 'Seguir viendo',
+            confirmButtonText: 'Ir al Carrito <span class="fa fa-cart-plus fa-1x " aria-hidden="true"></span>',
+          }).then((result) => {
+            if (result.value) {
+              this._router.navigate(['/carrito']);
+            }
+          })
     }
     else {
       this._router.navigate(['/producto', item.id, item.modelo]);

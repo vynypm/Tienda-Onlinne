@@ -69,6 +69,10 @@ import { ExpansionPanelsModule } from 'ng2-expansion-panels';
 //Sails
 import {SailsModule} from "angular2-sails";
 
+//SweetAlert
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { PaypalComponent } from './components/paypal/paypal.component';
+
 export const cloudinaryLib = {
   Cloudinary: Cloudinary
 };
@@ -99,6 +103,7 @@ export const cloudinaryLib = {
     AdminOpcionesComponent,
     BuscadorComponent,
     PedidoComponent,
+    PaypalComponent,
   ],
   imports: [
     BrowserModule, GrowlModule, MessagesModule, NguiAutoCompleteModule,
@@ -111,7 +116,13 @@ export const cloudinaryLib = {
       apiKey: 'AIzaSyB1HDcId9-ArNag9QzqA8pByXbuHhn48z8'
     }),
     ImageZoomModule,
-    SailsModule.forRoot()
+    SailsModule.forRoot(),
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+    })
   ],
   providers: [
     UsuarioService,

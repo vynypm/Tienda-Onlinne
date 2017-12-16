@@ -4,7 +4,7 @@
   <h2>Registrar LOGO</h2>
 </div><br>
 
-<div class="container registro">
+<div class="container">
 
   <form (ngSubmit)="guardar()" #forma ="ngForm">
 
@@ -24,26 +24,75 @@
 
       <div class="col-md-12 col-12">
         <div class="form-group row">
-          <label  class="col-md-2 col-12 col-form-label">Logo:    <strong class="requerido">*</strong></label>
+          <div class="col-md-12">
+            <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarImagen">
+              Logo <input  type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+              <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
+            </label>
+          </div>
           <div class="col-md-10 col-12">
             <input class="form-control"
                    type="text"
                    placeholder="Img LOGO"
                    name="imgLogo"
                    [(ngModel)]="logo.imgLogo">
+                  <div style="text-align: center">
+                    <div>
+                      Barra de Progreso:
+                      <div class="progress" style="">
+                        <div class="progress-bar progress-bar-striped" role="progressbar"
+                             [ngStyle]="{ 'width': uploader.progress + '%' }" aria-valuenow="uploader.progress" aria-valuemin="0" aria-valuemax="100">
+                          {{uploader.progress + '%'}}
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-12 col-12">
         <div class="form-group row">
-          <label  class="col-md-2 col-12 col-form-label">Imagenes Carousel:    <strong class="requerido">*</strong></label>
+          <div class="col-md-12">
+            <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarCarrusel">
+              Imagenes Carrusel <input  type="file" ng2FileSelect [uploader]="uploaderCarrusel" style="display: none;" multiple>
+              <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
+            </label>
+          </div>
           <div class="col-md-10 col-12">
             <input class="form-control"
                    type="text"
                    placeholder="Carusel"
                    name="imgCarousel"
                    [(ngModel)]="logo.imgCarousel">
+                    <div style="text-align: center">
+                      <div>
+                        Barra de Progreso:
+                        <div class="progress" style="">
+                          <div class="progress-bar progress-bar-striped" role="progressbar"
+                               [ngStyle]="{ 'width': uploaderCarrusel.progress + '%' }" aria-valuenow="uploaderCarrusel.progress" aria-valuemin="0" aria-valuemax="100">
+                            {{uploaderCarrusel.progress + '%'}}
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <label class="col-md-12 col-form-label"></label>
+        <div class="card-prod col-md-3" *ngFor="let img of imgcarrusel; let i=index">
+          <div>
+            <div class="text-center">
+              <a>
+                <img class="img-edit" src ="{{img}}">
+                <a (click)="eliminarImg(img)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
+              </a>
+            </div>
           </div>
         </div>
       </div>

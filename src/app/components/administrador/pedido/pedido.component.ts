@@ -19,9 +19,7 @@ export class PedidoComponent implements OnInit {
 
   constructor(public _pedidoService: PedidoService, private _sailsService: SailsService) {
     io.sails.url="https://store-onlinne.herokuapp.com/";
-    /*io.socket.get("http://localhost:1337/pedidos",function (resData){
-      console.log(resData);
-    });*/
+    io.socket.get("https://store-onlinne.herokuapp.com/pedidos");
     //this._sailsService.connect("https://store-onlinne.herokuapp.com");
 
     io.socket.on('pedidos',(objeto)=>{
@@ -61,12 +59,15 @@ export class PedidoComponent implements OnInit {
 
   actualizarPedidos(){
     console.log("actualizar");
+    //this.pedidosSolicitados = [];
+    //this.pedidosAprobados = [];
     this.zone.run(()=>{
       //this.pedidos.push(nuevoPedido);
       this._pedidoService.consultarPedido().subscribe(
         respuesta => {
-          for( let key in respuesta){
-            var newPedido = respuesta[key];
+          //for( let key in respuesta){
+            var elem = respuesta.length - 1;
+            var newPedido = respuesta[elem];
             if ( newPedido.estado === "solicitado"){
               this.pedidosSolicitados.push(newPedido);
             }
@@ -75,7 +76,7 @@ export class PedidoComponent implements OnInit {
                 this.pedidosAprobados.push(newPedido);
               }
             }
-          }
+          //}
           console.log(this.pedidosSolicitados);
           console.log(this.pedidosAprobados);
         }

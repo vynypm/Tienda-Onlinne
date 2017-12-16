@@ -1,63 +1,23 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import {ClienteService} from '../../services/cliente.service';
-import {Cliente} from '../../interfaces/cliente.interface';
-import { Router } from '@angular/router';
-import { PedidoService } from '../../services/pedido.service';
 declare let paypal: any;
-declare var io: any;
 
 @Component({
-  selector: 'app-informacion-final',
-  templateUrl: './informacion-final.component.html',
-  styleUrls: ['./informacion-final.component.css']
+  selector: 'app-paypal',
+  templateUrl: './paypal.component.html',
+  styleUrls: ['./paypal.component.css']
 })
-export class InformacionFinalComponent implements OnInit {
-
-  informacion:Cliente[]=[];
+export class PaypalComponent implements OnInit, AfterViewChecked {
   pedido: any;
-  id: string;
-  constructor(private _clienteServices: ClienteService, private _router: Router, private _pedidoServices: PedidoService) { }
-
-
+  constructor() { }
 
   ngOnInit() {
-    io.sails.url="https://store-onlinne.herokuapp.com/";
-
     var pedidoSorage = JSON.parse(localStorage.pedido);
     this.pedido = pedidoSorage;
     console.log(this.pedido);
-
-    this._clienteServices.consultarCliente().subscribe(
-      respuesta => {
-        for (let key in respuesta){
-          let clientenew = respuesta[key];
-          if (clientenew.email === this.pedido.email){
-            this.informacion.push(clientenew);
-            this.id = clientenew.id;
-          }
-        }
-      }
-    )
-    console.log(this.informacion);
   }
 
 
-  comprar(){
-    this.pedido.estado = "solicitado";
-    this.pedido.email = this.id;
-    console.log(this.pedido);
-    /*this._pedidoServices.nuevoPedido(this.pedido).subscribe(
-      resultado =>{
-        console.log(resultado);
-        console.log("Compra realizada con exito");
-      }
-    );*/
-    console.log('Realizar Pedido');
-    io.socket.post("https://store-onlinne.herokuapp.com/pedidos/realizarPedido/",this.pedido);
 
-  }
-
-    /*
   //Payment with paypal
   public didPaypalScriptLoad: boolean = false;
   public loading: boolean = true;
@@ -74,7 +34,7 @@ export class InformacionFinalComponent implements OnInit {
       return actions.payment.create({
         payment: {
           transactions: [
-            { amount: { total: '0.01', currency: 'USD' } }
+            { amount: { total: this.pedido.preciototal, currency: 'USD' } }
           ]
         }
       });
@@ -105,5 +65,5 @@ export class InformacionFinalComponent implements OnInit {
       console.log("funcion_3")
     });
   }
-*/
+
 }

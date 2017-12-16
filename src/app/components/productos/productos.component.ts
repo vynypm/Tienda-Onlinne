@@ -5,6 +5,7 @@ import { ProductoService } from '../../services/producto.service';
 import { PaginationService } from '../../services/pagination.service';
 import { CarritoService } from '../../services/carrito.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productos',
@@ -134,6 +135,24 @@ export class ProductosComponent implements OnInit {
         "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
         "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
         "</div>";
+        swal({
+          title: 'Añadido al carrito',
+          text: cell.marca + cell.modelo,
+          html: '<p>'+cell.marca + cell.modelo+'</p>',
+          imageUrl: cell.imagen,
+          imageWidth: 150,
+          imageHeight: 150,
+          animation: true,
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#00BFFF',
+          cancelButtonText: 'Seguir viendo',
+          confirmButtonText: 'Ir al Carrito <span class="fa fa-cart-plus fa-1x " aria-hidden="true"></span>',
+        }).then((result) => {
+          if (result.value) {
+            this._router.navigate(['/carrito']);
+          }
+        })
     }
     else{
       this._router.navigate(['/producto', cell.id, cell.modelo]);
