@@ -9,10 +9,10 @@
   <form (ngSubmit)="guardar()" #forma ="ngForm">
 
     <div class="row">
-      <div class="col-md-12 col-12">
+      <div class="col-md-6 col-12">
         <div class="form-group row">
-          <label  class="col-md-2 col-12 col-form-label">Nombre empresa:    <strong class="requerido">*</strong></label>
-          <div class="col-md-10 col-12">
+          <label  class="col-md-12 col-12 col-form-label">Nombre empresa:    <strong class="requerido">*</strong></label>
+          <div class="col-md-12 col-12">
             <input class="form-control"
                    type="text"
                    placeholder="nombre"
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 col-12">
+      <div class="col-md-6 col-12">
         <div class="form-group row">
           <div class="col-md-12">
             <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarImagen">
@@ -30,12 +30,12 @@
               <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
             </label>
           </div>
-          <div class="col-md-10 col-12">
+          <div class="col-md-12 col-12">
             <input class="form-control"
                    type="text"
                    placeholder="Img LOGO"
                    name="imgLogo"
-                   [(ngModel)]="logo.imgLogo">
+                   [(ngModel)]="logo.imgLogo" [disabled]="true">
                   <div style="text-align: center">
                     <div>
                       Barra de Progreso:
@@ -52,7 +52,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 col-12">
+      <div class="col-md-12 col-12 carousel">
         <div class="form-group row">
           <div class="col-md-12">
             <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarCarrusel">
@@ -60,112 +60,134 @@
               <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
             </label>
           </div>
-          <div class="col-md-10 col-12">
-            <input class="form-control"
-                   type="text"
-                   placeholder="Carusel"
-                   name="imgCarousel"
-                   [(ngModel)]="logo.imgCarousel">
-                    <div style="text-align: center">
-                      <div>
-                        Barra de Progreso:
-                        <div class="progress" style="">
-                          <div class="progress-bar progress-bar-striped" role="progressbar"
-                               [ngStyle]="{ 'width': uploaderCarrusel.progress + '%' }" aria-valuenow="uploaderCarrusel.progress" aria-valuemin="0" aria-valuemax="100">
-                            {{uploaderCarrusel.progress + '%'}}
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-                    </div>
+          <div class="col-md-6 offset-md-3 col-12">
+            <div style="text-align: center">
+              <div>
+                Barra de Progreso:
+                <div class="progress" style="">
+                  <div class="progress-bar progress-bar-striped" role="progressbar"
+                       [ngStyle]="{ 'width': uploaderCarrusel.progress + '%' }" aria-valuenow="uploaderCarrusel.progress" aria-valuemin="0" aria-valuemax="100">
+                    {{uploaderCarrusel.progress + '%'}}
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <label class="col-md-12 col-form-label"></label>
+              <div class="card-prod col-md-3" *ngFor="let img of imgcarrusel; let i=index">
+                <div>
+                  <div class="text-center">
+                    <a>
+                      <img class="img-edit" src ="{{img}}">
+                      <a (click)="eliminarImg(img)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
 
-      <div class="row">
-        <label class="col-md-12 col-form-label"></label>
-        <div class="card-prod col-md-3" *ngFor="let img of imgcarrusel; let i=index">
-          <div>
-            <div class="text-center">
-              <a>
-                <img class="img-edit" src ="{{img}}">
-                <a (click)="eliminarImg(img)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
-              </a>
+
+      <div class="col-md-12"><br><br>
+        <label class="col-md-12 col-form-label"><h5>Redes Sociales</h5></label>
+        <div class="row">
+
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12 col-12">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         name="facebook"
+                         [(ngModel)]="facebook">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description"> Facebook</span>
+                </label>
+              </div>
+
+              <div class="col-md-12 col-12">
+                <input class="form-control" type="text"
+                       name="linkFacebook"
+                       placeholder="Url Facebook"
+                       [(ngModel)]="logo.linkFacebook" [disabled]="!facebook">
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12 col-12">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         name="youtube"
+                         [(ngModel)]="youtube">
+                  <span class="custom-control-indicator"></span><br>
+                  <span class="custom-control-description">Youtube</span>
+                </label>
+              </div>
+              <div class="col-md-12 col-12">
+                <input class="form-control" type="text"
+                       name="linkYoutube"
+                       placeholder="Url Youtube"
+                       [(ngModel)]="logo.linkYoutube" [disabled]="!youtube">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12 col-12">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         name="twitter"
+                         [(ngModel)]="twitter">
+                  <span class="custom-control-indicator"></span><br>
+                  <span class="custom-control-description">Twitter</span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input class="form-control" type="text"
+                       name="linkTwitter"
+                       placeholder="Url Twitter"
+                       [(ngModel)]="logo.linkTwitter" [disabled]="!twitter">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12 col-12">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         name="google"
+                         [(ngModel)]="google">
+                  <span class="custom-control-indicator"></span><br>
+                  <span class="custom-control-description">Google+</span>
+                </label>
+              </div>
+              <div class="col-md-12">
+                <input class="form-control" type="text"
+                       name="linkGoogle"
+                       placeholder="Url Google+"
+                       [(ngModel)]="logo.linkGoogle" [disabled]="!google">
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input"
-                   name="facebook"
-                   [(ngModel)]="facebook">
-            <span class="custom-control-indicator"></span><br>
-            <span class="custom-control-description">Link Facebook</span>
-          </label>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="form-group">
-          <label class="col-md-12 col-form-label">Facebook</label>
-          <div class="col-md-12">
-            <input class="form-control" type="text"
-                   name="linkFacebook"
-                   placeholder="Url Facebook"
-                   [(ngModel)]="logo.linkFacebook" [disabled]="!facebook">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input"
-                   name="youtube"
-                   [(ngModel)]="youtube">
-            <span class="custom-control-indicator"></span><br>
-            <span class="custom-control-description">Link Youtube</span>
-          </label>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="form-group">
-          <label class="col-md-12 col-form-label">Youtube</label>
-          <div class="col-md-12">
-            <input class="form-control" type="text"
-                   name="linkYoutube"
-                   placeholder="Url Youtube"
-                   [(ngModel)]="logo.linkYoutube" [disabled]="!youtube">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input"
-                   name="twitter"
-                   [(ngModel)]="twitter">
-            <span class="custom-control-indicator"></span><br>
-            <span class="custom-control-description">Link Twitter</span>
-          </label>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="form-group">
-          <label class="col-md-12 col-form-label">Twitter</label>
-          <div class="col-md-12">
-            <input class="form-control" type="text"
-                   name="linkTwitter"
-                   placeholder="Url Twitter"
-                   [(ngModel)]="logo.linkTwitter" [disabled]="!twitter">
-          </div>
-        </div>
-      </div>
 
     </div>
 

@@ -15,6 +15,7 @@ export class EmpresaComponent implements OnInit {
   facebook: boolean = false;
   youtube: boolean = false;
   twitter: boolean = false;
+  google: boolean = false;
   lengthLogo: number = 0;
   habilitarBoton: boolean = true;
   id: string;
@@ -24,7 +25,8 @@ export class EmpresaComponent implements OnInit {
     imgCarousel: [],
     linkFacebook: "",
     linkYoutube: "",
-    linkTwitter: ""
+    linkTwitter: "",
+    linkGoogle: ""
   };
   public uploader: FileUploader;
   public uploaderCarrusel: FileUploader;

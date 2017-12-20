@@ -5,9 +5,28 @@
     </div>
     <div class="col-md-4 col-12">
       <h6>Contacto</h6>
+      <p><i class="fa fa-map-marker" aria-hidden="true"></i> Iñaquito E2-32 y Unión Nacional de Periodistas, Edificio UNP 3er. Piso</p>
+      <p><i class="fa fa-envelope" aria-hidden="true"></i> geo@hotmail.com</p>
+      <p><i class="fa fa-phone" aria-hidden="true"></i> (02) 3 371 248</p>
+      <p><i class="fa fa-mobile" aria-hidden="true"></i> 099729764(whatsApp)</p>
     </div>
-    <div class="col-md-4 col-12">
+    <div class="col-md-4 col-12 siguenos">
       <h6>Síguenos</h6>
+      <div class="row">
+        <div class="col-md-12 col-3" [hidden]="!facebookUrl">
+          <a [href]="facebookUrl" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-12 col-3" [hidden]="!youtubeUrl">
+          <a [href]="youtubeUrl" target="_blank"><i class="fa fa-youtube-square fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-12 col-3" [hidden]="!twitterUrl">
+          <a [href]="twitterUrl" target="_blank"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <div class="col-md-12 col-3" [hidden]="!googleUrl">
+          <a [href]="googleUrl" target="_blank"><i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

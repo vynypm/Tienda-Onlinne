@@ -1,9 +1,14 @@
 .footer-nosotros{
   background-color: #121212;
-  height: 190px;
   color: white;
   margin-top: 20px;
   border-top: 1px solid #D3D3D3;
   padding-top:20px;
   padding-left: 50px;
+}
+ .siguenos a{
+   color: white;
+ }
+.siguenos a:hover{
+  color: #3fa6d3;
 }
