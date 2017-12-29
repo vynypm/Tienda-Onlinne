@@ -1,59 +1,90 @@
 <app-navbar></app-navbar>
+<br>
+<div class="container">
+  <div class="text-center">
+    <hr>
+    <h4 style="color: steelblue">Productos agregados al carrito</h4>
+    <hr>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10 table-responsive">
+      <table class="table table-bordered ">
+        <thead>
+        <tr style="color: #4f5b66">
+          <th></th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of carrito; let i=index">
+          <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
+          <td>
+            <a [routerLink]="['/producto', item.id, item.modelo]" (click)="detalles()">{{item.marca}} {{item.modelo}}</a>
+            <p *ngIf="item.opciones.length != 0; else op" style="color: #4f5b66">
+              <strong>Detalle del producto: </strong>{{item.opciones}}</p>
+            <ng-template #op><p></p></ng-template>
+          </td>
+          <td *ngIf="item.precio_promo; else precio" id="precio_{{i}}">$ {{item.precio_promo }}</td>
+          <ng-template #precio><td id="precio_{{i}}">$ {{item.precio}}</td></ng-template>
+          <td><input class="form-control" [(ngModel)]="item.cantidad" type="number" min="1" max="9" placeholder="" (keypress)="keyPress($event,i)"></td>
+          <td *ngIf="item.precio_promo; else sub" id="subtotal_{{i}}">$ {{item.cantidad * item.precio_promo | number:'1.2-2' }}</td>
+          <ng-template #sub><td id="subtotal_{{i}}">$ {{item.cantidad * item.precio | number:'1.2-2'  }}</td></ng-template>
+          <td><a (click)="eliminarProducto(item)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td colspan="1"><strong style="color: #4f5b66">Valor Total:</strong></td>
+          <td colspan="2" id="total"></td>
+        </tr>
+        </tfoot>
+      </table>
 
-<div class="cabecera container">
-  <h2>Carrito de compras</h2>
-</div><br>
+    </div>
+    <div class="col-md-1">
+    </div>
+
+  </div>
+</div>
 
 <div class="container">
-  <table class="table">
-    <thead>
-    <tr>
-      <th></th>
-      <th>Producto</th>
-      <th>Precio</th>
-      <th>Cantidad</th>
-      <th>Subtotal</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of carrito; let i=index">
-      <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
-      <td>
-        <a [routerLink]="['/producto', item.id, item.modelo]" (click)="detalles()">{{item.marca}} {{item.modelo}}</a>
-        <p *ngIf="item.opciones.length != 0; else op"><strong>Detalle del producto: </strong>{{item.opciones}}</p>
-        <ng-template #op><p></p></ng-template>
-      </td>
-      <td *ngIf="item.precio_promo; else precio" id="precio_{{i}}">$ {{item.precio_promo }}</td>
-      <ng-template #precio><td id="precio_{{i}}">$ {{item.precio}}</td></ng-template>
-      <td><input class="form-control" [(ngModel)]="item.cantidad" type="number" min="1" max="9" placeholder="" (keypress)="keyPress($event,i)"></td>
-      <td *ngIf="item.precio_promo; else sub" id="subtotal_{{i}}">$ {{item.cantidad * item.precio_promo | number:'1.2-2' }}</td>
-      <ng-template #sub><td id="subtotal_{{i}}">$ {{item.cantidad * item.precio | number:'1.2-2'  }}</td></ng-template>
-      <td><a (click)="eliminarProducto(item)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a></td>
-    </tr>
-    </tbody>
-    <!-- <tbody>
-     <tr *ngFor="let item of carrito; let i=index" >
-       <td><img class="table-img" [src]="item.imagen" style="width: 50px; height: 50px;"></td>
-       <td>{{item.marca}} {{item.modelo}}</td>
-       <td *ngIf="item.precio_promo; else precio"  id="precio_{{i}}">{{item.precio_promo}}</td>
-       <ng-template #precio><td  id="precio_{{i}}">{{item.precio}}</td></ng-template>
-       <td><input  class="form-control" type="text" placeholder="" value="1" (keypress)="keyPress($event,i)"></td>
-       <td  *ngIf="item.precio_promo; else sub" id="subtotal_{{i}}"> {{item.precio_promo}} </td>
-       <ng-template #sub><td id="subtotal_{{i}}">{{item.precio}}</td></ng-template>
-       <td><a (click)="eliminarProducto(item)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a></td>
-     </tr>
-     </tbody>-->
-    <tfoot>
-    <tr>
-      <td colspan="3"></td>
-      <td colspan="1"><strong>Valor Total:</strong></td>
-      <td colspan="2" id="total"></td>
-    </tr>
-    </tfoot>
-  </table>
+  <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10">
+          <div class="row">
+              <div class="col-md-6">
+                <div class="text-left">
+                  <button type="button" class="btn btn-outline-primary" [routerLink] = "['/productos']">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i> Seguir observando
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-right">
+                  <button type="button" id="botonComprar" [disabled]="habilitar" class="btn btn-outline-primary" (click)="comprar()">
+                      Comprar <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-1">
+      </div>
+  </div>
+</div>
+
+<div class="container text-center">
   <h2 id="carritoCompras"></h2>
-  <button type="button" id="botonComprar"  [disabled]="habilitar" class="btn btn-success" (click)="comprar()">Comprar</button>
 </div>
 
 

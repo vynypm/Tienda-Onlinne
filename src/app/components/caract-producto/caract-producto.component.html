@@ -1,8 +1,6 @@
 <app-navbar></app-navbar>
-<br><br><br><br>
-<app-buscador></app-buscador>
-<br><br>
 
+<br>
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -53,34 +51,52 @@
     </div>
   </div>
 
-  <div class="cabecera container">
-  <h2>Productos de la misma Categoria</h2>
-</div><br>
-
-<div class="container">
-  <div class="row">
-    <div class="card-prod col-md-3 col-sm-6 col-xs-6" *ngFor="let item of pagedItems; let i = index">
-      <div class="card">
-        <div class="text-center">
-          <p id="{{item.id}}"></p>
-          <a [routerLink]="['/producto', item.id, item.modelo]" (click)="detalles()">
-            <img class="card-img-top card-image img-fluid" [src]="item.imagen" alt="Card image cap">
-          </a>
-        </div>
-        <div class="card-block text-center">
-          <h6 class="card-text">{{item.marca}} {{item.modelo}}</h6>
-          <br [hidden]="item.precio_promo">
-          <span [hidden]="item.precio_promo" class="precio"><h5>{{item.precio | currency}}</h5></span>
-          <del [hidden]="!item.precio_promo">{{item.precio | currency}}</del>
-          <span [hidden]="!item.precio_promo" class="precio"><h5>{{item.precio_promo | currency}}</h5></span>
-        </div>
-        <button type="button" class="btn btn-primary" (click)="anadir2(item)"><span class="fa fa-cart-plus" aria-hidden="true"></span> Añadir al Carrito</button>
-      </div>
-
-    </div>
-  </div>
 </div>
 
+  <br>
+
+<div class="container text-center">
+    <hr>
+    <h4 style="color: steelblue">Más productos que te gustarán</h4>
+    <hr>
+</div>
+
+<div class="container">
+
+  <br>
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-6 img-prod cc-imagewrapper"
+         *ngFor="let filtro of pagedItems; let i=index">
+
+      <div *ngIf="filtro.promocion == true; else oferta" style="position: absolute; z-index: 100">
+        <img src="../../../assets/img/oferta.png" class="oferta">
+      </div><ng-template #oferta></ng-template>
+
+      <a [routerLink]="['/producto', filtro.id, filtro.modelo]"  (click)="detalles()">
+        <img class="card-img-top card-image img-fluid " [src]="filtro.imagen" alt="Card image cap">
+      </a>
+
+      <figcaption style=" padding: 0px; margin-bottom: 44px">
+        <a class="card-text" [routerLink]="['/producto', filtro.id, filtro.modelo]" (click)="detalles()">
+          <h6>{{filtro.marca}} {{filtro.modelo}}</h6>
+        </a>
+        <div *ngIf="filtro.promocion == true; else precio">
+          <del>{{filtro.precio | currency}}</del>
+          <h6 class="precio">{{filtro.precio_promo | currency}}</h6>
+        </div>
+        <ng-template #precio>
+          <div>
+            <h6 class="precio">{{filtro.precio | currency}}</h6>
+          </div>
+        </ng-template>
+      </figcaption>
+
+      <a class="añadir"  style="color: #1a86d8" (click)="anadir2(filtro)">
+        Añadir <i class="fa fa-plus" aria-hidden="true"></i></a>
+    </div>
+
+  </div>
+</div>
 
 <div class="container">
   <nav aria-label="Page navigation example">

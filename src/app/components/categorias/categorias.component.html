@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+
+<br>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-3">
+
+          <div id='cssmenu'>
+            <ul>
+              <li routerLinkActive="active">
+                  <a [routerLink]="['/filtros', 'todos']">Todos</a>
+              </li>
+              <li routerLinkActive="active" *ngFor="let categoria of listaCategorias; let i = index">
+                  <a [routerLink]="['/filtros', categoria.nombre]">{{categoria.nombre}}</a>
+              </li>
+
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="row" *ngIf="pagedItems.length !=0; else vacio">
+                <div class="col-md-4 col-sm-6 col-xs-6 img-prod cc-imagewrapper"
+                     *ngFor="let filtro of pagedItems; let i=index">
+
+                        <div *ngIf="filtro.promocion == true; else oferta" style="position: absolute; z-index: 100">
+                            <img src="../../../assets/img/oferta.png" class="oferta">
+                        </div><ng-template #oferta></ng-template>
+
+                        <a [routerLink]="['/producto', filtro.id, filtro.modelo]"  (click)="detalles()">
+                            <img class="card-img-top card-image img-fluid " [src]="filtro.imagen" alt="Card image cap">
+                        </a>
+
+                        <figcaption style=" padding: 0px; margin-bottom: 44px">
+                            <a class="card-text" [routerLink]="['/producto', filtro.id, filtro.modelo]" (click)="detalles()">
+                                <h6>{{filtro.marca}} {{filtro.modelo}}</h6>
+                            </a>
+                            <div *ngIf="filtro.promocion == true; else precio">
+                                <del>{{filtro.precio | currency}}</del>
+                                <h6 class="precio">{{filtro.precio_promo | currency}}</h6>
+                            </div>
+                            <ng-template #precio>
+                                <div>
+                                    <h6 class="precio">{{filtro.precio | currency}}</h6>
+                                </div>
+                            </ng-template>
+                        </figcaption>
+
+                        <a class="añadir"  style="color: #1a86d8" (click)="anadir(filtro)">
+                          Añadir <i class="fa fa-plus" aria-hidden="true"></i></a>
+
+                </div>
+
+            </div>
+            <ng-template #vacio>
+                <h4>Todavía no existen elementos en esta categoría</h4>
+            </ng-template>
+
+            <br>
+
+            <div class="container" *ngIf="pagedItems.length !=0; else vacioPag">
+
+                <nav aria-label="Page navigation example">
+                    <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
+                        <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item">
+                            <a (click)="setPage(pager.currentPage - 1)" class="page-link" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li  *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item">
+                            <a (click)="setPage(page)" class="page-link">{{page}}</a>
+                        </li>
+                        <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+                            <a (click)="setPage(pager.currentPage + 1)" class="page-link" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <ng-template #vacioPag></ng-template>
+
+        </div>
+
+    </div>
+</div>

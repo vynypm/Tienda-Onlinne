@@ -1,82 +1,126 @@
 <app-navbar></app-navbar>
 
-<div class="cabecera container">
-  <h2>Verificación de datos</h2>
-</div><br>
+<div class="container">
+  <div class="text-center">
+    <hr>
+    <h4 style="color: steelblue">Verificación de datos</h4>
+    <hr>
+  </div>
+</div>
+
+<br>
 
 <div class="container"  *ngFor="let cli of verificacioncliente; let i=index">
-  <form (ngSubmit)="verificar()" #form="ngForm" >
 
-    <div class="form-group row">
-      <div class="col-md-6 col-12">
-        <label class="col-form-label">Dirección de Email: </label>
-        <label #email name="email" type="email" class="form-control">{{cli.email}} </label>
-      </div>
+  <div class="row">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-10">
+      <form (ngSubmit)="verificar()" #form="ngForm" >
+
+        <div class="form-group row">
+          <div class="col-md-6 col-12">
+            <label class="col-form-label">Dirección de Email: </label>
+            <label #email name="email" type="email" class="form-control">{{cli.email}} </label>
+          </div>
+        </div>
+
+        <div class="form-group row" >
+          <div class="col-md-6 col-12">
+            <label class="col-form-label" >Nombres: </label>
+            <input [(ngModel)]="cli.nombre" #nombre name="nombre" type="text" class="form-control" placeholder="Nombre" autofocus="">
+          </div>
+          <div class="col-md-6 col-12">
+            <label class="col-form-label">Apellidos: </label>
+            <input [(ngModel)]="cli.apellido" #apellido name="apellido" type="text" class="form-control"  placeholder="Apellido">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6 col-12">
+            <label class="col-form-label">Teléfono convencional: </label>
+            <input [(ngModel)]="cli.telefono" #telefono name="telefono" type="number" class="form-control" placeholder="Telefono">
+          </div>
+          <div class="col-md-6 col-12">
+            <label class="col-form-label">Movil: </label>
+            <input [(ngModel)]="cli.movil" #movil name="movil" type="number" class="form-control"  placeholder="Movil">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6 col-12">
+            <label class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input"
+                     name="domicilio" [(ngModel)]="check" >
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">A domicilio</span>
+            </label>
+          </div>
+          <div class="col-md-6 col-12"></div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6 col-12" >
+            <label class="col-form-label">Calle Principal: </label>
+            <input [(ngModel)]="cli.callePrincipal" [(disabled)]="!check" #calleP name="calleP" type="text" class="form-control" placeholder="Calle Principal">
+          </div>
+          <div class="col-md-6 col-12">
+            <label class="col-form-label">Calle Secundaria: </label>
+            <input [(ngModel)]="cli.calleSecundaria" [(disabled)]="!check" #calleS name="calleS" type="text" class="form-control"  placeholder="Calle Secundaria">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-4 col-12" >
+            <label class="col-form-label">Número casa: </label>
+            <input [(ngModel)]="cli.numCasa" [(disabled)]="!check" #numCasa name="numCasa" type="text" class="form-control" placeholder="N° Casa">
+          </div>
+          <div class="col-md-4 col-12">
+            <label class="col-form-label">Provincia: </label>
+            <input [(ngModel)]="cli.provincia" [(disabled)]="!check" #provincia name="provincia" type="text" class="form-control"  placeholder="Provincia">
+          </div>
+          <div class="col-md-4 col-12">
+            <label class="col-form-label">Ciudad: </label>
+            <input [(ngModel)]="cli.ciudad" [(disabled)]="!check" #ciudad name="ciudad" type="text" class="form-control"  placeholder="Ciudad">
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="text-left">
+                    <button type="button" class="btn btn-outline-primary" [routerLink] = "['/carrito']">
+                      <i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-outline-primary">
+                      Verificar <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+          </div>
+        </div>
+        <!--<button type="submit" class="btn btn-primary">Verificar</button>-->
+      </form>
+
     </div>
 
-    <div class="form-group row" >
-      <div class="col-md-6 col-12">
-        <label class="col-form-label" >Nombres: </label>
-        <input [(ngModel)]="cli.nombre" #nombre name="nombre" type="text" class="form-control" placeholder="Nombre" autofocus="">
-      </div>
-      <div class="col-md-6 col-12">
-        <label class="col-form-label">Apellidos: </label>
-        <input [(ngModel)]="cli.apellido" #apellido name="apellido" type="text" class="form-control"  placeholder="Apellido">
-      </div>
-    </div>
+    <div class="col-md-1"></div>
 
-    <div class="form-group row">
-      <div class="col-md-6 col-12">
-        <label class="col-form-label">Teléfono convencional: </label>
-        <input [(ngModel)]="cli.telefono" #telefono name="telefono" type="number" class="form-control" placeholder="Telefono">
-      </div>
-      <div class="col-md-6 col-12">
-        <label class="col-form-label">Movil: </label>
-        <input [(ngModel)]="cli.movil" #movil name="movil" type="number" class="form-control"  placeholder="Movil">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-6 col-12">
-        <label class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input"
-                 name="domicilio" [(ngModel)]="check" >
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">A domicilio</span>
-        </label>
-      </div>
-      <div class="col-md-6 col-12"></div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-6 col-12" >
-        <label class="col-form-label">Calle Principal: </label>
-        <input [(ngModel)]="cli.callePrincipal" [(disabled)]="!check" #calleP name="calleP" type="text" class="form-control" placeholder="Calle Principal">
-      </div>
-      <div class="col-md-6 col-12">
-        <label class="col-form-label">Calle Secundaria: </label>
-        <input [(ngModel)]="cli.calleSecundaria" [(disabled)]="!check" #calleS name="calleS" type="text" class="form-control"  placeholder="Calle Secundaria">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-md-4 col-12" >
-        <label class="col-form-label">Número casa: </label>
-        <input [(ngModel)]="cli.numCasa" [(disabled)]="!check" #numCasa name="numCasa" type="text" class="form-control" placeholder="N° Casa">
-      </div>
-      <div class="col-md-4 col-12">
-        <label class="col-form-label">Provincia: </label>
-        <input [(ngModel)]="cli.provincia" [(disabled)]="!check" #provincia name="provincia" type="text" class="form-control"  placeholder="Provincia">
-      </div>
-      <div class="col-md-4 col-12">
-        <label class="col-form-label">Ciudad: </label>
-        <input [(ngModel)]="cli.ciudad" [(disabled)]="!check" #ciudad name="ciudad" type="text" class="form-control"  placeholder="Ciudad">
-      </div>
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">Verificar</button>
-  </form>
+  </div>
 
 </div>
+
 

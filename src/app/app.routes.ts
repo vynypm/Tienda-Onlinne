@@ -17,6 +17,7 @@ import { ProductosComponent} from './components/productos/productos.component';
 import { InformacionFinalComponent} from './components/informacion-final/informacion-final.component';
 import { AdminOpcionesComponent } from './components/administrador/admin-opciones/admin-opciones.component';
 import { PedidoComponent } from './components/administrador/pedido/pedido.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
 //import { PaypalComponent } from './components/paypal/paypal.component';
 
 const APP_ROUTES: Routes = [
@@ -39,6 +40,7 @@ const APP_ROUTES: Routes = [
   {path: 'informacionfinal' , component: InformacionFinalComponent},
   {path: 'opcion/:id' , component: AdminOpcionesComponent},
   {path: 'pedido' , component: PedidoComponent},
+  {path: 'filtros/:nombre' , component: CategoriasComponent},
   //{path: 'paypal' , component: PaypalComponent},
 
 

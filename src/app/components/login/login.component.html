@@ -1,34 +1,29 @@
 <app-navbar></app-navbar>
-
-<div class="cabecera container" style="text-align: center">
-  <h2>Iniciar sesión</h2>
-</div><br>
+<br>
 <div class="container">
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6 col-12">
-      <div class="card-block  registro text-center">
-
-        <img src="../../../../assets/img/avatar.jpg" class="rounded-circle"  height="150" width="150">
-
-        <br><br>
+      <div class="text-center">
+        <h4 style="color: steelblue">Bienvenido a nuestra tienda</h4>
+        <hr>
+      </div>
+      <div class="card-block text-center">
+        <img src="../../../assets/img/php-login-logo.jpg" class="rounded-circle"  height="150" width="150">
         <form class="form-signin" (ngSubmit)="login(email.value, password.value)" #forma="ngForm">
-
           <label class="sr-only">Email address</label>
           <input [(ngModel)]="usuario.email" #email name="email" type="email" class="form-control" placeholder="Email" required="" autofocus="">
           <label class="sr-only">Password</label>
           <input [(ngModel)]="usuario.password" #password name="password"  type="password" class="form-control" placeholder="Contraseña" required="">
           <br>
           <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!habilitarBoton">Ingresar</button>
+          <a [routerLink] = "['/registrarse']">¿No tienes una cuenta? Registrate</a>
         </form>
         <p id="sms"></p>
       </div>
-
     </div>
+    <div class="col-md-3"></div>
   </div>
-</div>
-<div class="container">
-  <a [routerLink] = "['/registrarse']">No tienes una cuenta?</a>
 </div>
 
 <app-nosotros></app-nosotros>

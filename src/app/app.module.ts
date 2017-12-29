@@ -72,6 +72,7 @@ import {SailsModule} from "angular2-sails";
 //SweetAlert
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { PaypalComponent } from './components/paypal/paypal.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
 
 export const cloudinaryLib = {
   Cloudinary: Cloudinary
@@ -104,6 +105,7 @@ export const cloudinaryLib = {
     BuscadorComponent,
     PedidoComponent,
     PaypalComponent,
+    CategoriasComponent,
   ],
   imports: [
     BrowserModule, GrowlModule, MessagesModule, NguiAutoCompleteModule,

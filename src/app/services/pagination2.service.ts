@@ -5,22 +5,22 @@ import * as _ from 'underscore';
 export class Pagination2Service {
 
   constructor() { }
-  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 8) {
+  getPager(totalItems: number, currentPage: number = 1, pageSize: number = 9) {
     // calculate total pages
     let totalPages = Math.ceil(totalItems / pageSize);
 
     let startPage: number, endPage: number;
-    if (totalPages <= 8) {
+    if (totalPages <= 9) {
       // less than 10 total pages so show all
       startPage = 1;
       endPage = totalPages;
     } else {
       // more than 10 total pages so calculate start and end pages
-      if (currentPage <= 8) {
+      if (currentPage <= 9) {
         startPage = 1;
-        endPage = 8;
+        endPage = 9;
       } else if (currentPage + 4 >= totalPages) {
-        startPage = totalPages - 9;
+        startPage = totalPages - 10;
         endPage = totalPages;
       } else {
         startPage = currentPage - 5;

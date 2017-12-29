@@ -35,7 +35,7 @@ export class ProductosComponent implements OnInit {
       .subscribe(
         resultado => {
           this.listaCategorias = resultado;
-          //console.log(this.listaCategorias);
+          console.log(this.listaCategorias);
         }
       );
 
@@ -130,7 +130,7 @@ export class ProductosComponent implements OnInit {
       this.carrito = this._carritoService.getProducto();
       console.log(this.carrito);
       document.getElementById('carrito').innerHTML =
-        "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
+        "<p style='color: black'>Carrito <i class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></i>"+this.carrito.length+"</p>";
       document.getElementById(cell.id).innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-success alert-dismissable\">\n" +
         "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
         "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +

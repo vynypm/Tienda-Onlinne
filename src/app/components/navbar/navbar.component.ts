@@ -6,6 +6,10 @@ import { LogoService } from '../../services/logo.service';
 import { HostListener} from "@angular/core";
 import { Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/platform-browser";
+import {ProductoService} from '../../services/producto.service';
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser"; //Autocomplete
+import { FormControl, FormBuilder} from '@angular/forms';
+import {ClienteService} from '../../services/cliente.service';
 declare var jquery:any;
 declare var $ :any;
 
@@ -21,12 +25,18 @@ export class NavbarComponent implements OnInit {
   carrito: any;
   empresaImg: string;
   empresaNombre: string;
+  productos: any[] = [];
+  public buscador: FormControl;
+  email:any;
+  cliente: any;
 
   constructor(private _router: Router,
               private _usuarioServices: UsuarioService,
+              private _clienteServices: ClienteService,
               private _carritoService: CarritoService,
               private _logoService: LogoService,
-              @Inject(DOCUMENT) private document: Document) {
+              @Inject(DOCUMENT) private document: Document,
+              private builder: FormBuilder, private _sanitizer: DomSanitizer, private _productoServices: ProductoService) {
     //io.sails.url="https://store-onlinne.herokuapp.com/";
     this._logoService.consultarLogo()
       .subscribe(
@@ -39,7 +49,16 @@ export class NavbarComponent implements OnInit {
         }
       );
 
-
+    this._productoServices.consultarProductos()
+      .subscribe(
+        resultado => {
+          for (let key in resultado) {
+            let prodnew = resultado[key];
+            this.productos.push(prodnew); //Guardo todos los productos
+          }
+        }
+      );
+    console.log(this.productos);
   }
 
   ngOnInit() {
@@ -52,15 +71,30 @@ export class NavbarComponent implements OnInit {
     });
 
     this.carrito = this._carritoService.getProducto();
+    this.buscador = new FormControl(''); //form del buscador
 
+    this._usuarioServices.isLogged_cliente().then((result:boolean)=>{
+      console.log(result);
+      if (result != false) {
+        console.log("Usted esta logeado PLEASE");
+        this.email = sessionStorage.getItem('Cliente'); // Guardar el email del usuario que inició sesion
+        console.log(this.email);
+      }
+    });
 
-   /* if (!isNaN(this._carritoService.getProducto().length)){
-      //Conseguir productos del carrito
-      this.carrito = this._carritoService.getProducto().length;
-      console.log(this._carritoService.getProducto().length);
-    }else {
-      console.log("Cesta vacia");
-    }*/
+    this._clienteServices.consultarCliente().subscribe(
+      respuesta => {
+        for (let key$ in respuesta ) {
+          let usuarioNew = respuesta[key$];
+          if (usuarioNew.email === this.email){
+            this.cliente = usuarioNew.nombre;
+          }
+        }
+      }
+    )
+
+    this.onResize();
+
   }
 
   salir() {
@@ -69,16 +103,42 @@ export class NavbarComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
-  @HostListener("window:scroll")
+/*
+@HostListener("window:scroll")
   onWindowScroll() {
-    //console.log(window.scrollY)
-    if( window.scrollY >  450){
-      $("nav").addClass('mainNav2');
-      $("nav").removeClass('mainNav');
+    //console.log(window.innerWidth);
+    if( window.scrollY >  1){
+      $("nav").addClass('mainNav2 sticky-top');
+      $("nav").removeClass('mainNav ');
       //console.log("mayor")
     } else {
-      $("nav").addClass('mainNav');
-      $("nav").removeClass('mainNav2');
+      $("nav").addClass('mainNav ');
+      $("nav").removeClass('mainNav2 sticky-top');
     }
+  }*/
+
+@HostListener("window:resize")
+  onResize(){
+    console.log(window.innerWidth);
+    if(window.innerWidth < 768){
+      $(".cambiarDiv").addClass('ocultar');
+      $(".cambiarNav").removeClass('ocultar');
+      $(".cambiarNav").addClass('mostrar');
+    }
+    else {
+      $(".cambiarDiv").removeClass('ocultar');
+      $(".cambiarNav").removeClass('mostrar');
+      $(".cambiarNav").addClass('ocultar');
+    }
+  }
+
+  //Funcion para autocompletar el buscador
+  autocompleListFormatter = (data: any) : SafeHtml => {
+    let html = `<span>${data.modelo}</span>`;
+    return this._sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  buscar(id, modelo){
+    this._router.navigate(['/producto', id, modelo]);
   }
 }

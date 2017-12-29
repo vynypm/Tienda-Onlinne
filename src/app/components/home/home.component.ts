@@ -75,12 +75,11 @@ export class HomeComponent implements OnInit {
       //Conseguir productos del carrito
       this.carrito = this._carritoService.getProducto();
       console.log(this.carrito);
-      document.getElementById('carrito').innerHTML =
-        "<span class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></span>"+this.carrito.length;
-      document.getElementById(promo.id).innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-success alert-dismissable\">\n" +
+      document.getElementById('carrito').innerHTML = "<p style='color: black'>Carrito <i class=\"fa fa-cart-plus fa-1x \" aria-hidden=\"true\"></i>"+this.carrito.length+"</p>";
+      /*document.getElementById(promo.id).innerHTML = "<div style='position: absolute; z-index: 100; ' class=\"alert alert-success alert-dismissable\">\n" +
         "  <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n" +
         "   <i class=\"fa fa-check\" aria-hidden=\"true\"></i> <strong>&nbsp Añadido al carrito &nbsp &nbsp</strong>" +
-        "</div>";
+        "</div>";*/
 
           swal({
               title: 'Añadido al carrito',

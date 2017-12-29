@@ -1,116 +1,208 @@
+/* clase mainNav*/
 .mainNav {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+47,ededed+100;White+3D+%231 */
-  background: rgb(255,255,255); /* Old browsers */
-  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  border-top: solid 1px rgba(237,237,237,1);
+}
+.mainNav .container .navbar-nav .nav-item .nav-link{
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+}
+.mainNav .container .navbar-nav .nav-item .nav-link::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #1a86d8;
+  transition: width .3s;
+}
+.mainNav .container .navbar-nav .nav-item .nav-link:hover::after {
+  width: 100%;
 }
 
-.mainNav .navbar-brand{
+/* clase mainNav*/
+.mainNav2 {
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 );
+  border-bottom: solid 1px white;
+}
+.mainNav2 .container .navbar-nav .nav-item .nav-link{
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+}
+.mainNav2 .container .navbar-nav .nav-item .nav-link::after{
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #1a86d8;
+  transition: width .3s;
+}
+.mainNav2 .container .navbar-nav .nav-item .nav-link:hover::after {
+  width: 100%;
+}
+
+/* css comunes*/
+.active {
+  border-bottom: solid 2px #1a86d8;
+}
+p {
   color: black;
+  margin-bottom: 2px;
 }
-
-.mainNav .container .navbar-brand:hover{
-  color: yellow;
-}
-.mainNav .container .navbar-nav .nav-item .nav-link {
-  font-size: 90%;
-  font-weight: 400;
-  padding: .75em 0;
-  letter-spacing: 1px;
-
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  color: black;
-}
-
-.mainNav .container .navbar-nav .nav-item .nav-link:hover, .active {
-  color: white;
-  background-color: #C0C0C0;
-}
-@media (min-width: 992px) {
-  .mainNav {
-
-    -webkit-transition: padding .3s;
-    -moz-transition: padding .3s;
-    transition: padding .3s;
-    border: none;
-    background-color: transparent;
-  }
-  .mainNav .navbar-brand {
-    font-size: 1.75em;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    transition: all .3s;
-  }
-  .mainNav .navbar-nav .nav-item .nav-link {
-    padding: 1.1em 1em !important;
-  }
-
-}
-.container{position: static;}
-
 .img-logo{
   width: 15%;
   max-width: 150px;
   height: 15%;
 }
-
-
-/*Tema cambia al bajar la pantalla*/
-.mainNav2 {
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f6f6f6+47,ededed+100;White+3D+%231 */
-  background: rgb(255,255,255); /* Old browsers */
-  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(246,246,246,1) 47%,rgba(237,237,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
-}
-
-.mainNav2 .navbar-brand{
-  color: black;
-}
-
-.mainNav2 .container .navbar-brand:hover{
-  color: yellow;
-}
-.mainNav2 .container .navbar-nav .nav-item .nav-link {
-  font-size: 90%;
-  font-weight: 400;
-  padding: .75em 0;
-  letter-spacing: 1px;
-
-  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  color: black;
-}
-
-.mainNav2 .container .navbar-nav .nav-item .nav-link:hover, .active {
-  color: white; background-color: #C0C0C0
-}
-
-@media (min-width: 992px) {
-  .mainNav2 {
-
-    -webkit-transition: padding .3s;
-    -moz-transition: padding .3s;
-    transition: padding .3s;
-    border: none;
-    background-color: transparent;
-  }
-  .mainNav2 .navbar-brand {
-    font-size: 1.75em;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    transition: all .3s;
-  }
-  .mainNav2 .navbar-nav .nav-item .nav-link {
-    padding: 1.1em 1em !important;
-  }
-
-}
-
 a{
   cursor: pointer;
 }
+#carrito {
+  width: 110px;
+}
+.navbar-toggleable-sm .navbar-collapse {
+  height: 36px;
+}
+
+@media screen and (max-width:991px ) {
+  .navbar-toggleable-sm .navbar-collapse {
+    height: 36px;
+  }
+
+}
+@media screen and (max-width:767px ) {
+  .navbar-toggleable-sm .navbar-collapse{
+    height: 100%;
+  }
+  .navbar-toggleable-sm[_ngcontent-c3] .navbar-collapse[_ngcontent-c3] { /*ancho del menu cuando se desplega*/
+    height: 100%;
+  }
+  .navbar-toggler navbar-toggler-right mr-auto, .navbar-toggler-icon {/* Tamaño del boton y span del menu desplegable */
+    width: 25px;
+    height: 25px;
+  }
+  .navbar .container { /*Ancho de la barra cuando se hace responsive*/
+    width: 100%;
+  }
+  .navbar-toggleable-sm{
+    padding-bottom: 12px;
+  }
+  .active {
+    background: #9b9b9b;
+    border-bottom: solid 2px #9b9b9b;
+  }
+  .img-logo{
+    width: 20%;
+    max-width: 150px;
+    height: 15%;
+  }
+}
+
+
+.ocultar {
+  display: none;
+}
+.mostrar {
+  display: block;
+}
+
+/*css buscador*/
+.container-3{
+  width: 300px;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+}
+.container-3 input#search{
+  width: 100%;
+  height: 24px;
+  background: white;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #262626;
+  padding-left: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: black;
+}
+.container-3 input#search::-webkit-input-placeholder {
+  color: #65737e;
+}
+.container-3 input#search:-moz-placeholder { /* Firefox 18- */
+  color: #65737e;
+}
+.container-3 input#search::-moz-placeholder {  /* Firefox 19+ */
+  color: #65737e;
+}
+.container-3 input#search:-ms-input-placeholder {
+  color: #65737e;
+}
+.container-3 .icon{
+  position: absolute;
+  top: 50%;
+  margin-left: 17px;
+  margin-top: 0px;
+  z-index: 1;
+  color: #4f5b66;
+  -webkit-transition: all .55s ease;
+  -moz-transition: all .55s ease;
+  -ms-transition: all .55s ease;
+  -o-transition: all .55s ease;
+  transition: all .55s ease;
+}
+.container-3 input#search:focus, .container-3 input#search:active{
+  outline:none;
+}
+.container-3:hover .icon{
+  margin-top: 0px;
+  color: #93a2ad;
+  -webkit-transform:scale(1.5); /* Safari and Chrome */
+  -moz-transform:scale(1.5); /* Firefox */
+  -ms-transform:scale(1.5); /* IE 9 */
+  -o-transform:scale(1.5); /* Opera */
+  transform:scale(1.5);
+}
+
+/*css buscador1*/
+.container-3 input#search1{
+  width: 100%;
+  height: 24px;
+  background: white;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #262626;
+  padding-left: 45px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 15px;
+  color: black;
+}
+.container-3 input#search1::-webkit-input-placeholder {
+  color: #65737e;
+}
+.container-3 input#search1:-moz-placeholder { /* Firefox 18- */
+  color: #65737e;
+}
+.container-3 input#search1::-moz-placeholder {  /* Firefox 19+ */
+  color: #65737e;
+}
+.container-3 input#search1:-ms-input-placeholder {
+  color: #65737e;
+}
+
+.container-3 input#search1:focus, .container-3 input#search1:active{
+  outline:none;
+}
+
