@@ -24,11 +24,10 @@
 
         </div>
         <div class="col-md-11 text-right" style="border-right: solid 1px rgba(237,237,237,1);">
-          <i class="fa fa-facebook-square" aria-hidden="true"></i>
-          &nbsp;
-          <i class="fa fa-twitter-square" aria-hidden="true"></i>
-          &nbsp;
-          <i class="fa fa-youtube-square" aria-hidden="true"></i>
+          <a [hidden]="!facebookUrl" [href]="facebookUrl" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+          <a [hidden]="!twitterUrl" [href]="twitterUrl" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+          <a [hidden]="!youtubeUrl" [href]="youtubeUrl" target="_blank"><i class="fa fa-youtube-square" aria-hidden="true"></i></a>
+          <a [hidden]="!googleUrl" [href]="googleUrl" target="_blank"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>
           &nbsp;
           <p style="display: inline-block" [hidden]="!hide">Bienvenido, {{cliente}} &nbsp;</p>
           <a style="display: inline-block"[hidden]="hide" style="text-decoration:none;"

@@ -9,7 +9,9 @@ export class ContactenosComponent implements OnInit {
   lat = -0.174496;
   lng = -78.487168;
   zoom = 17;
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }

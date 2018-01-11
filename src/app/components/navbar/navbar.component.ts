@@ -29,6 +29,10 @@ export class NavbarComponent implements OnInit {
   public buscador: FormControl;
   email:any;
   cliente: any;
+  facebookUrl;
+  youtubeUrl;
+  twitterUrl;
+  googleUrl;
 
   constructor(private _router: Router,
               private _usuarioServices: UsuarioService,
@@ -37,6 +41,7 @@ export class NavbarComponent implements OnInit {
               private _logoService: LogoService,
               @Inject(DOCUMENT) private document: Document,
               private builder: FormBuilder, private _sanitizer: DomSanitizer, private _productoServices: ProductoService) {
+    window.scrollTo(0,0);
     //io.sails.url="https://store-onlinne.herokuapp.com/";
     this._logoService.consultarLogo()
       .subscribe(
@@ -46,6 +51,21 @@ export class NavbarComponent implements OnInit {
           //console.log(empresa[0].nombre);
           this.empresaNombre = empresa[0].nombre;
           this.empresaImg = empresa[0].imgLogo;
+          if (empresa[0].linkFacebook !== "") {
+            this.facebookUrl = empresa[0].linkFacebook;
+          }
+
+          if (empresa[0].linkYoutube !== "") {
+            this.youtubeUrl = empresa[0].linkYoutube;
+          }
+
+          if (empresa[0].linkTwitter !== "") {
+            this.twitterUrl = empresa[0].linkTwitter;
+          }
+
+          if (empresa[0].linkGoogle !== "") {
+            this.googleUrl = empresa[0].linkGoogle;
+          }
         }
       );
 

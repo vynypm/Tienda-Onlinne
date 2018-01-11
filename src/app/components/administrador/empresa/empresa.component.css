@@ -1,6 +1,5 @@
 .cabecera{
   margin-top: 100px;
-  border-bottom: 1px solid #D3D3D3;
 }
 
 .registro{
@@ -50,4 +49,13 @@ select:focus{
 .carousel{
   padding: 20px 10px 20px 10px;
   border: 1px solid #A9ACB4;
+}
+
+.img-edit-logo{
+  width: 150px;
+  height: 100px;
+}
+
+a{
+  cursor: pointer;
 }

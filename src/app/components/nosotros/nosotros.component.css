@@ -1,14 +1,30 @@
 .footer-nosotros{
-  background-color: #121212;
+  background-color: #444040;
   color: white;
   margin-top: 20px;
   border-top: 1px solid #D3D3D3;
-  padding-top:20px;
-  padding-left: 50px;
+  padding:20px 30px 20px 30px;
 }
- .siguenos a{
-   color: white;
- }
+.siguenos a{
+  color: white;
+}
 .siguenos a:hover{
   color: #3fa6d3;
 }
+agm-map {
+  height: 250px;
+  width: 100%;
+}
+
+.logo{
+  width: 300px;
+  height: 200px;
+}
+
+.cont-logo{
+  border-left:1px solid #F0EFF1 ;
+  border-right:1px solid #F0EFF1 ;
+  text-align: center;
+
+}
+

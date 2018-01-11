@@ -1,8 +1,12 @@
 <app-navbar-admin></app-navbar-admin>
 
-<div class="cabecera container">
-  <h2>Registrar LOGO</h2>
-</div><br>
+<div class="container cabecera">
+  <div class="text-center">
+    <hr>
+    <h4 style="color: steelblue">Registro de Datos</h4>
+    <hr>
+  </div>
+</div>
 
 <div class="container">
 
@@ -22,82 +26,100 @@
         </div>
       </div>
 
-      <div class="col-md-6 col-12">
-        <div class="form-group row">
-          <div class="col-md-12">
-            <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarImagen">
-              Logo <input  type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
-              <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
-            </label>
-          </div>
-          <div class="col-md-12 col-12">
-            <input class="form-control"
-                   type="text"
-                   placeholder="Img LOGO"
-                   name="imgLogo"
-                   [(ngModel)]="logo.imgLogo" [disabled]="true">
-                  <div style="text-align: center">
-                    <div>
-                      Barra de Progreso:
-                      <div class="progress" style="">
-                        <div class="progress-bar progress-bar-striped" role="progressbar"
-                             [ngStyle]="{ 'width': uploader.progress + '%' }" aria-valuenow="uploader.progress" aria-valuemin="0" aria-valuemax="100">
-                          {{uploader.progress + '%'}}
-                        </div>
+      <div class="col-md-6"></div>
+
+      <div class="col-md-12 carousel">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12">
+                <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarImagen">
+                  Logo <input  type="file" ng2FileSelect [uploader]="uploader" style="display: none;">
+                  <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
+                </label>
+              </div>
+              <div class="col-md-12 col-12">
+                <div style="text-align: center">
+                  <div>
+                    Barra de Progreso:
+                    <div class="progress" style="">
+                      <div class="progress-bar progress-bar-striped" role="progressbar"
+                           [ngStyle]="{ 'width': uploader.progress + '%' }" aria-valuenow="uploader.progress" aria-valuemin="0" aria-valuemax="100">
+                        {{uploader.progress + '%'}}
                       </div>
                     </div>
-                    <br>
                   </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-12 col-12 carousel">
-        <div class="form-group row">
-          <div class="col-md-12">
-            <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarCarrusel">
-              Imagenes Carrusel <input  type="file" ng2FileSelect [uploader]="uploaderCarrusel" style="display: none;" multiple>
-              <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
-            </label>
-          </div>
-          <div class="col-md-6 offset-md-3 col-12">
-            <div style="text-align: center">
-              <div>
-                Barra de Progreso:
-                <div class="progress" style="">
-                  <div class="progress-bar progress-bar-striped" role="progressbar"
-                       [ngStyle]="{ 'width': uploaderCarrusel.progress + '%' }" aria-valuenow="uploaderCarrusel.progress" aria-valuemin="0" aria-valuemax="100">
-                    {{uploaderCarrusel.progress + '%'}}
-                  </div>
+                  <br>
                 </div>
               </div>
-              <br>
             </div>
 
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
             <div class="row">
-              <label class="col-md-12 col-form-label"></label>
-              <div class="card-prod col-md-3" *ngFor="let img of imgcarrusel; let i=index">
-                <div>
-                  <div class="text-center">
-                    <a>
-                      <img class="img-edit" src ="{{img}}">
-                      <a (click)="eliminarImg(img)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
-                    </a>
+              <div class="col-md-12">
+                <div class="row">
+                  <label class="col-md-12 col-form-label"></label>
+                  <div class="card-prod col-md-6 offset-md-3" >
+                    <div>
+                      <div class="text-center">
+                        <img class="img-edit-logo" src ="{{imgLogo}}">
+                        <a (click)="eliminarLogo(imgLogo)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
+                      </div>
+                    </div>
                   </div>
                 </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-12">
+            <div class="form-group row">
+              <div class="col-md-12">
+                <label type="button"  class = "btn btn-secondary btn-lg active" id="seleccionarCarrusel">
+                  Imagenes Carrusel <input  type="file" ng2FileSelect [uploader]="uploaderCarrusel" style="display: none;" multiple>
+                  <span class="fa fa-folder-open-o" aria-hidden="true"></span><strong class="requerido">*</strong>
+                </label>
+              </div>
+              <div class="col-md-12 col-12">
+                <div style="text-align: center">
+                  <div>
+                    Barra de Progreso:
+                    <div class="progress" style="">
+                      <div class="progress-bar progress-bar-striped" role="progressbar"
+                           [ngStyle]="{ 'width': uploaderCarrusel.progress + '%' }" aria-valuenow="uploaderCarrusel.progress" aria-valuemin="0" aria-valuemax="100">
+                        {{uploaderCarrusel.progress + '%'}}
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                </div>
+
               </div>
             </div>
 
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <label class="col-md-12 col-form-label"></label>
+                  <div class="card-prod col-md-3" *ngFor="let img of imgcarrusel; let i=index">
+                    <div>
+                      <div class="text-center">
+                        <img class="img-edit" src ="{{img}}">
+                        <a (click)="eliminarImg(img)"><span class="fa fa-times-circle-o" aria-hidden="true"></span></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
+
+
+
         </div>
+
       </div>
-
-
 
       <div class="col-md-12"><br><br>
         <label class="col-md-12 col-form-label"><h5>Redes Sociales</h5></label>
@@ -194,12 +216,12 @@
     <div class="row">
       <div class="col-md-12 col-12">
         <div class="text-right from-group">
+          <button [routerLink]="['/admin-productos', 'todos']"
+                  type="button" class="btn btn-outline-primary">Cancelar</button>
           <button type="submit"
                   class="btn btn-outline-primary"
                   [disabled]="!habilitarBoton">
             Guardar</button>
-          <button [routerLink]="['/admin-productos']"
-                  type="button" class="btn btn-outline-warning">Cancelar</button>
         </div>
       </div>
       <div class="col-md-12 col-12 text-right requerido">

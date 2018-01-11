@@ -1,17 +1,21 @@
 <app-navbar-admin></app-navbar-admin>
 
 
-<div class="cabecera container">
-  <h2>Registrar nuevo Producto</h2>
-</div><br>
+<div class="container cabecera">
+  <div class="text-center">
+    <hr>
+    <h4 style="color: steelblue">Registrar nuevo Producto</h4>
+    <hr>
+  </div>
+</div>
 
 <div class="text-right container">
   <button [routerLink]="['/marca', 'nuevo']"
-          type="button" class="btn btn-warning">Nueva Marca</button>
+          type="button" class="btn btn-outline-primary">Nueva Marca</button>
   <button [routerLink]="['/categoria', 'nuevo']"
-          type="button" class="btn btn-warning">Nueva Categoria</button>
+          type="button" class="btn btn-outline-primary">Nueva Categoria</button>
   <button [routerLink]="['/opcion', 'nuevo']"
-          type="button" class="btn btn-warning">Nueva Opción</button>
+          type="button" class="btn btn-outline-primary">Nueva Opción</button>
 </div>
 <br>
 <div class="container registro">
@@ -85,6 +89,33 @@
           </div>
 
           <div class="col-md-6">
+            <div class="form-group row">
+              <div class="col-md-11 offset-md-1">
+                <label class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input"
+                         name="promocion"
+                         [(ngModel)]="producto.promocion">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">Esta en Promocion</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-12 col-form-label">Precio-Promocion:</label>
+              <div class="col-md-12">
+                <input class="form-control" type="number"
+                       step="0.01"
+                       name="precio_promo"
+                       placeholder="$ 00,00"
+                       [(ngModel)]="producto.precio_promo"
+                       [disabled]="!producto.promocion">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
             <div class="form-group">
               <label class="col-md-12 col-form-label">Opciones</label>
               <div class="multiple-select col-lg-6 col-md-6 col-sm-6 col-xs-6" style="">
@@ -120,30 +151,6 @@
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input"
-                       name="promocion"
-                       [(ngModel)]="producto.promocion">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">Esta en Promocion</span>
-              </label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="col-md-12 col-form-label">Precio-Promocion:</label>
-              <div class="col-md-12">
-                <input class="form-control" type="number"
-                       step="0.01"
-                       name="precio_promo"
-                       placeholder="$ 00,00"
-                       [(ngModel)]="producto.precio_promo"
-                       [disabled]="!producto.promocion">
-              </div>
-            </div>
-          </div>
 
         </div>
 
@@ -264,10 +271,10 @@
 
         <br>
         <div class=" text-right from-group">
+          <button [routerLink]="['/admin-productos', 'todos']"
+                  type="button" class="btn btn-outline-primary">Cancelar</button>
           <button type="submit" class="btn btn-outline-primary"
                   [disabled]="!(forma.valid && habilitarBoton)">Guardar</button>
-          <button [routerLink]="['/admin-productos']"
-                  type="button" class="btn btn-outline-warning">Cancelar</button>
         </div>
       </form>
     </div>

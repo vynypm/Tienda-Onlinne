@@ -6,6 +6,7 @@ import { CategoriaService } from '../../services/categoria.service';
 import { CarritoService } from '../../services/carrito.service';
 import { PaginationService } from '../../services/pagination.service';
 import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',

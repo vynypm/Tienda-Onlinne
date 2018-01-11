@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._usuarioServices.isLogged().then((result:boolean)=>{
       if (result) {
-        this._router.navigate(['/admin-productos']);
+        this._router.navigate(['/admin-productos', 'todos']);
       }
     });
     this._usuarioServices.isLogged_cliente().then((result:boolean)=>{
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
                 }
                 console.log("Email correcto");
                 console.log(usuarioNew);
-                this._router.navigate(['/admin-productos']);
+                this._router.navigate(['/admin-productos', 'todos']);
           }else {
                 console.log("Email incorrectocorrecto");
           }

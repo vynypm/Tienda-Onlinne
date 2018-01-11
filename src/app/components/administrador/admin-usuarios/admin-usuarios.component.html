@@ -1,15 +1,19 @@
 <app-navbar-admin></app-navbar-admin>
 
-<div class="cabecera container">
-  <h2>Usuarios Registrados</h2>
-</div><br>
+<div class="container cabecera">
+  <div class="text-center">
+    <hr>
+    <h4 style="color: steelblue">Administradores</h4>
+    <hr>
+  </div>
+</div>
 
 <div class="container">
 
 
   <div class="row" >
     <div  class=" col-md-12 text-right">
-      <button [routerLink]="['/registrar-usuariosAdmin/nuevo']" type="button" class="btn btn-primary">+</button>
+      <button [routerLink]="['/registrar-usuariosAdmin/nuevo']" type="button" class="btn btn-outline-primary"><i class="fa fa-plus" aria-hidden="true"></i></button>
       <br>
     </div>
   </div>
@@ -33,9 +37,9 @@
 
         <div class="col-md-4">
           <button [routerLink]="['/registrar-usuariosAdmin',usuario.id]"
-                  class="btn btn-outline-primary" type="button">Editar</button>
+                  class="btn btn-outline-primary" type="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
           <button  class="btn btn-outline-danger" (click)="eliminar(usuario.id, i)"
-                   type="button">Eliminar</button>
+                   type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
 
         </div>

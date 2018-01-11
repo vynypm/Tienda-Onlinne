@@ -32,6 +32,7 @@ export class EmpresaComponent implements OnInit {
   public uploaderCarrusel: FileUploader;
   public hasBaseDropZoneOver = false;
   imgcarrusel: any[]=[];
+  imgLogo: any;
 
   constructor(private _router: Router,
               private _activatedRouter: ActivatedRoute,
@@ -144,6 +145,7 @@ export class EmpresaComponent implements OnInit {
               this.logo = resultado;
               console.log(this.logo);
               this.imgcarrusel = this.logo.imgCarousel;
+              this.imgLogo = this.logo.imgLogo;
             }
           );
       }
@@ -179,7 +181,7 @@ export class EmpresaComponent implements OnInit {
           resultado => {
             //console.log(resultado);
             this.habilitarBoton = true;
-            this._router.navigate(['/admin-productos' ]);
+            this._router.navigate(['/admin-productos', 'todos' ]);
           }
         );
     }
@@ -189,5 +191,11 @@ export class EmpresaComponent implements OnInit {
     var pos = this.imgcarrusel.indexOf(img);
     console.log(pos);
     this.imgcarrusel.splice(pos, 1);
+  }
+
+  eliminarLogo(img){
+    var pos = this.imgLogo.indexOf(img);
+    console.log(pos);
+    this.imgLogo.splice(pos, 1);
   }
 }

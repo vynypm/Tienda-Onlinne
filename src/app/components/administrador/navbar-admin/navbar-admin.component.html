@@ -4,21 +4,21 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['/admin-productos']">ADMINISTRADOR</a>
+      <a class="navbar-brand" [routerLink]="['/admin-productos', 'todos']">ADMINISTRADOR</a>
 
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto text-center">
-          <li class="nav-item">
-            <a [routerLink]="['/admin-usuarios']" class="nav-link" routerLinkActive="active" >Usuarios</a>
+          <li class="nav-item" routerLinkActive="active" >
+            <a [routerLink]="['/admin-usuarios']" class="nav-link">Usuarios</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active" >
           <a [routerLink]="['/empresa']" class="nav-link" >Empresa</a>
           </li>
-          <li class="nav-item">
-            <a [routerLink]="['/admin-productos']" class="nav-link" >Productos</a>
+          <li class="nav-item" routerLinkActive="active" >
+            <a [routerLink]="['/admin-productos', 'todos']" class="nav-link" >Productos</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" routerLinkActive="active" >
             <a [routerLink]="['/pedido']" class="nav-link">Pedidos</a>
           </li>
         </ul>
@@ -36,3 +36,5 @@
   </div>
 
 </nav>
+
+

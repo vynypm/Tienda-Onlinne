@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OpcionService } from '../../../services/opcion.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
+import { PaginationAdminService } from '../../../services/pagination-admin.service';
 
 @Component({
   selector: 'app-admin-opciones',
@@ -15,16 +16,19 @@ export class AdminOpcionesComponent implements OnInit {
   opcion: any = {
     nombre: ""
   }
+  pager: any = {}; // pager object
+  pagedItems: any[] = []; // paged items
+
   constructor(private _opcionService: OpcionService,
               private _router: Router,
               private _activatedRouter: ActivatedRoute,
-              private _usuarioServices: UsuarioService) {
+              private _usuarioServices: UsuarioService, private _paginationService: PaginationAdminService) {
 
     this._opcionService.consultarOpciones()
       .subscribe(
         resultado => {
           this.opciones = resultado;
-          //console.log(this.categorias);
+          this.setPage(1);
         }
       );
     this._activatedRouter.params
@@ -89,5 +93,15 @@ export class AdminOpcionesComponent implements OnInit {
         }
       );
   }
-
+//PARA LA PAGINACION
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
+      return;
+    }
+    // get pager object from service
+    this.pager = this._paginationService.getPager(this.opciones.length, page);
+    // get current page of items
+    this.pagedItems = this.categorias.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log(this.pagedItems);
+  }
 }

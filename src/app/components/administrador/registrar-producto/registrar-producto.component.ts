@@ -76,7 +76,7 @@ export class RegistrarProductoComponent implements OnInit {
               this.producto = resultado;
               console.log(this.producto.imagen);
               if(this.producto.imagen.length != 0){
-                console.log("Imagenes guardad");
+                //console.log("Imagenes guardad");
                 this.listaImagenes = this.producto.imagen;
                 this.hide = false;
               }
@@ -182,14 +182,14 @@ export class RegistrarProductoComponent implements OnInit {
         resultado => {
           //console.log(resultado.name);
           this.habilitarBoton = true;
-          this._router.navigate(['/admin-productos']);
+          this._router.navigate(['/admin-productos', 'todos']);
         }
       );
     }else {
       this._productoServices.editarProducto(this.producto, this.id).subscribe(
         resultado => {
           this.habilitarBoton = true;
-          this._router.navigate(['/admin-productos' ]);
+          this._router.navigate(['/admin-productos', 'todos' ]);
         }
       );
     }
@@ -211,10 +211,6 @@ export class RegistrarProductoComponent implements OnInit {
       this.producto.opciones = this.selected;
     }
   }
-
-
-
-
 
 }
 

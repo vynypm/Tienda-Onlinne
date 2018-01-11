@@ -24,7 +24,7 @@ const APP_ROUTES: Routes = [
 
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin-productos', component: AdminProductosComponent},
+  {path: 'admin-productos/:nombre', component: AdminProductosComponent},
   {path: 'registrar-producto/:id', component: RegistrarProductoComponent},
   {path: 'marca/:id' , component: AdminMarcaComponent},
   {path: 'categoria/:id' , component: AdminCategoriaComponent},

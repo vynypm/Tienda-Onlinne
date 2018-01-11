@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarAdminComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router) { window.scrollTo(0,0);}
 
   ngOnInit() {
   }
